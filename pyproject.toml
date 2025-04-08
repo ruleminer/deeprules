@@ -1,25 +1,21 @@
 [project]
-name = "deeprules"
-version = "0.1.0"
-description = "Rule induction algorithm capable of learning mixed CNF and DNF rules."
-readme = "README.md"
 authors = [
-    { name = "cezary.maszczyk", email = "cezary.maszczyk@emag.lukasiewicz.gov.pl" }
+  {name = "cezary.maszczyk", email = "cezary.maszczyk@emag.lukasiewicz.gov.pl"},
 ]
-requires-python = ">=3.9"
 dependencies = [
-    "decision-rules>=1.4.1",
+  "decision-rules>=1.4.1",
 ]
+description = "Rule induction algorithm capable of learning mixed CNF and DNF rules."
+name = "deeprules"
+readme = "README.md"
+requires-python = ">=3.9"
+version = "0.1.0"
 
 [build-system]
-requires = ["hatchling"]
-build-backend = "hatchling.build"
+build-backend = "poetry.core.masonry.api"
+requires = ["poetry-core>=2.0.0,<3.0.0"]
 
-
-[tool.hatch.build.targets.wheel]
-packages = ["deeprules"]
-
-[dependency-groups]
-dev = [
-    "pre-commit>=4.2.0",
-]
+[tool.poetry.group.dev.dependencies]
+autopep8 = "^2.3.2"
+isort = "^6.0.1"
+pre-commit = "^4.2.0"
