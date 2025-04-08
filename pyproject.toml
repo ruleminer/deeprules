@@ -1,0 +1,25 @@
+[project]
+name = "deeprules"
+version = "0.1.0"
+description = "Rule induction algorithm capable of learning mixed CNF and DNF rules."
+readme = "README.md"
+authors = [
+    { name = "cezary.maszczyk", email = "cezary.maszczyk@emag.lukasiewicz.gov.pl" }
+]
+requires-python = ">=3.9"
+dependencies = [
+    "decision-rules>=1.4.1",
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+
+[tool.hatch.build.targets.wheel]
+packages = ["deeprules"]
+
+[dependency-groups]
+dev = [
+    "pre-commit>=4.2.0",
+]
