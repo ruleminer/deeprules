@@ -67,17 +67,21 @@ ruleset: SurvivalRuleSet = Survival(survival_time_attr="survival_time").fit(X, y
 ruleset.predict(X)
 ```
 
-## Installing dependencies (for local development)
-```bash
-pip install .
-```
+## Local development
+
 Installing dev dependencies:
 ```bash
 pip install -e .[dev]
 ```
+
 Installing test dependencies:
 ```bash
 pip install -e .[test]
+```
+
+Installing pre-commit hook:
+```bash
+pre-commit install
 ```
 
 ##  Running tests
