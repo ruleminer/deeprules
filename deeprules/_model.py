@@ -1,15 +1,18 @@
-from typing import Any, Optional, Type
+from typing import Any
+from typing import Optional
+from typing import Type
 
 import pandas as pd
 from decision_rules.core.ruleset import AbstractRuleSet
 from decision_rules.problem import ProblemTypes
 from sklearn.base import BaseEstimator
 
-from deeprules._induction import RuleInducersMixin, RuleInductionTimes
+from deeprules._induction import RuleInducersMixin
+from deeprules._induction import RuleInductionTimes
 from deeprules._params import adjust_params_on_dataset
 
 
-class  BaseModel(BaseEstimator):
+class BaseModel(BaseEstimator):
 
     _Inducer: Type[RuleInducersMixin] = None
     _problem_type: ProblemTypes = None
@@ -38,6 +41,15 @@ class  BaseModel(BaseEstimator):
         return self._params
 
     def fit(self, X: pd.DataFrame, y: pd.Series) -> AbstractRuleSet:
+        """Trains a ruleset on given data.
+
+        Args:
+            X (pd.DataFrame): dataset
+            y (pd.Series): label column
+
+        Returns:
+            AbstractRuleSet: trained ruleset instance from `decision_rules <https://github.com/ruleminer/decision-rules>`_ package.
+        """
         adjusted_params: dict[str, Any] = adjust_params_on_dataset(
             self._params, y, problem_type=self._problem_type
         )

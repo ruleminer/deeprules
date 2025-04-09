@@ -1,8 +1,8 @@
 # DeepRules
 
-Rule induction algorithm capable of learning rulesets with mixed CNF and DNF rules.
+Rule induction algorithm capable of learning rulesets with mixed CNF (and or or's) and DNF (or of and's) rules.
 
-These packages make extensive use of the [decision-rules](https://github.com/ruleminer/decision-rules/blob/master/setup.py) library. All trained models are compatible with **decision-rules**.
+These packages make extensive use of the [decision-rules](https://github.com/ruleminer/decision-rules) library. All trained models are compatible with **decision-rules**.
 More advanced use cases can be found in its [documentation](https://ruleminer.github.io/decision-rules/).
 
 ### Example classification ruleset:
@@ -83,6 +83,7 @@ Installing pre-commit hook:
 ```bash
 pre-commit install
 ```
+> First commit after installing  pre-commit may sometimes fail, just try again.
 
 ##  Running tests
 

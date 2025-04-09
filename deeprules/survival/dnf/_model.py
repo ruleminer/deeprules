@@ -7,7 +7,7 @@ from deeprules._params import DEFAULT_PARAMS_VALUES
 from deeprules.survival.dnf._induction import RuleInducer
 
 
-class  SurvivalDNF( BaseModel):
+class SurvivalDNF(BaseModel):
     """Survival rules based on  Rules algorithm. It produces DNF rules in the following
     form:
         IF (a1 OR a2 ... OR aN) AND (b1 OR b2 ... OR bN) THEN label = ...
@@ -17,7 +17,7 @@ class  SurvivalDNF( BaseModel):
     in a rule could be controlled by :code:`max_layers_count` parameter.
     """
 
-    _Inducer =  RuleInducer
+    _Inducer = RuleInducer
     _problem_type = ProblemTypes.SURVIVAL
 
     def __init__(
@@ -32,7 +32,31 @@ class  SurvivalDNF( BaseModel):
             "enable_attributes_conditions"
         ],
         enable_negations: bool = DEFAULT_PARAMS_VALUES["enable_negations"],
-    ):  # pylint: disable=unused-argument
+    ):
+        """
+        Args:
+            min_cov (int, optional): A minimum number of previously uncovered
+                examples to be covered by a new rule (positive examples for
+                classification problems); Defaults to DEFAULT_PARAMS_VALUES["min_cov"].
+            max_uncovered_fraction (float, optional): Floating-point number from [0,1]
+                interval representing maximum fraction of examples that may remain
+                uncovered by the rule set. Defaults to
+                DEFAULT_PARAMS_VALUES["max_uncovered_fraction"].
+            max_layers_count (int, optional): Maximum number of top level components
+                (conjunctions or disjunctions) in rule . Defaults to
+                DEFAULT_PARAMS_VALUES["max_layers_count"].
+            max_disjunction_length (int, optional): Maximum number of conditions in each
+               disjunction. Defaults to 3.
+            enable_pruning (bool, optional): Enables pruning. Defaults to
+                DEFAULT_PARAMS_VALUES["enable_pruning"].
+            enable_attributes_conditions (bool, optional): Enables attributes relations
+                conditions. Such conditions take the following form "attr1 > y" or
+                "attr1 = attr2". Defaults to
+                DEFAULT_PARAMS_VALUES[ "enable_attributes_conditions" ].
+            enable_negations (bool, optional): Enables negated conditions in rules.
+                Defaults to DEFAULT_PARAMS_VALUES["enable_negations"].
+        """
+        # pylint: disable=unused-argument
         params: dict = locals()
         params.pop("self")
         super().__init__(**params)

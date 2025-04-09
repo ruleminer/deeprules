@@ -7,10 +7,10 @@ from deeprules._params import DEFAULT_PARAMS_VALUES
 from deeprules.survival.mixed._induction import GreedyRuleInducer
 
 
-class  Survival( BaseModel):
+class Survival(BaseModel):
     """Survival rules based on  Rules algorithm."""
 
-    _Inducer =  GreedyRuleInducer
+    _Inducer = GreedyRuleInducer
     _problem_type = ProblemTypes.SURVIVAL
 
     def __init__(
@@ -25,7 +25,33 @@ class  Survival( BaseModel):
         ],
         enable_negations: bool = DEFAULT_PARAMS_VALUES["enable_negations"],
         survival_time_attr: str = "survival_time",
-    ):  # pylint: disable=unused-argument
+    ):
+        """
+        Args:
+            min_cov (int, optional): A minimum number of previously uncovered
+                examples to be covered by a new rule (positive examples for
+                classification problems); Defaults to DEFAULT_PARAMS_VALUES["min_cov"].
+            max_uncovered_fraction (float, optional): Floating-point number from [0,1]
+                interval representing maximum fraction of examples that may remain
+                uncovered by the rule set. Defaults to
+                DEFAULT_PARAMS_VALUES["max_uncovered_fraction"].
+            max_layers_count (int, optional): Maximum number of top level components
+                (conjunctions or disjunctions) in rule . Defaults to
+                DEFAULT_PARAMS_VALUES["max_layers_count"].
+            max_component_length (int, optional): Maximum number of conditions in each
+                top level component (conjunction or disjunction). Defaults to 3.
+            enable_pruning (bool, optional): Enables pruning. Defaults to
+                DEFAULT_PARAMS_VALUES["enable_pruning"].
+            enable_attributes_conditions (bool, optional): Enables attributes relations
+                conditions. Such conditions take the following form "attr1 > y" or
+                "attr1 = attr2". Defaults to
+                DEFAULT_PARAMS_VALUES[ "enable_attributes_conditions" ].
+            enable_negations (bool, optional): Enables negated conditions in rules.
+                Defaults to DEFAULT_PARAMS_VALUES["enable_negations"].
+            survival_time_attr (str, optional): Survival time attribute name. Defaults
+                to "survival_time"
+        """
+        # pylint: disable=unused-argument
         params: dict = locals()
         params.pop("self")
         super().__init__(**params)
@@ -34,6 +60,6 @@ class  Survival( BaseModel):
 
     def fit(self, X: pd.DataFrame, y: pd.Series) -> SurvivalRuleSet:
         super().fit(X, y)
-        inducer:  GreedyRuleInducer = self._inducer
+        inducer: GreedyRuleInducer = self._inducer
         self.training_history = pd.DataFrame(inducer.history)
         return self.ruleset

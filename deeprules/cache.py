@@ -1,10 +1,14 @@
+"""Contains code for caching conditions coverage. It is done to improve performance by
+avoiding recalculating each time a conditions is added or removed from a rule.
+"""
 from __future__ import annotations
 
 from typing import Optional
 
 import numpy as np
-from decision_rules.conditions import (AbstractCondition, CompoundCondition,
-                                       LogicOperators)
+from decision_rules.conditions import AbstractCondition
+from decision_rules.conditions import CompoundCondition
+from decision_rules.conditions import LogicOperators
 
 
 class ConditionsCoverageCache:
@@ -35,7 +39,8 @@ class ConditionsCoverageCache:
             elif condition.logic_operator == LogicOperators.CONJUNCTION:
                 return np.min(subconditions_coverages, axis=0)
             else:
-                raise ValueError(f"Unknown logic operator: {condition.logic_operator}")
+                raise ValueError(
+                    f"Unknown logic operator: {condition.logic_operator}")
         self.hits_count -= 1
         self.misses_count += 1
         return None

@@ -1,6 +1,12 @@
+"""Contains utility functions for assessing rules quality.
+
+Those a mostly some hacky ways of squeezing a bit better performance out of
+`decision-rules <https://github.com/ruleminer/decision-rules>`_ functions and methods.
+"""
 import numpy as np
-from decision_rules.conditions import (AbstractCondition, CompoundCondition,
-                                       LogicOperators)
+from decision_rules.conditions import AbstractCondition
+from decision_rules.conditions import CompoundCondition
+from decision_rules.conditions import LogicOperators
 from decision_rules.core.coverage import Coverage
 from decision_rules.core.rule import AbstractRule
 from decision_rules.regression import RegressionRule
@@ -28,7 +34,8 @@ def _calculate_covered_mask(
         elif condition.logic_operator == LogicOperators.ALTERNATIVE:
             return arrays_sum > 0
         else:
-            raise ValueError(f"Unknown logic operator: {condition.logic_operator}")
+            raise ValueError(
+                f"Unknown logic operator: {condition.logic_operator}")
     else:
         return cache.get_or_calculate(condition, X, save_to_cache=True)
 
@@ -45,7 +52,8 @@ def _update_conclusion_for_regression_rule(
     else:
         y_mean: float = np.mean(covered_y)
         rule.conclusion.train_covered_y_std = np.sqrt(
-            (np.sum(np.square(covered_y)) / covered_y.shape[0]) - (y_mean * y_mean)
+            (np.sum(np.square(covered_y)) /
+             covered_y.shape[0]) - (y_mean * y_mean)
         )
         rule.conclusion.train_covered_y_mean = y_mean
         rule.conclusion.train_covered_y_min = np.min(covered_y)
@@ -99,5 +107,6 @@ def is_condition_better_than_current_best(
             found_better = len(c.attributes) < len(c_best.attributes)
             if not found_better:
                 # prefer conditions with higher weight
-                found_better = get_condition_weight(c) > get_condition_weight(c_best)
+                found_better = get_condition_weight(
+                    c) > get_condition_weight(c_best)
     return found_better
