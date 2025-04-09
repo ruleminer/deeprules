@@ -1,11 +1,12 @@
-from typing import Callable, TypeAlias, TypedDict
+import math
+from typing import Callable, TypedDict
+
 import pandas as pd
 from decision_rules import measures
 from decision_rules.core.coverage import Coverage
 from decision_rules.problem import ProblemTypes
-import math
 
-QualityMeasure: TypeAlias = Callable[[Coverage], float]
+QualityMeasure = Callable[[Coverage], float]
 
 
 class BaseAlgorithmParams(TypedDict):
