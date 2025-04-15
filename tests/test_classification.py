@@ -23,7 +23,9 @@ def test_classifier(
     X_train, y_train, X_test, y_test = heart_c_dataset
     ruleset: ClassificationRuleSet = model.fit(X_train, y_train)
 
+    assert ruleset.decision_attribute is not None
     assert len(ruleset.rules) < 9
     assert (
-        metrics.balanced_accuracy_score(y_test, ruleset.predict(X_test)) > 0.802
+        metrics.balanced_accuracy_score(
+            y_test, ruleset.predict(X_test)) > 0.802
     )

@@ -17,6 +17,8 @@ def test_survival(
     model = Survival(survival_time_attr="survival_time")
     X_train, y_train, X_test, y_test = mgus_dataset
     ruleset: SurvivalRuleSet = model.fit(X_train, y_train)
-    ibs: float = ruleset.integrated_bier_score(X_test, y_test, ruleset.predict(X_test))
+    assert ruleset.decision_attribute is not None
+    ibs: float = ruleset.integrated_bier_score(
+        X_test, y_test, ruleset.predict(X_test))
     assert len(ruleset.rules) < 5
     assert ibs < 0.1768

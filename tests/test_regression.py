@@ -18,7 +18,9 @@ def test_regressor(
     model = Regressor()
     X_train, y_train, X_test, y_test = cholesterol_dataset
     ruleset: RegressionRuleSet = model.fit(X_train, y_train)
+    assert ruleset.decision_attribute is not None
     assert len(ruleset.rules) < 17
     assert (
-        metrics.mean_absolute_percentage_error(y_test, ruleset.predict(X_test)) < 0.1821
+        metrics.mean_absolute_percentage_error(
+            y_test, ruleset.predict(X_test)) < 0.1821
     )
