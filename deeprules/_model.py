@@ -10,6 +10,7 @@ from sklearn.base import BaseEstimator
 from deeprules._induction import RuleInducersMixin
 from deeprules._induction import RuleInductionTimes
 from deeprules._params import adjust_params_on_dataset
+from deeprules._simplify import simplify_ruleset
 
 
 class BaseModel(BaseEstimator):
@@ -56,7 +57,9 @@ class BaseModel(BaseEstimator):
         self._inducer: RuleInducersMixin = self._Inducer(
             adjusted_params
         )  # pylint: disable=not-callable
-        self.ruleset: AbstractRuleSet = self._inducer.induce_ruleset(X, y)
+        ruleset: AbstractRuleSet = self._inducer.induce_ruleset(X, y)
+        ruleset.decision_attribute = y.name
+        self.ruleset = simplify_ruleset(ruleset)
         self.induction_times = self._inducer.induction_times
-        self.ruleset.decision_attribute = y.name
+
         return self.ruleset

@@ -3,10 +3,10 @@ from collections import defaultdict
 from typing import Optional
 
 import numpy as np
-from decision_rules.conditions import AttributesCondition
+from decision_rules.conditions import AttributesRelationCondition
+from decision_rules.conditions import NominalAttributesEqualityCondition
 from decision_rules.core.condition import AbstractCondition
 
-from deeprules.conditions import NominalAttributesEqualityCondition
 from deeprules.conditions_induction._base import AbstractConditionsGenerator
 
 
@@ -65,17 +65,17 @@ class AttributesRelationsConditionsGenerator(AbstractConditionsGenerator):
         for column_left, column_right in itertools.combinations(columns_to_try, 2):
             conditions.extend(
                 [
-                    AttributesCondition(
+                    AttributesRelationCondition(
                         column_left=column_left,
                         column_right=column_right,
                         operator=">",
                     ),
-                    AttributesCondition(
+                    AttributesRelationCondition(
                         column_left=column_left,
                         column_right=column_right,
                         operator="<",
                     ),
-                    AttributesCondition(
+                    AttributesRelationCondition(
                         column_left=column_left,
                         column_right=column_right,
                         operator="=",
