@@ -71,6 +71,13 @@ def test_serialization(
     )
     assert ruleset == full_deserialized_ruleset
 
-    assert np.array_equal(
-        ruleset.predict(X_train), full_deserialized_ruleset.predict(X_train)
-    )
+    assert all([
+        (
+            np.array_equal(a['times'], b['times']) and
+            np.array_equal(a['median_survival_time'],
+                           b['median_survival_time'])
+        ) for a, b in zip(
+            ruleset.predict(
+                X_train), full_deserialized_ruleset.predict(X_train)
+        )
+    ])

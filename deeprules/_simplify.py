@@ -92,7 +92,7 @@ def _simplify_condition(condition: AbstractCondition) -> AbstractCondition:
         condition = condition.subconditions[0]
         if is_negated:
             condition.negated = not condition.negated
-        return condition.subconditions[0]
+        return condition
     else:
         condition.subconditions = [
             _simplify_condition(c) for c in condition.subconditions
