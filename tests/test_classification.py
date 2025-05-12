@@ -1,4 +1,6 @@
+import json
 import os
+import pathlib
 
 import numpy as np
 import pandas as pd
@@ -13,7 +15,7 @@ from sklearn import metrics
 
 from deeprules.classification.mixed import Classifier
 
-dir_path = os.path.dirname(os.path.realpath(__file__))
+dir_path = pathlib.Path(os.path.dirname(os.path.realpath(__file__)))
 
 
 @pytest.fixture
@@ -29,9 +31,20 @@ def test_classifier(
     ruleset: ClassificationRuleSet = model.fit(X_train, y_train)
 
     assert ruleset.decision_attribute is not None
-    assert len(ruleset.rules) < 9
+    assert len(ruleset.rules) < 11
     assert metrics.balanced_accuracy_score(
-        y_test, ruleset.predict(X_test)) > 0.802
+        y_test, ruleset.predict(X_test)) > 0.82
+
+    ruleset_path: str = dir_path / "json" / "heart_c_ruleset.json"
+    with open(ruleset_path, "r", encoding="utf-8") as f:
+        expected_ruleset: ClassificationRuleSet = JSONSerializer.deserialize(
+            json.load(f), target_class=ClassificationRuleSet
+        )
+    assert ruleset == expected_ruleset
+    expected_ruleset.calculate_condition_importances(
+        X_train, y_train, measure=measures.c2)
+    # with open(ruleset_path, 'w+', encoding='utf-8') as f:
+    #     json.dump(JSONSerializer.serialize(ruleset, mode='full'), f, indent=2)
 
 
 def test_serialization(

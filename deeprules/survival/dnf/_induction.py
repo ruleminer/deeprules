@@ -3,11 +3,13 @@ from typing import Optional
 
 import numpy as np
 import pandas as pd
-from decision_rules.conditions import CompoundCondition, LogicOperators
+from decision_rules.conditions import CompoundCondition
+from decision_rules.conditions import LogicOperators
 from decision_rules.core.condition import AbstractCondition
 from decision_rules.core.coverage import Coverage
-from decision_rules.survival import (SurvivalConclusion, SurvivalRule,
-                                     SurvivalRuleSet)
+from decision_rules.survival import SurvivalConclusion
+from decision_rules.survival import SurvivalRule
+from decision_rules.survival import SurvivalRuleSet
 from decision_rules.survival.kaplan_meier import KaplanMeierEstimator
 
 from deeprules import _helpers
@@ -15,13 +17,13 @@ from deeprules._induction import RuleInducersMixin
 from deeprules.cache import ConditionsCoverageCache
 from deeprules.conditions_induction import ConditionsGenerator
 from deeprules.quality import is_condition_better_than_current_best
-from deeprules.survival._helpers import (calculate_coverage,
-                                         calculate_covering_info)
+from deeprules.survival._helpers import calculate_coverage
+from deeprules.survival._helpers import calculate_covering_info
 from deeprules.survival._kaplan_meier import PrecalculatedKaplanMeierEstimator
 from deeprules.survival.dnf._params import AlgorithmParams
 
 
-class  RuleInducer(RuleInducersMixin):
+class RuleInducer(RuleInducersMixin):
     """Trains a survival ruleset based on given data"""
 
     def __init__(self, params: AlgorithmParams):
@@ -103,15 +105,16 @@ class  RuleInducer(RuleInducersMixin):
         y: np.ndarray,
         uncovered: set[int],
     ) -> tuple[SurvivalRule, bool]:
-
         all_intermediate_rules: list[tuple[SurvivalRule, float]] = []
+        rules_pn_sum: set[int] = set()
         while True:
             disjunction, intermediate_rules = self._grow_disjunction(
-                rule, X_df, X, y, uncovered
+                rule, X_df, X, y, uncovered, rules_pn_sum
             )
             all_intermediate_rules += intermediate_rules
             if (
-                len(rule.premise.subconditions) > self.params["max_layers_count"]
+                len(
+                    rule.premise.subconditions) > self.params["max_layers_count"]
                 or len(disjunction.subconditions) == 0
             ):
                 break
@@ -142,6 +145,7 @@ class  RuleInducer(RuleInducersMixin):
         X: np.ndarray,
         y: np.ndarray,
         uncovered: set[int],
+        rules_pn_sum: set[int],
     ) -> tuple[CompoundCondition, list[tuple[SurvivalRule, float]]]:
         disjunction: CompoundCondition = CompoundCondition(
             subconditions=[], logic_operator=LogicOperators.ALTERNATIVE
@@ -152,7 +156,7 @@ class  RuleInducer(RuleInducersMixin):
 
         while True:
             c_best, q_best, cov_best = self._find_best_candidate_for_disjunction(
-                rule, cov_best, disjunction, X_df, X, y, uncovered
+                rule, cov_best, disjunction, X_df, X, y, uncovered, rules_pn_sum
             )
             if c_best is None:
                 break
@@ -171,7 +175,8 @@ class  RuleInducer(RuleInducersMixin):
                 subconditions=[s for s in disjunction.subconditions],
                 logic_operator=LogicOperators.ALTERNATIVE,
             )
-            intermediate_rule.premise.subconditions.append(intermediate_disjunction)
+            intermediate_rule.premise.subconditions.append(
+                intermediate_disjunction)
             intermediate_rules.append((intermediate_rule, q_best))
 
             if len(disjunction.subconditions) >= self.params["max_disjunction_length"]:
@@ -187,10 +192,12 @@ class  RuleInducer(RuleInducersMixin):
         X: np.ndarray,
         y: np.ndarray,
         uncovered: set[int],
+        rules_pn_sum: set[int],
     ) -> tuple[AbstractCondition, float]:
         q_best: float = float("-inf")
         c_best: Optional[AbstractCondition] = None
         cov_best: Optional[Coverage] = Coverage(p=0, n=0, P=0, N=0)
+        pn_sum_best: Optional[int] = None
         covered_mask: np.ndarray = rule.premise.covered_mask(X)
         covered_best: set[int] = set(np.where(covered_mask == 1)[0])
         conditions: list[AbstractCondition] = ConditionsGenerator(
@@ -237,6 +244,9 @@ class  RuleInducer(RuleInducersMixin):
                     c_best = c
                     cov_best = cov
                     covered_best = covered
+                    pn_sum_best = len(covered)
+        if pn_sum_best is not None:
+            rules_pn_sum.add(pn_sum_best)
         return c_best, q_best, cov_best
 
     def _check_candidate(
@@ -271,8 +281,10 @@ class  RuleInducer(RuleInducersMixin):
                     value=old_conclusion.value,
                     column_name=old_conclusion.column_name,
                 )
-                covered, _, q_pruned = calculate_covering_info(rule, X, y, self.cache)
-                new_covered_examples: set[int] = len(covered.intersection(uncovered))
+                covered, _, q_pruned = calculate_covering_info(
+                    rule, X, y, self.cache)
+                new_covered_examples: set[int] = len(
+                    covered.intersection(uncovered))
                 if q_pruned >= q_best and self._check_candidate(
                     new_covered_examples, len(covered), uncovered
                 ):

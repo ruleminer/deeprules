@@ -27,8 +27,14 @@ def test_regressor(
     assert len(ruleset.rules) < 17
     assert (
         metrics.mean_absolute_percentage_error(
-            y_test, ruleset.predict(X_test)) < 0.1821
+            y_test, ruleset.predict(X_test)) < 0.167
     )
+    with open('./reg_ruleset.json', 'w+') as f:
+        import json
+        from decision_rules.serialization import JSONSerializer
+        json.dump(JSONSerializer.serialize(ruleset), f, indent=2)
+    ruleset.calculate_condition_importances(
+        X_train, y_train, measure=measures.c2)
 
 
 def test_serialization(

@@ -1,14 +1,18 @@
 from __future__ import annotations
 
-from abc import ABC, abstractmethod
+from abc import ABC
+from abc import abstractmethod
 from dataclasses import dataclass
 from datetime import timedelta
-from typing import Any, Callable
+from typing import Any
+from typing import Callable
 
 import pandas as pd
 from decision_rules.core.ruleset import AbstractRuleSet
 
+from deeprules import _helpers
 from deeprules._timing import PerformanceTimer
+from deeprules.conditions_induction import ConditionsGenerator
 
 
 @dataclass
@@ -42,7 +46,9 @@ class RuleInductionTimes:
 class RuleInducersMixin(ABC):
 
     def __init__(self):
+        self.params: dict[str, Any] = None
         self.induction_times: RuleInductionTimes = RuleInductionTimes()
+        self.condition_generator: ConditionsGenerator = None
         self._setup_timers()
 
     @abstractmethod
@@ -60,7 +66,8 @@ class RuleInducersMixin(ABC):
         pass
 
     def _setup_timers(self):
-        self._setup_timer_for_method("induce_ruleset", save_to="total_training_time")
+        self._setup_timer_for_method(
+            "induce_ruleset", save_to="total_training_time")
         self._setup_timer_for_method("_grow", save_to="growing_time")
         self._setup_timer_for_method("_prune", save_to="pruning_time")
 
@@ -82,3 +89,14 @@ class RuleInducersMixin(ABC):
             return result
 
         setattr(self, method_name, wrapped_method)
+
+    def _setup_condition_generator(self, X: pd.DataFrame, y: pd.Series):
+        self.condition_generator = ConditionsGenerator(
+            X,
+            y,
+            numerical_attributes_indices=_helpers.get_numerical_indexes(X),
+            nominal_attributes_indices=_helpers.get_nominal_indexes(X),
+            cuts_only_between_classes=True,
+            enable_negations=self.params["enable_negations"],
+            enable_attributes_conditions=self.params["enable_attributes_conditions"],
+        )

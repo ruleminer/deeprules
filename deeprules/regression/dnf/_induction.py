@@ -2,22 +2,24 @@ from typing import Optional
 
 import numpy as np
 import pandas as pd
-from decision_rules.conditions import CompoundCondition, LogicOperators
+from decision_rules.conditions import CompoundCondition
+from decision_rules.conditions import LogicOperators
 from decision_rules.core.condition import AbstractCondition
 from decision_rules.core.coverage import Coverage
-from decision_rules.regression import (RegressionConclusion, RegressionRule,
-                                       RegressionRuleSet)
+from decision_rules.regression import RegressionConclusion
+from decision_rules.regression import RegressionRule
+from decision_rules.regression import RegressionRuleSet
 
 from deeprules import _helpers
 from deeprules._induction import RuleInducersMixin
 from deeprules.cache import ConditionsCoverageCache
 from deeprules.conditions_induction import ConditionsGenerator
-from deeprules.quality import (calculate_covering_info,
-                               is_condition_better_than_current_best)
+from deeprules.quality import calculate_covering_info
+from deeprules.quality import is_condition_better_than_current_best
 from deeprules.regression.dnf._params import AlgorithmParams
 
 
-class  RuleInducer(RuleInducersMixin):
+class RuleInducer(RuleInducersMixin):
     """Trains a regression ruleset based on given data"""
 
     def __init__(self, params: AlgorithmParams):
@@ -85,13 +87,15 @@ class  RuleInducer(RuleInducersMixin):
         uncovered: set[int],
     ) -> tuple[RegressionRule, bool]:
         all_intermediate_rules: list[tuple[RegressionRule, float]] = []
+        rules_pn_sum: set[int] = set()
         while True:
             disjunction, intermediate_rules = self._grow_disjunction(
-                rule, X_df, X, y, uncovered
+                rule, X_df, X, y, uncovered, rules_pn_sum
             )
             all_intermediate_rules += intermediate_rules
             if (
-                len(rule.premise.subconditions) > self.params["max_layers_count"]
+                len(
+                    rule.premise.subconditions) > self.params["max_layers_count"]
                 or len(disjunction.subconditions) == 0
             ):
                 break
@@ -108,7 +112,8 @@ class  RuleInducer(RuleInducersMixin):
         # find the best rule from all intermediate rules (select best candidate)
         rule: RegressionRule = sorted(
             all_intermediate_rules,
-            key=lambda e: self.params["select_best_candidate_measure"](e[0].coverage),
+            key=lambda e: self.params["select_best_candidate_measure"](
+                e[0].coverage),
             reverse=True,
         )[0][0]
         return rule, len(rule.premise.subconditions) > 0
@@ -120,6 +125,7 @@ class  RuleInducer(RuleInducersMixin):
         X: np.ndarray,
         y: np.ndarray,
         uncovered: set[int],
+        rules_pn_sum: set[int],
     ) -> tuple[CompoundCondition, list[tuple[RegressionRule, float]]]:
         disjunction: CompoundCondition = CompoundCondition(
             subconditions=[], logic_operator=LogicOperators.ALTERNATIVE
@@ -132,7 +138,7 @@ class  RuleInducer(RuleInducersMixin):
 
         while True:
             c_best, q_best, cov_best = self._find_best_candidate_for_disjunction(
-                rule, cov_best, disjunction, X_df, X, y, uncovered
+                rule, cov_best, disjunction, X_df, X, y, uncovered, rules_pn_sum
             )
             if c_best is None:
                 break
@@ -150,7 +156,8 @@ class  RuleInducer(RuleInducersMixin):
                 logic_operator=LogicOperators.ALTERNATIVE,
             )
             intermediate_rule.coverage = cov_best
-            intermediate_rule.premise.subconditions.append(intermediate_disjunction)
+            intermediate_rule.premise.subconditions.append(
+                intermediate_disjunction)
             intermediate_rules.append((intermediate_rule, q_best))
 
             if len(disjunction.subconditions) >= self.params["max_disjunction_length"]:
@@ -166,10 +173,12 @@ class  RuleInducer(RuleInducersMixin):
         X: np.ndarray,
         y: np.ndarray,
         uncovered: set[int],
+        rules_pn_sum: set[int],
     ) -> tuple[AbstractCondition, float]:
         q_best: float = float("-inf")
         c_best: Optional[AbstractCondition] = None
         cov_best: Optional[Coverage] = Coverage(p=0, n=0, P=0, N=0)
+        pn_sum_best: Optional[int] = None
         cov_before: Coverage = rule.calculate_coverage(X, y)
         covered_mask: np.ndarray = rule.premise.covered_mask(X)
         covered_best: set[int] = set(np.where(covered_mask == 1)[0])
@@ -203,6 +212,8 @@ class  RuleInducer(RuleInducersMixin):
             covered, cov, q = calculate_covering_info(
                 rc, X, y, self.params["quality_measure"], self.cache
             )
+            if len(covered) in rules_pn_sum:
+                continue
             if is_condition_better_than_current_best(
                 (c, covered, q), (c_best, covered_best, q_best)
             ):
@@ -212,9 +223,12 @@ class  RuleInducer(RuleInducersMixin):
                     c_best = c
                     cov_best = cov
                     covered_best = covered
+                    pn_sum_best = len(covered)
 
         if cov_before.p + cov_before.n == cov_best.p + cov_best.n:
             return None, np.nan, np.nan
+        if pn_sum_best is not None:
+            rules_pn_sum.add(pn_sum_best)
         return c_best, q_best, cov_best
 
     def _check_candidate(
@@ -256,7 +270,8 @@ class  RuleInducer(RuleInducersMixin):
                 covered, _, q_pruned = calculate_covering_info(
                     rule, X, y, self.params["pruning_measure"], self.cache
                 )
-                new_covered_examples: set[int] = len(covered.intersection(uncovered))
+                new_covered_examples: set[int] = len(
+                    covered.intersection(uncovered))
                 if q_pruned >= q_best and self._check_candidate(
                     new_covered_examples, len(covered), uncovered
                 ):

@@ -18,7 +18,7 @@ class ClassifierDNF(BaseModel):
     in a rule could be controlled by :code:`max_layers_count` parameter.
     """
 
-    _InducerType = RuleInducer
+    _Inducer = RuleInducer
     _problem_type = ProblemTypes.CLASSIFICATION
 
     def __init__(

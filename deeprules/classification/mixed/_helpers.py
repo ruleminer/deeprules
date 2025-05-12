@@ -1,24 +1,27 @@
 from __future__ import annotations
 
 from dataclasses import dataclass
-from logging import Logger, getLogger
-from typing import Callable, Optional
+from logging import getLogger
+from logging import Logger
+from typing import Callable
+from typing import Optional
 
 import numpy as np
 import pandas as pd
-from decision_rules.classification import (ClassificationConclusion,
-                                           ClassificationRule,
-                                           ClassificationRuleSet)
-from decision_rules.conditions import CompoundCondition, LogicOperators
+from decision_rules.classification import ClassificationConclusion
+from decision_rules.classification import ClassificationRule
+from decision_rules.classification import ClassificationRuleSet
+from decision_rules.conditions import CompoundCondition
+from decision_rules.conditions import LogicOperators
 
 from deeprules.cache import ConditionsCoverageCache
 from deeprules.classification.cnf._induction import RuleInducer as CNFInducer
 from deeprules.classification.cnf._params import AlgorithmParams as CNFParams
 from deeprules.classification.dnf._induction import RuleInducer as DNFInducer
 from deeprules.classification.dnf._params import AlgorithmParams as DNFParams
-from deeprules.classification.mixed._params import (AlgorithmParams,
-                                                    to_cnf_params,
-                                                    to_dnf_params)
+from deeprules.classification.mixed._params import AlgorithmParams
+from deeprules.classification.mixed._params import to_cnf_params
+from deeprules.classification.mixed._params import to_dnf_params
 
 
 @dataclass
@@ -122,7 +125,7 @@ class RuleSetGrowingResults:
     cnf: Optional[RuleSetGrowingResult] = None
 
 
-class  RuleSetGrower:
+class RuleSetGrower:
 
     def __init__(self, original_result: RuleSetGrowingResult):
         self.ruleset: ClassificationRuleSet = original_result.ruleset
@@ -146,6 +149,11 @@ class  RuleSetGrower:
                 "max_disjunction_length": self.params["max_component_length"],
             }
         )
+        self.cnf_inducer._setup_condition_generator(
+            self.initial_ctx.X, self.initial_ctx.y)
+        self.dnf_inducer._setup_condition_generator(
+            self.initial_ctx.X, self.initial_ctx.y)
+
         # share the cache between inducers to save memory and reduce training times
         self.dnf_inducer.cache = self.initial_ctx.cache
         self.logger: Logger = getLogger(self.__class__.__name__)
@@ -264,14 +272,16 @@ class  RuleSetGrower:
             premise=CompoundCondition(
                 subconditions=[], logic_operator=LogicOperators.CONJUNCTION
             ),
-            conclusion=ClassificationConclusion(value=class_value, column_name=y.name),
+            conclusion=ClassificationConclusion(
+                value=class_value, column_name=y.name),
             column_names=list(X.columns),
         )
         cnf_rule = ClassificationRule(
             premise=CompoundCondition(
                 subconditions=[], logic_operator=LogicOperators.ALTERNATIVE
             ),
-            conclusion=ClassificationConclusion(value=class_value, column_name=y.name),
+            conclusion=ClassificationConclusion(
+                value=class_value, column_name=y.name),
             column_names=list(X.columns),
         )
         cnf_rule, cnf_carry_on = (
@@ -311,8 +321,10 @@ class  RuleSetGrower:
 
         if cnf_carry_on and self.cnf_params["enable_pruning"]:
             uncovered: set[int] = self.cnf_ctx.class_uncovered[class_value]
-            self.cnf_inducer._prune(cnf_rule, uncovered, class_size, X_np, y_np)
-            cnf_rule.voting_weight = self.params["voting_measure"](cnf_rule.coverage)
+            self.cnf_inducer._prune(
+                cnf_rule, uncovered, class_size, X_np, y_np)
+            cnf_rule.voting_weight = self.params["voting_measure"](
+                cnf_rule.coverage)
             cnf_pred_quality: float = (
                 self.check_predictive_quality_on_ruleset_with_rule(
                     self.ruleset,
@@ -330,8 +342,10 @@ class  RuleSetGrower:
 
         if dnf_carry_on and self.dnf_params["enable_pruning"]:
             uncovered: set[int] = self.dnf_ctx.class_uncovered[class_value]
-            self.dnf_inducer._prune(dnf_rule, uncovered, class_size, X_np, y_np)
-            dnf_rule.voting_weight = self.params["voting_measure"](dnf_rule.coverage)
+            self.dnf_inducer._prune(
+                dnf_rule, uncovered, class_size, X_np, y_np)
+            dnf_rule.voting_weight = self.params["voting_measure"](
+                dnf_rule.coverage)
             dnf_pred_quality: float = (
                 self.check_predictive_quality_on_ruleset_with_rule(
                     self.ruleset,
@@ -360,7 +374,8 @@ class  RuleSetGrower:
         y: np.ndarray,
         prediction_quality_metric: Callable[[np.ndarray, np.ndarray], float],
     ) -> float:
-        new_ruleset: ClassificationRuleSet = ruleset.__class__(ruleset.rules + [rule])
+        new_ruleset: ClassificationRuleSet = ruleset.__class__(
+            ruleset.rules + [rule])
         # TODO: A bit overkill, no need to update whole ruleset
         new_ruleset.update(X, y, measure=self.params["voting_measure"])
         new_ruleset.default_conclusion = ruleset.default_conclusion
