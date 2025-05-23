@@ -67,6 +67,10 @@ ruleset: SurvivalRuleSet = Survival(survival_time_attr="survival_time").fit(X, y
 ruleset.predict(X)
 ```
 
+## Documentation
+
+Documentation is placed in `docs/build/html` directory.
+
 ## Local development
 
 Installing dev dependencies:
