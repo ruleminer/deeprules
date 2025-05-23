@@ -1,0 +1,210 @@
+deeprules.classification.mixed._helpers
+=======================================
+
+.. py:module:: deeprules.classification.mixed._helpers
+
+
+Classes
+-------
+
+.. autoapisummary::
+
+   deeprules.classification.mixed._helpers.RuleChoice
+   deeprules.classification.mixed._helpers.RuleChoices
+   deeprules.classification.mixed._helpers.RuleSetGrowingContext
+   deeprules.classification.mixed._helpers.RuleSetGrowingResult
+   deeprules.classification.mixed._helpers.RuleSetGrowingResults
+   deeprules.classification.mixed._helpers.RuleSetGrower
+
+
+Module Contents
+---------------
+
+.. py:class:: RuleChoice
+
+   .. py:attribute:: type
+      :type:  str
+
+
+   .. py:attribute:: rule
+      :type:  Optional[decision_rules.classification.ClassificationRule]
+
+
+   .. py:attribute:: pred_quality
+      :type:  float
+
+
+.. py:class:: RuleChoices
+
+   .. py:attribute:: dnf
+      :type:  RuleChoice
+
+
+   .. py:attribute:: cnf
+      :type:  RuleChoice
+
+
+.. py:class:: RuleSetGrowingContext
+
+   .. py:attribute:: params
+      :type:  deeprules.classification.mixed._params.AlgorithmParams
+
+
+   .. py:attribute:: X
+      :type:  pandas.DataFrame
+
+
+   .. py:attribute:: y
+      :type:  pandas.Series
+
+
+   .. py:attribute:: X_np
+      :type:  numpy.ndarray
+
+
+   .. py:attribute:: y_np
+      :type:  numpy.ndarray
+
+
+   .. py:attribute:: class_uncovered
+      :type:  dict[str, set[int]]
+
+
+   .. py:attribute:: finished_classes
+      :type:  dict[str, set[str]]
+
+
+   .. py:attribute:: cache
+      :type:  deeprules.cache.ConditionsCoverageCache
+
+
+   .. py:attribute:: prediction_quality_metric
+      :type:  Callable[[numpy.ndarray, numpy.ndarray], float]
+
+
+   .. py:attribute:: classes
+      :type:  numpy.ndarray
+
+
+   .. py:attribute:: classes_sizes
+      :type:  numpy.ndarray
+
+
+   .. py:method:: clone() -> RuleSetGrowingContext
+
+
+   .. py:method:: create_initial_context(X: pandas.DataFrame, y: pandas.DataFrame, params: deeprules.classification.mixed._params.AlgorithmParams, prediction_quality_metric: Callable[[numpy.ndarray, numpy.ndarray], float]) -> RuleSetGrowingContext
+      :staticmethod:
+
+
+
+.. py:class:: RuleSetGrowingResult
+
+   .. py:attribute:: type
+      :type:  str
+
+
+   .. py:attribute:: ruleset
+      :type:  decision_rules.classification.ClassificationRuleSet
+
+
+   .. py:attribute:: prediction_quality
+      :type:  float
+
+
+   .. py:attribute:: context
+      :type:  RuleSetGrowingContext
+
+
+   .. py:attribute:: rule
+      :type:  Optional[decision_rules.classification.ClassificationRule]
+      :value: None
+
+
+
+.. py:class:: RuleSetGrowingResults
+
+   .. py:attribute:: carry_on
+      :type:  bool
+
+
+   .. py:attribute:: dnf
+      :type:  Optional[RuleSetGrowingResult]
+      :value: None
+
+
+
+   .. py:attribute:: cnf
+      :type:  Optional[RuleSetGrowingResult]
+      :value: None
+
+
+
+.. py:class:: RuleSetGrower(original_result: RuleSetGrowingResult)
+
+   .. py:attribute:: ruleset
+      :type:  decision_rules.classification.ClassificationRuleSet
+
+
+   .. py:attribute:: last_pred_quality
+      :type:  float
+
+
+   .. py:attribute:: initial_ctx
+      :type:  RuleSetGrowingContext
+
+
+   .. py:attribute:: cnf_ctx
+      :type:  RuleSetGrowingContext
+
+
+   .. py:attribute:: dnf_ctx
+      :type:  RuleSetGrowingContext
+
+
+   .. py:attribute:: params
+      :type:  deeprules.classification.mixed._params.AlgorithmParams
+
+
+   .. py:attribute:: cnf_params
+      :type:  deeprules.classification.cnf._params.AlgorithmParams
+
+
+   .. py:attribute:: dnf_params
+      :type:  deeprules.classification.dnf._params.AlgorithmParams
+
+
+   .. py:attribute:: cnf_inducer
+
+
+   .. py:attribute:: dnf_inducer
+
+
+   .. py:attribute:: logger
+      :type:  logging.Logger
+
+
+   .. py:method:: grow_single_rule(class_value: str, class_size: int) -> RuleSetGrowingResults
+
+      Adds a single rule to the ruleset. It returns two new rulesets, which are
+      the original ruleset with the new DNF and CNF rule added to it.
+
+      Returns:
+          RuleSetGrowingResults: object containing two grown rulesets and their
+          qualities. Those rulesets are the original ruleset with the new DNF and
+          CNF rule added to it.
+
+
+
+   .. py:method:: prepare_result(choice: RuleChoice, class_value: str) -> Optional[RuleSetGrowingResult]
+
+
+   .. py:method:: _induce_both_rules(class_value: str, class_size: int, dataset: tuple[pandas.DataFrame, pandas.Series], dataset_np: tuple[numpy.ndarray, numpy.ndarray]) -> RuleChoices
+
+
+   .. py:method:: check_predictive_quality_on_ruleset_with_rule(ruleset: decision_rules.classification.ClassificationRuleSet, rule: decision_rules.classification.ClassificationRule, X: pandas.DataFrame, y: numpy.ndarray, prediction_quality_metric: Callable[[numpy.ndarray, numpy.ndarray], float]) -> float
+
+
+   .. py:method:: clone_ruleset(ruleset: decision_rules.classification.ClassificationRuleSet) -> decision_rules.classification.ClassificationRuleSet
+
+

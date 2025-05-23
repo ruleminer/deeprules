@@ -1,0 +1,28 @@
+deeprules._simplify
+===================
+
+.. py:module:: deeprules._simplify
+
+
+Functions
+---------
+
+.. autoapisummary::
+
+   deeprules._simplify.simplify_ruleset
+   deeprules._simplify._merge_intervals
+   deeprules._simplify._simplify_condition
+   deeprules._simplify._make_discrete_set_conditions
+
+
+Module Contents
+---------------
+
+.. py:function:: simplify_ruleset(ruleset: decision_rules.core.ruleset.AbstractRuleSet, search_for_discrete_set_conditions: bool = True)
+
+.. py:function:: _merge_intervals(condition: decision_rules.conditions.CompoundCondition)
+
+.. py:function:: _simplify_condition(condition: decision_rules.core.condition.AbstractCondition, search_for_discrete_set_conditions: bool) -> decision_rules.core.condition.AbstractCondition
+
+.. py:function:: _make_discrete_set_conditions(condition: decision_rules.core.condition.AbstractCondition)
+

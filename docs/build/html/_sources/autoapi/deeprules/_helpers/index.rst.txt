@@ -1,0 +1,56 @@
+deeprules._helpers
+==================
+
+.. py:module:: deeprules._helpers
+
+
+Functions
+---------
+
+.. autoapisummary::
+
+   deeprules._helpers.get_bottom_level_conditions
+   deeprules._helpers.get_nominal_indexes
+   deeprules._helpers.get_numerical_indexes
+
+
+Module Contents
+---------------
+
+.. py:function:: get_bottom_level_conditions(condition: decision_rules.core.condition.AbstractCondition, parent_condition: Optional[decision_rules.conditions.CompoundCondition] = None) -> list[tuple[decision_rules.core.condition.AbstractCondition, decision_rules.core.condition.AbstractCondition]]
+
+   Decompose nested compound conditions to the list of tuples where first element
+   is a bottom level condition and second one is its parent condition.
+
+   Args:
+       condition (AbstractCondition): compound condition
+       parent_condition (Optional[CompoundCondition], optional): Optional parent
+       condition. Defaults to None.
+
+   Returns:
+       list[tuple[AbstractCondition, AbstractCondition]]: list of tuples where first
+       element is a bottom level condition and second one is its parent condition.
+
+
+.. py:function:: get_nominal_indexes(df: pandas.DataFrame) -> list[int]
+
+   Return indices of nominal columns in given dataframe
+
+   Args:
+       df (pd.DataFrame): DataFrame
+
+   Returns:
+       list[int]: list of indices of nominal columns
+
+
+.. py:function:: get_numerical_indexes(df: pandas.DataFrame) -> list[int]
+
+   Return indices of numerical columns in given dataframe
+
+   Args:
+       df (pd.DataFrame): DataFrame
+
+   Returns:
+       list[int]: list of indices of numerical columns
+
+

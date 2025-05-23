@@ -1,0 +1,73 @@
+deeprules.survival.dnf._induction
+=================================
+
+.. py:module:: deeprules.survival.dnf._induction
+
+
+Classes
+-------
+
+.. autoapisummary::
+
+   deeprules.survival.dnf._induction.RuleInducer
+
+
+Module Contents
+---------------
+
+.. py:class:: RuleInducer(params: deeprules.survival.dnf._params.AlgorithmParams)
+
+   Bases: :py:obj:`deeprules._induction.RuleInducersMixin`
+
+
+   Trains a survival ruleset based on given data
+
+
+   .. py:attribute:: params
+      :type:  deeprules.survival.dnf._params.AlgorithmParams
+
+
+   .. py:attribute:: cache
+      :type:  deeprules.cache.ConditionsCoverageCache
+
+
+   .. py:attribute:: default_km
+      :type:  decision_rules.survival.kaplan_meier.KaplanMeierEstimator
+      :value: None
+
+
+
+   .. py:attribute:: survival_time_column_index
+      :type:  int
+      :value: None
+
+
+
+   .. py:method:: induce_ruleset(X: pandas.DataFrame, y: pandas.Series) -> decision_rules.survival.SurvivalRuleSet
+
+      Induces a survival ruleset based on given data
+
+      Args:
+          X (pd.DataFrame): data
+          y (pd.Series): labels
+
+      Returns:
+          SurvivalRuleSet: ruleset
+
+
+
+   .. py:method:: _grow(rule: decision_rules.survival.SurvivalRule, X_df: pandas.DataFrame, X: numpy.ndarray, y: numpy.ndarray, uncovered: set[int]) -> tuple[decision_rules.survival.SurvivalRule, bool]
+
+
+   .. py:method:: _grow_disjunction(rule: decision_rules.survival.SurvivalRule, X_df: pandas.DataFrame, X: numpy.ndarray, y: numpy.ndarray, uncovered: set[int], rules_pn_sum: set[int]) -> tuple[decision_rules.conditions.CompoundCondition, list[tuple[decision_rules.survival.SurvivalRule, float]]]
+
+
+   .. py:method:: _find_best_candidate_for_disjunction(rule: decision_rules.survival.SurvivalRule, cov: decision_rules.core.coverage.Coverage, disjunction: decision_rules.conditions.CompoundCondition, X_df: pandas.DataFrame, X: numpy.ndarray, y: numpy.ndarray, uncovered: set[int], rules_pn_sum: set[int]) -> tuple[decision_rules.core.condition.AbstractCondition, float]
+
+
+   .. py:method:: _check_candidate(new_covered_examples: int, covered_count: int, uncovered: set[int]) -> bool
+
+
+   .. py:method:: _prune(rule: decision_rules.survival.SurvivalRule, uncovered: set[int], X: numpy.ndarray, y: numpy.ndarray)
+
+

@@ -1,0 +1,35 @@
+deeprules.conditions_induction.weights
+======================================
+
+.. py:module:: deeprules.conditions_induction.weights
+
+
+Functions
+---------
+
+.. autoapisummary::
+
+   deeprules.conditions_induction.weights.get_condition_weight
+   deeprules.conditions_induction.weights.get_more_preferable_condition
+
+
+Module Contents
+---------------
+
+.. py:function:: get_condition_weight(condition: decision_rules.core.condition.AbstractCondition) -> float
+
+   Get condition preferability sorting weights. The higher the weight, the more
+   preferable the condition is.
+
+   Based on:
+       https://github.com/adaa-polsl/m-of-n-rules/blob/master/src/Rulekit_complex_reg/adaa.analytics.rules/src/main/java/adaa/analytics/rules/logic/induction/AbstractFinder.java#L353
+
+   Args:
+       condition (AbstractCondition): condition instance
+
+   Returns:
+       float: preferability sorting weights
+
+
+.. py:function:: get_more_preferable_condition(c1: decision_rules.core.condition.AbstractCondition, c2: decision_rules.core.condition.AbstractCondition) -> decision_rules.core.condition.AbstractCondition
+

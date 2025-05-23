@@ -1,0 +1,34 @@
+deeprules.conditions
+====================
+
+.. py:module:: deeprules.conditions
+
+.. autoapi-nested-parse::
+
+   Contains custom conditions extending AbstractCondition class from
+   `decision-rules <https://github.com/ruleminer/decision-rules>`_ package. It also
+   contains their JSON serializer classes and some utility functions concerning conditions.
+
+
+
+Functions
+---------
+
+.. autoapisummary::
+
+   deeprules.conditions.does_condition_support_negation
+
+
+Module Contents
+---------------
+
+.. py:function:: does_condition_support_negation(condition: decision_rules.core.condition.AbstractCondition)
+
+   Returns whether given condition support negation
+
+   Args:
+       condition (AbstractCondition): condition to check
+   Returns:
+       bool: whether given condition support negation
+
+

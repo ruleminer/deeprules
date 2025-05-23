@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../../../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>deeprules.classification.mixed._helpers &mdash; deeprules 0.1.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../../../../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../../../../../_static/graphviz.css?v=4ae1632d" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../../../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../../../../_static/documentation_options.js?v=01f34227"></script>
+        <script src="../../../../../_static/doctools.js?v=9bcbadda"></script>
+        <script src="../../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../../search.html" />
+    <link rel="next" title="deeprules.classification.mixed._induction" href="../_induction/index.html" />
+    <link rel="prev" title="deeprules.classification.mixed" href="../index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../../../index.html" class="icon icon-home">
+            deeprules
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../../../../index.html">API Reference</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="../../../index.html">deeprules</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="../../../index.html#submodules">Submodules</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="../../../_helpers/index.html">deeprules._helpers</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_induction/index.html">deeprules._induction</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_model/index.html">deeprules._model</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_params/index.html">deeprules._params</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_simplify/index.html">deeprules._simplify</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../_timing/index.html">deeprules._timing</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../cache/index.html">deeprules.cache</a></li>
+<li class="toctree-l4 current"><a class="reference internal" href="../../index.html">deeprules.classification</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../conditions/index.html">deeprules.conditions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../conditions_induction/index.html">deeprules.conditions_induction</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../quality/index.html">deeprules.quality</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../regression/index.html">deeprules.regression</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../survival/index.html">deeprules.survival</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../../index.html">deeprules</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../../../index.html">API Reference</a></li>
+          <li class="breadcrumb-item"><a href="../../../index.html">deeprules</a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">deeprules.classification</a></li>
+          <li class="breadcrumb-item"><a href="../index.html">deeprules.classification.mixed</a></li>
+      <li class="breadcrumb-item active">deeprules.classification.mixed._helpers</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../../../_sources/autoapi/deeprules/classification/mixed/_helpers/index.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="module-deeprules.classification.mixed._helpers">
+<span id="deeprules-classification-mixed-helpers"></span><h1>deeprules.classification.mixed._helpers<a class="headerlink" href="#module-deeprules.classification.mixed._helpers" title="Link to this heading"></a></h1>
+<section id="classes">
+<h2>Classes<a class="headerlink" href="#classes" title="Link to this heading"></a></h2>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#deeprules.classification.mixed._helpers.RuleChoice" title="deeprules.classification.mixed._helpers.RuleChoice"><code class="xref py py-obj docutils literal notranslate"><span class="pre">RuleChoice</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#deeprules.classification.mixed._helpers.RuleChoices" title="deeprules.classification.mixed._helpers.RuleChoices"><code class="xref py py-obj docutils literal notranslate"><span class="pre">RuleChoices</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#deeprules.classification.mixed._helpers.RuleSetGrowingContext" title="deeprules.classification.mixed._helpers.RuleSetGrowingContext"><code class="xref py py-obj docutils literal notranslate"><span class="pre">RuleSetGrowingContext</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#deeprules.classification.mixed._helpers.RuleSetGrowingResult" title="deeprules.classification.mixed._helpers.RuleSetGrowingResult"><code class="xref py py-obj docutils literal notranslate"><span class="pre">RuleSetGrowingResult</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#deeprules.classification.mixed._helpers.RuleSetGrowingResults" title="deeprules.classification.mixed._helpers.RuleSetGrowingResults"><code class="xref py py-obj docutils literal notranslate"><span class="pre">RuleSetGrowingResults</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#deeprules.classification.mixed._helpers.RuleSetGrower" title="deeprules.classification.mixed._helpers.RuleSetGrower"><code class="xref py py-obj docutils literal notranslate"><span class="pre">RuleSetGrower</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="module-contents">
+<h2>Module Contents<a class="headerlink" href="#module-contents" title="Link to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="deeprules.classification.mixed._helpers.RuleChoice">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">deeprules.classification.mixed._helpers.</span></span><span class="sig-name descname"><span class="pre">RuleChoice</span></span><a class="headerlink" href="#deeprules.classification.mixed._helpers.RuleChoice" title="Link to this definition"></a></dt>
+<dd><dl class="py attribute">
+<dt class="sig sig-object py" id="deeprules.classification.mixed._helpers.RuleChoice.type">
+<span class="sig-name descname"><span class="pre">type</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#deeprules.classification.mixed._helpers.RuleChoice.type" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="deeprules.classification.mixed._helpers.RuleChoice.rule">
+<span class="sig-name descname"><span class="pre">rule</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">decision_rules.classification.ClassificationRule</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#deeprules.classification.mixed._helpers.RuleChoice.rule" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="deeprules.classification.mixed._helpers.RuleChoice.pred_quality">
+<span class="sig-name descname"><span class="pre">pred_quality</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><a class="headerlink" href="#deeprules.classification.mixed._helpers.RuleChoice.pred_quality" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="deeprules.classification.mixed._helpers.RuleChoices">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">deeprules.classification.mixed._helpers.</span></span><span class="sig-name descname"><span class="pre">RuleChoices</span></span><a class="headerlink" href="#deeprules.classification.mixed._helpers.RuleChoices" title="Link to this definition"></a></dt>
+<dd><dl class="py attribute">
+<dt class="sig sig-object py" id="deeprules.classification.mixed._helpers.RuleChoices.dnf">
+<span class="sig-name descname"><span class="pre">dnf</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#deeprules.classification.mixed._helpers.RuleChoice" title="deeprules.classification.mixed._helpers.RuleChoice"><span class="pre">RuleChoice</span></a></em><a class="headerlink" href="#deeprules.classification.mixed._helpers.RuleChoices.dnf" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="deeprules.classification.mixed._helpers.RuleChoices.cnf">
+<span class="sig-name descname"><span class="pre">cnf</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#deeprules.classification.mixed._helpers.RuleChoice" title="deeprules.classification.mixed._helpers.RuleChoice"><span class="pre">RuleChoice</span></a></em><a class="headerlink" href="#deeprules.classification.mixed._helpers.RuleChoices.cnf" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="deeprules.classification.mixed._helpers.RuleSetGrowingContext">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">deeprules.classification.mixed._helpers.</span></span><span class="sig-name descname"><span class="pre">RuleSetGrowingContext</span></span><a class="headerlink" href="#deeprules.classification.mixed._helpers.RuleSetGrowingContext" title="Link to this definition"></a></dt>
+<dd><dl class="py attribute">
+<dt class="sig sig-object py" id="deeprules.classification.mixed._helpers.RuleSetGrowingContext.params">
+<span class="sig-name descname"><span class="pre">params</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="../_params/index.html#deeprules.classification.mixed._params.AlgorithmParams" title="deeprules.classification.mixed._params.AlgorithmParams"><span class="pre">deeprules.classification.mixed._params.AlgorithmParams</span></a></em><a class="headerlink" href="#deeprules.classification.mixed._helpers.RuleSetGrowingContext.params" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="deeprules.classification.mixed._helpers.RuleSetGrowingContext.X">
+<span class="sig-name descname"><span class="pre">X</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">pandas.DataFrame</span></em><a class="headerlink" href="#deeprules.classification.mixed._helpers.RuleSetGrowingContext.X" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="deeprules.classification.mixed._helpers.RuleSetGrowingContext.y">
+<span class="sig-name descname"><span class="pre">y</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">pandas.Series</span></em><a class="headerlink" href="#deeprules.classification.mixed._helpers.RuleSetGrowingContext.y" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="deeprules.classification.mixed._helpers.RuleSetGrowingContext.X_np">
+<span class="sig-name descname"><span class="pre">X_np</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">numpy.ndarray</span></em><a class="headerlink" href="#deeprules.classification.mixed._helpers.RuleSetGrowingContext.X_np" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="deeprules.classification.mixed._helpers.RuleSetGrowingContext.y_np">
+<span class="sig-name descname"><span class="pre">y_np</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">numpy.ndarray</span></em><a class="headerlink" href="#deeprules.classification.mixed._helpers.RuleSetGrowingContext.y_np" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="deeprules.classification.mixed._helpers.RuleSetGrowingContext.class_uncovered">
+<span class="sig-name descname"><span class="pre">class_uncovered</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">set</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#deeprules.classification.mixed._helpers.RuleSetGrowingContext.class_uncovered" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="deeprules.classification.mixed._helpers.RuleSetGrowingContext.finished_classes">
+<span class="sig-name descname"><span class="pre">finished_classes</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">set</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#deeprules.classification.mixed._helpers.RuleSetGrowingContext.finished_classes" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="deeprules.classification.mixed._helpers.RuleSetGrowingContext.cache">
+<span class="sig-name descname"><span class="pre">cache</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="../../../cache/index.html#deeprules.cache.ConditionsCoverageCache" title="deeprules.cache.ConditionsCoverageCache"><span class="pre">deeprules.cache.ConditionsCoverageCache</span></a></em><a class="headerlink" href="#deeprules.classification.mixed._helpers.RuleSetGrowingContext.cache" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="deeprules.classification.mixed._helpers.RuleSetGrowingContext.prediction_quality_metric">
+<span class="sig-name descname"><span class="pre">prediction_quality_metric</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Callable</span><span class="p"><span class="pre">[</span></span><span class="p"><span class="pre">[</span></span><span class="pre">numpy.ndarray</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">numpy.ndarray</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#deeprules.classification.mixed._helpers.RuleSetGrowingContext.prediction_quality_metric" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="deeprules.classification.mixed._helpers.RuleSetGrowingContext.classes">
+<span class="sig-name descname"><span class="pre">classes</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">numpy.ndarray</span></em><a class="headerlink" href="#deeprules.classification.mixed._helpers.RuleSetGrowingContext.classes" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="deeprules.classification.mixed._helpers.RuleSetGrowingContext.classes_sizes">
+<span class="sig-name descname"><span class="pre">classes_sizes</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">numpy.ndarray</span></em><a class="headerlink" href="#deeprules.classification.mixed._helpers.RuleSetGrowingContext.classes_sizes" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="deeprules.classification.mixed._helpers.RuleSetGrowingContext.clone">
+<span class="sig-name descname"><span class="pre">clone</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#deeprules.classification.mixed._helpers.RuleSetGrowingContext" title="deeprules.classification.mixed._helpers.RuleSetGrowingContext"><span class="pre">RuleSetGrowingContext</span></a></span></span><a class="headerlink" href="#deeprules.classification.mixed._helpers.RuleSetGrowingContext.clone" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="deeprules.classification.mixed._helpers.RuleSetGrowingContext.create_initial_context">
+<em class="property"><span class="k"><span class="pre">static</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">create_initial_context</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">pandas.DataFrame</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">pandas.DataFrame</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">params</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../_params/index.html#deeprules.classification.mixed._params.AlgorithmParams" title="deeprules.classification.mixed._params.AlgorithmParams"><span class="pre">deeprules.classification.mixed._params.AlgorithmParams</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">prediction_quality_metric</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Callable</span><span class="p"><span class="pre">[</span></span><span class="p"><span class="pre">[</span></span><span class="pre">numpy.ndarray</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">numpy.ndarray</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#deeprules.classification.mixed._helpers.RuleSetGrowingContext" title="deeprules.classification.mixed._helpers.RuleSetGrowingContext"><span class="pre">RuleSetGrowingContext</span></a></span></span><a class="headerlink" href="#deeprules.classification.mixed._helpers.RuleSetGrowingContext.create_initial_context" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="deeprules.classification.mixed._helpers.RuleSetGrowingResult">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">deeprules.classification.mixed._helpers.</span></span><span class="sig-name descname"><span class="pre">RuleSetGrowingResult</span></span><a class="headerlink" href="#deeprules.classification.mixed._helpers.RuleSetGrowingResult" title="Link to this definition"></a></dt>
+<dd><dl class="py attribute">
+<dt class="sig sig-object py" id="deeprules.classification.mixed._helpers.RuleSetGrowingResult.type">
+<span class="sig-name descname"><span class="pre">type</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#deeprules.classification.mixed._helpers.RuleSetGrowingResult.type" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="deeprules.classification.mixed._helpers.RuleSetGrowingResult.ruleset">
+<span class="sig-name descname"><span class="pre">ruleset</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">decision_rules.classification.ClassificationRuleSet</span></em><a class="headerlink" href="#deeprules.classification.mixed._helpers.RuleSetGrowingResult.ruleset" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="deeprules.classification.mixed._helpers.RuleSetGrowingResult.prediction_quality">
+<span class="sig-name descname"><span class="pre">prediction_quality</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><a class="headerlink" href="#deeprules.classification.mixed._helpers.RuleSetGrowingResult.prediction_quality" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="deeprules.classification.mixed._helpers.RuleSetGrowingResult.context">
+<span class="sig-name descname"><span class="pre">context</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#deeprules.classification.mixed._helpers.RuleSetGrowingContext" title="deeprules.classification.mixed._helpers.RuleSetGrowingContext"><span class="pre">RuleSetGrowingContext</span></a></em><a class="headerlink" href="#deeprules.classification.mixed._helpers.RuleSetGrowingResult.context" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="deeprules.classification.mixed._helpers.RuleSetGrowingResult.rule">
+<span class="sig-name descname"><span class="pre">rule</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">decision_rules.classification.ClassificationRule</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#deeprules.classification.mixed._helpers.RuleSetGrowingResult.rule" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="deeprules.classification.mixed._helpers.RuleSetGrowingResults">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">deeprules.classification.mixed._helpers.</span></span><span class="sig-name descname"><span class="pre">RuleSetGrowingResults</span></span><a class="headerlink" href="#deeprules.classification.mixed._helpers.RuleSetGrowingResults" title="Link to this definition"></a></dt>
+<dd><dl class="py attribute">
+<dt class="sig sig-object py" id="deeprules.classification.mixed._helpers.RuleSetGrowingResults.carry_on">
+<span class="sig-name descname"><span class="pre">carry_on</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">bool</span></em><a class="headerlink" href="#deeprules.classification.mixed._helpers.RuleSetGrowingResults.carry_on" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="deeprules.classification.mixed._helpers.RuleSetGrowingResults.dnf">
+<span class="sig-name descname"><span class="pre">dnf</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#deeprules.classification.mixed._helpers.RuleSetGrowingResult" title="deeprules.classification.mixed._helpers.RuleSetGrowingResult"><span class="pre">RuleSetGrowingResult</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#deeprules.classification.mixed._helpers.RuleSetGrowingResults.dnf" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="deeprules.classification.mixed._helpers.RuleSetGrowingResults.cnf">
+<span class="sig-name descname"><span class="pre">cnf</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#deeprules.classification.mixed._helpers.RuleSetGrowingResult" title="deeprules.classification.mixed._helpers.RuleSetGrowingResult"><span class="pre">RuleSetGrowingResult</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#deeprules.classification.mixed._helpers.RuleSetGrowingResults.cnf" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="deeprules.classification.mixed._helpers.RuleSetGrower">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">deeprules.classification.mixed._helpers.</span></span><span class="sig-name descname"><span class="pre">RuleSetGrower</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">original_result</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#deeprules.classification.mixed._helpers.RuleSetGrowingResult" title="deeprules.classification.mixed._helpers.RuleSetGrowingResult"><span class="pre">RuleSetGrowingResult</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#deeprules.classification.mixed._helpers.RuleSetGrower" title="Link to this definition"></a></dt>
+<dd><dl class="py attribute">
+<dt class="sig sig-object py" id="deeprules.classification.mixed._helpers.RuleSetGrower.ruleset">
+<span class="sig-name descname"><span class="pre">ruleset</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">decision_rules.classification.ClassificationRuleSet</span></em><a class="headerlink" href="#deeprules.classification.mixed._helpers.RuleSetGrower.ruleset" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="deeprules.classification.mixed._helpers.RuleSetGrower.last_pred_quality">
+<span class="sig-name descname"><span class="pre">last_pred_quality</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><a class="headerlink" href="#deeprules.classification.mixed._helpers.RuleSetGrower.last_pred_quality" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="deeprules.classification.mixed._helpers.RuleSetGrower.initial_ctx">
+<span class="sig-name descname"><span class="pre">initial_ctx</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#deeprules.classification.mixed._helpers.RuleSetGrowingContext" title="deeprules.classification.mixed._helpers.RuleSetGrowingContext"><span class="pre">RuleSetGrowingContext</span></a></em><a class="headerlink" href="#deeprules.classification.mixed._helpers.RuleSetGrower.initial_ctx" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="deeprules.classification.mixed._helpers.RuleSetGrower.cnf_ctx">
+<span class="sig-name descname"><span class="pre">cnf_ctx</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#deeprules.classification.mixed._helpers.RuleSetGrowingContext" title="deeprules.classification.mixed._helpers.RuleSetGrowingContext"><span class="pre">RuleSetGrowingContext</span></a></em><a class="headerlink" href="#deeprules.classification.mixed._helpers.RuleSetGrower.cnf_ctx" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="deeprules.classification.mixed._helpers.RuleSetGrower.dnf_ctx">
+<span class="sig-name descname"><span class="pre">dnf_ctx</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#deeprules.classification.mixed._helpers.RuleSetGrowingContext" title="deeprules.classification.mixed._helpers.RuleSetGrowingContext"><span class="pre">RuleSetGrowingContext</span></a></em><a class="headerlink" href="#deeprules.classification.mixed._helpers.RuleSetGrower.dnf_ctx" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="deeprules.classification.mixed._helpers.RuleSetGrower.params">
+<span class="sig-name descname"><span class="pre">params</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="../_params/index.html#deeprules.classification.mixed._params.AlgorithmParams" title="deeprules.classification.mixed._params.AlgorithmParams"><span class="pre">deeprules.classification.mixed._params.AlgorithmParams</span></a></em><a class="headerlink" href="#deeprules.classification.mixed._helpers.RuleSetGrower.params" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="deeprules.classification.mixed._helpers.RuleSetGrower.cnf_params">
+<span class="sig-name descname"><span class="pre">cnf_params</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="../../cnf/_params/index.html#deeprules.classification.cnf._params.AlgorithmParams" title="deeprules.classification.cnf._params.AlgorithmParams"><span class="pre">deeprules.classification.cnf._params.AlgorithmParams</span></a></em><a class="headerlink" href="#deeprules.classification.mixed._helpers.RuleSetGrower.cnf_params" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="deeprules.classification.mixed._helpers.RuleSetGrower.dnf_params">
+<span class="sig-name descname"><span class="pre">dnf_params</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="../../dnf/_params/index.html#deeprules.classification.dnf._params.AlgorithmParams" title="deeprules.classification.dnf._params.AlgorithmParams"><span class="pre">deeprules.classification.dnf._params.AlgorithmParams</span></a></em><a class="headerlink" href="#deeprules.classification.mixed._helpers.RuleSetGrower.dnf_params" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="deeprules.classification.mixed._helpers.RuleSetGrower.cnf_inducer">
+<span class="sig-name descname"><span class="pre">cnf_inducer</span></span><a class="headerlink" href="#deeprules.classification.mixed._helpers.RuleSetGrower.cnf_inducer" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="deeprules.classification.mixed._helpers.RuleSetGrower.dnf_inducer">
+<span class="sig-name descname"><span class="pre">dnf_inducer</span></span><a class="headerlink" href="#deeprules.classification.mixed._helpers.RuleSetGrower.dnf_inducer" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="deeprules.classification.mixed._helpers.RuleSetGrower.logger">
+<span class="sig-name descname"><span class="pre">logger</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">logging.Logger</span></em><a class="headerlink" href="#deeprules.classification.mixed._helpers.RuleSetGrower.logger" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="deeprules.classification.mixed._helpers.RuleSetGrower.grow_single_rule">
+<span class="sig-name descname"><span class="pre">grow_single_rule</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">class_value</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">class_size</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#deeprules.classification.mixed._helpers.RuleSetGrowingResults" title="deeprules.classification.mixed._helpers.RuleSetGrowingResults"><span class="pre">RuleSetGrowingResults</span></a></span></span><a class="headerlink" href="#deeprules.classification.mixed._helpers.RuleSetGrower.grow_single_rule" title="Link to this definition"></a></dt>
+<dd><p>Adds a single rule to the ruleset. It returns two new rulesets, which are
+the original ruleset with the new DNF and CNF rule added to it.</p>
+<dl class="simple">
+<dt>Returns:</dt><dd><p>RuleSetGrowingResults: object containing two grown rulesets and their
+qualities. Those rulesets are the original ruleset with the new DNF and
+CNF rule added to it.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="deeprules.classification.mixed._helpers.RuleSetGrower.prepare_result">
+<span class="sig-name descname"><span class="pre">prepare_result</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">choice</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#deeprules.classification.mixed._helpers.RuleChoice" title="deeprules.classification.mixed._helpers.RuleChoice"><span class="pre">RuleChoice</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">class_value</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#deeprules.classification.mixed._helpers.RuleSetGrowingResult" title="deeprules.classification.mixed._helpers.RuleSetGrowingResult"><span class="pre">RuleSetGrowingResult</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></span><a class="headerlink" href="#deeprules.classification.mixed._helpers.RuleSetGrower.prepare_result" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="deeprules.classification.mixed._helpers.RuleSetGrower._induce_both_rules">
+<span class="sig-name descname"><span class="pre">_induce_both_rules</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">class_value</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">class_size</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dataset</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">pandas.DataFrame</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">pandas.Series</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dataset_np</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">numpy.ndarray</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">numpy.ndarray</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#deeprules.classification.mixed._helpers.RuleChoices" title="deeprules.classification.mixed._helpers.RuleChoices"><span class="pre">RuleChoices</span></a></span></span><a class="headerlink" href="#deeprules.classification.mixed._helpers.RuleSetGrower._induce_both_rules" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="deeprules.classification.mixed._helpers.RuleSetGrower.check_predictive_quality_on_ruleset_with_rule">
+<span class="sig-name descname"><span class="pre">check_predictive_quality_on_ruleset_with_rule</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ruleset</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">decision_rules.classification.ClassificationRuleSet</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rule</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">decision_rules.classification.ClassificationRule</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">X</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">pandas.DataFrame</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">numpy.ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">prediction_quality_metric</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Callable</span><span class="p"><span class="pre">[</span></span><span class="p"><span class="pre">[</span></span><span class="pre">numpy.ndarray</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">numpy.ndarray</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">float</span></span></span><a class="headerlink" href="#deeprules.classification.mixed._helpers.RuleSetGrower.check_predictive_quality_on_ruleset_with_rule" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="deeprules.classification.mixed._helpers.RuleSetGrower.clone_ruleset">
+<span class="sig-name descname"><span class="pre">clone_ruleset</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ruleset</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">decision_rules.classification.ClassificationRuleSet</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">decision_rules.classification.ClassificationRuleSet</span></span></span><a class="headerlink" href="#deeprules.classification.mixed._helpers.RuleSetGrower.clone_ruleset" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../index.html" class="btn btn-neutral float-left" title="deeprules.classification.mixed" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../_induction/index.html" class="btn btn-neutral float-right" title="deeprules.classification.mixed._induction" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Cezary Maszczyk.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

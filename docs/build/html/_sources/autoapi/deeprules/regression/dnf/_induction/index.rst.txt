@@ -1,0 +1,61 @@
+deeprules.regression.dnf._induction
+===================================
+
+.. py:module:: deeprules.regression.dnf._induction
+
+
+Classes
+-------
+
+.. autoapisummary::
+
+   deeprules.regression.dnf._induction.RuleInducer
+
+
+Module Contents
+---------------
+
+.. py:class:: RuleInducer(params: deeprules.regression.dnf._params.AlgorithmParams)
+
+   Bases: :py:obj:`deeprules._induction.RuleInducersMixin`
+
+
+   Trains a regression ruleset based on given data
+
+
+   .. py:attribute:: params
+      :type:  deeprules.regression.dnf._params.AlgorithmParams
+
+
+   .. py:attribute:: cache
+      :type:  deeprules.cache.ConditionsCoverageCache
+
+
+   .. py:method:: induce_ruleset(X: pandas.DataFrame, y: pandas.Series) -> decision_rules.regression.RegressionRuleSet
+
+      Induces a regression ruleset based on given data
+
+      Args:
+          X (pd.DataFrame): data
+          y (pd.Series): labels
+
+      Returns:
+          RegressionRuleSet: ruleset
+
+
+
+   .. py:method:: _grow(rule: decision_rules.regression.RegressionRule, X_df: pandas.DataFrame, X: numpy.ndarray, y: numpy.ndarray, uncovered: set[int]) -> tuple[decision_rules.regression.RegressionRule, bool]
+
+
+   .. py:method:: _grow_disjunction(rule: decision_rules.regression.RegressionRule, X_df: pandas.DataFrame, X: numpy.ndarray, y: numpy.ndarray, uncovered: set[int], rules_pn_sum: set[int]) -> tuple[decision_rules.conditions.CompoundCondition, list[tuple[decision_rules.regression.RegressionRule, float]]]
+
+
+   .. py:method:: _find_best_candidate_for_disjunction(rule: decision_rules.regression.RegressionRule, cov: decision_rules.core.coverage.Coverage, disjunction: decision_rules.conditions.CompoundCondition, X_df: pandas.DataFrame, X: numpy.ndarray, y: numpy.ndarray, uncovered: set[int], rules_pn_sum: set[int]) -> tuple[decision_rules.core.condition.AbstractCondition, float]
+
+
+   .. py:method:: _check_candidate(new_covered_examples: int, covered_count: int, uncovered: set[int]) -> bool
+
+
+   .. py:method:: _prune(rule: decision_rules.regression.RegressionRule, uncovered: set[int], X: numpy.ndarray, y: numpy.ndarray)
+
+

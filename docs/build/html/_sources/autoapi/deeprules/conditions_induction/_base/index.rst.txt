@@ -1,0 +1,51 @@
+deeprules.conditions_induction._base
+====================================
+
+.. py:module:: deeprules.conditions_induction._base
+
+
+Classes
+-------
+
+.. autoapisummary::
+
+   deeprules.conditions_induction._base.AbstractConditionsGenerator
+
+
+Module Contents
+---------------
+
+.. py:class:: AbstractConditionsGenerator(X: numpy.ndarray, y: numpy.ndarray, nominal_attributes_without_empty_values: dict[int, numpy.ndarray], nominal_attributes_indices: list[int], numerical_attributes_indices: list[int])
+
+   Bases: :py:obj:`abc.ABC`
+
+
+   Helper class that provides a standard way to create an ABC using
+   inheritance.
+
+
+   .. py:attribute:: X
+      :type:  numpy.ndarray
+
+
+   .. py:attribute:: y
+      :type:  numpy.ndarray
+
+
+   .. py:attribute:: nominal_attributes_without_empty_values
+      :type:  dict[int, numpy.ndarray]
+
+
+   .. py:attribute:: nominal_attributes_indices
+      :type:  list[int]
+
+
+   .. py:attribute:: numerical_attributes_indices
+      :type:  list[int]
+
+
+   .. py:method:: generate(examples_covered_by_rule: numpy.ndarray, y: numpy.ndarray, mid_points: dict[int, numpy.ndarray]) -> list[decision_rules.core.condition.AbstractCondition]
+      :abstractmethod:
+
+
+

@@ -1,0 +1,102 @@
+deeprules.classification.mixed._params
+======================================
+
+.. py:module:: deeprules.classification.mixed._params
+
+
+Classes
+-------
+
+.. autoapisummary::
+
+   deeprules.classification.mixed._params.AlgorithmParams
+
+
+Functions
+---------
+
+.. autoapisummary::
+
+   deeprules.classification.mixed._params.to_cnf_params
+   deeprules.classification.mixed._params.to_dnf_params
+
+
+Module Contents
+---------------
+
+.. py:class:: AlgorithmParams
+
+   Bases: :py:obj:`TypedDict`
+
+
+   dict() -> new empty dictionary
+   dict(mapping) -> new dictionary initialized from a mapping object's
+       (key, value) pairs
+   dict(iterable) -> new dictionary initialized as if via:
+       d = {}
+       for k, v in iterable:
+           d[k] = v
+   dict(**kwargs) -> new dictionary initialized with the name=value pairs
+       in the keyword argument list.  For example:  dict(one=1, two=2)
+
+
+   .. py:attribute:: min_cov
+      :type:  int
+
+
+   .. py:attribute:: max_layers_count
+      :type:  int
+
+
+   .. py:attribute:: max_component_length
+      :type:  int
+
+
+   .. py:attribute:: dnf_quality_measure
+      :type:  deeprules._params.QualityMeasure
+
+
+   .. py:attribute:: dnf_pruning_measure
+      :type:  deeprules._params.QualityMeasure
+
+
+   .. py:attribute:: dnf_select_best_candidate_measure
+      :type:  deeprules._params.QualityMeasure
+
+
+   .. py:attribute:: cnf_quality_measure
+      :type:  deeprules._params.QualityMeasure
+
+
+   .. py:attribute:: cnf_pruning_measure
+      :type:  deeprules._params.QualityMeasure
+
+
+   .. py:attribute:: cnf_select_best_candidate_measure
+      :type:  deeprules._params.QualityMeasure
+
+
+   .. py:attribute:: voting_measure
+      :type:  deeprules._params.QualityMeasure
+
+
+   .. py:attribute:: enable_pruning
+      :type:  bool
+
+
+   .. py:attribute:: enable_attributes_conditions
+      :type:  bool
+
+
+   .. py:attribute:: enable_negations
+      :type:  bool
+
+
+   .. py:attribute:: enable_discrete_set_conditions
+      :type:  bool
+
+
+.. py:function:: to_cnf_params(params: AlgorithmParams) -> deeprules.classification.cnf._params.AlgorithmParams
+
+.. py:function:: to_dnf_params(params: AlgorithmParams) -> deeprules.classification.dnf._params.AlgorithmParams
+

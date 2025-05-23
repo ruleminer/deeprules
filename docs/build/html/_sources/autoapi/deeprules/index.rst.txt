@@ -1,0 +1,36 @@
+deeprules
+=========
+
+.. py:module:: deeprules
+
+.. autoapi-nested-parse::
+
+   Package implementing rule induction algorithm capable of learning rulesets with mixed
+   CNF (and or or's) and DNF (or of and's) rules.
+
+   It is capable of learning rulesets for classification, regression and survival data,
+   handling both nominal and numerical attributes.
+
+
+
+Submodules
+----------
+
+.. toctree::
+   :maxdepth: 1
+
+   /autoapi/deeprules/_helpers/index
+   /autoapi/deeprules/_induction/index
+   /autoapi/deeprules/_model/index
+   /autoapi/deeprules/_params/index
+   /autoapi/deeprules/_simplify/index
+   /autoapi/deeprules/_timing/index
+   /autoapi/deeprules/cache/index
+   /autoapi/deeprules/classification/index
+   /autoapi/deeprules/conditions/index
+   /autoapi/deeprules/conditions_induction/index
+   /autoapi/deeprules/quality/index
+   /autoapi/deeprules/regression/index
+   /autoapi/deeprules/survival/index
+
+

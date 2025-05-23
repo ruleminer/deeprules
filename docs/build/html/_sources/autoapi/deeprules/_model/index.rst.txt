@@ -1,0 +1,150 @@
+deeprules._model
+================
+
+.. py:module:: deeprules._model
+
+
+Classes
+-------
+
+.. autoapisummary::
+
+   deeprules._model.BaseModel
+
+
+Module Contents
+---------------
+
+.. py:class:: BaseModel(**algorithm_params: dict)
+
+   Bases: :py:obj:`sklearn.base.BaseEstimator`
+
+
+   Base class for all estimators in scikit-learn.
+
+   Inheriting from this class provides default implementations of:
+
+   - setting and getting parameters used by `GridSearchCV` and friends;
+   - textual and HTML representation displayed in terminals and IDEs;
+   - estimator serialization;
+   - parameters validation;
+   - data validation;
+   - feature names validation.
+
+   Read more in the :ref:`User Guide <rolling_your_own_estimator>`.
+
+
+   Notes
+   -----
+   All estimators should specify all the parameters that can be set
+   at the class level in their ``__init__`` as explicit keyword
+   arguments (no ``*args`` or ``**kwargs``).
+
+   Examples
+   --------
+   >>> import numpy as np
+   >>> from sklearn.base import BaseEstimator
+   >>> class MyEstimator(BaseEstimator):
+   ...     def __init__(self, *, param=1):
+   ...         self.param = param
+   ...     def fit(self, X, y=None):
+   ...         self.is_fitted_ = True
+   ...         return self
+   ...     def predict(self, X):
+   ...         return np.full(shape=X.shape[0], fill_value=self.param)
+   >>> estimator = MyEstimator(param=2)
+   >>> estimator.get_params()
+   {'param': 2}
+   >>> X = np.array([[1, 2], [2, 3], [3, 4]])
+   >>> y = np.array([1, 0, 1])
+   >>> estimator.fit(X, y).predict(X)
+   array([2, 2, 2])
+   >>> estimator.set_params(param=3).fit(X, y).predict(X)
+   array([3, 3, 3])
+
+
+   .. py:attribute:: _Inducer
+      :type:  Type[deeprules._induction.RuleInducersMixin]
+      :value: None
+
+
+
+   .. py:attribute:: _problem_type
+      :type:  decision_rules.problem.ProblemTypes
+      :value: None
+
+
+
+   .. py:attribute:: _params
+      :type:  dict[str, Any]
+
+
+   .. py:attribute:: induction_times
+      :type:  deeprules._induction.RuleInductionTimes
+      :value: None
+
+
+
+   .. py:attribute:: ruleset
+      :type:  Optional[decision_rules.core.ruleset.AbstractRuleSet]
+      :value: None
+
+
+
+   .. py:attribute:: _inducer
+      :type:  deeprules._induction.RuleInducersMixin
+      :value: None
+
+
+
+   .. py:method:: set_params(**params)
+
+      Set the parameters of this estimator.
+
+      The method works on simple estimators as well as on nested objects
+      (such as :class:`~sklearn.pipeline.Pipeline`). The latter have
+      parameters of the form ``<component>__<parameter>`` so that it's
+      possible to update each component of a nested object.
+
+      Parameters
+      ----------
+      **params : dict
+          Estimator parameters.
+
+      Returns
+      -------
+      self : estimator instance
+          Estimator instance.
+
+
+
+   .. py:method:: get_params(deep=True) -> dict
+
+      Get parameters for this estimator.
+
+      Parameters
+      ----------
+      deep : bool, default=True
+          If True, will return the parameters for this estimator and
+          contained subobjects that are estimators.
+
+      Returns
+      -------
+      params : dict
+          Parameter names mapped to their values.
+
+
+
+   .. py:method:: fit(X: pandas.DataFrame, y: pandas.Series) -> decision_rules.core.ruleset.AbstractRuleSet
+
+      Trains a ruleset on given data.
+
+      Args:
+          X (pd.DataFrame): dataset
+          y (pd.Series): label column
+
+      Returns:
+          AbstractRuleSet: trained ruleset instance from `decision_rules <https://github.com/ruleminer/decision-rules>`_ package.
+
+
+

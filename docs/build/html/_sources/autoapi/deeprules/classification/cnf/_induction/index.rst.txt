@@ -1,0 +1,61 @@
+deeprules.classification.cnf._induction
+=======================================
+
+.. py:module:: deeprules.classification.cnf._induction
+
+
+Classes
+-------
+
+.. autoapisummary::
+
+   deeprules.classification.cnf._induction.RuleInducer
+
+
+Module Contents
+---------------
+
+.. py:class:: RuleInducer(params: deeprules.classification.cnf._params.AlgorithmParams)
+
+   Bases: :py:obj:`deeprules._induction.RuleInducersMixin`
+
+
+   Trains a classification ruleset based on given data
+
+
+   .. py:attribute:: params
+      :type:  deeprules.classification.cnf._params.AlgorithmParams
+
+
+   .. py:attribute:: cache
+      :type:  deeprules.cache.ConditionsCoverageCache
+
+
+   .. py:method:: induce_ruleset(X: pandas.DataFrame, y: pandas.Series) -> decision_rules.classification.ClassificationRuleSet
+
+      Induces a classification ruleset based on given data
+
+      Args:
+          X (pd.DataFrame): data
+          y (pd.Series): labels
+
+      Returns:
+          ClassificationRuleSet: ruleset
+
+
+
+   .. py:method:: _grow(rule: decision_rules.classification.ClassificationRule, X_df: pandas.DataFrame, X: numpy.ndarray, y: numpy.ndarray, uncovered: set[int], class_size: int) -> tuple[decision_rules.classification.ClassificationRule, bool]
+
+
+   .. py:method:: _grow_conjunction(rule: decision_rules.classification.ClassificationRule, X_df: pandas.DataFrame, X: numpy.ndarray, y: numpy.ndarray, uncovered: set[int], class_size: str, rules_pn_sum: set[int]) -> tuple[decision_rules.conditions.CompoundCondition, list[tuple[decision_rules.classification.ClassificationRule, float]]]
+
+
+   .. py:method:: _find_best_candidate_for_conjunction(rule: decision_rules.classification.ClassificationRule, cov: decision_rules.core.coverage.Coverage, conjunction: decision_rules.conditions.CompoundCondition, X_df: pandas.DataFrame, X: numpy.ndarray, y: numpy.ndarray, uncovered: set[int], class_size: int, rules_pn_sum: set[int]) -> tuple[decision_rules.core.condition.AbstractCondition, float]
+
+
+   .. py:method:: _check_candidate(new_covered_examples: int, class_size: int) -> bool
+
+
+   .. py:method:: _prune(rule: decision_rules.classification.ClassificationRule, uncovered: set[int], class_size: int, X: numpy.ndarray, y: numpy.ndarray)
+
+

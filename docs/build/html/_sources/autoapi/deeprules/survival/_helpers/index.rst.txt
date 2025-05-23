@@ -1,0 +1,22 @@
+deeprules.survival._helpers
+===========================
+
+.. py:module:: deeprules.survival._helpers
+
+
+Functions
+---------
+
+.. autoapisummary::
+
+   deeprules.survival._helpers.calculate_coverage
+   deeprules.survival._helpers.calculate_covering_info
+
+
+Module Contents
+---------------
+
+.. py:function:: calculate_coverage(rule: decision_rules.survival.rule.SurvivalRule, X: numpy.ndarray, y: numpy.ndarray, cache: deeprules.cache.ConditionsCoverageCache) -> decision_rules.core.coverage.Coverage
+
+.. py:function:: calculate_covering_info(rule: decision_rules.survival.rule.SurvivalRule, X: numpy.ndarray, y: numpy.ndarray, cache: deeprules.cache.ConditionsCoverageCache) -> tuple[set[int], decision_rules.core.coverage.Coverage, float]
+

@@ -1,0 +1,101 @@
+deeprules.classification.mixed._induction
+=========================================
+
+.. py:module:: deeprules.classification.mixed._induction
+
+
+Classes
+-------
+
+.. autoapisummary::
+
+   deeprules.classification.mixed._induction._HistoryEntry
+   deeprules.classification.mixed._induction.GreedyRuleInducer
+
+
+Module Contents
+---------------
+
+.. py:class:: _HistoryEntry
+
+   Bases: :py:obj:`TypedDict`
+
+
+   dict() -> new empty dictionary
+   dict(mapping) -> new dictionary initialized from a mapping object's
+       (key, value) pairs
+   dict(iterable) -> new dictionary initialized as if via:
+       d = {}
+       for k, v in iterable:
+           d[k] = v
+   dict(**kwargs) -> new dictionary initialized with the name=value pairs
+       in the keyword argument list.  For example:  dict(one=1, two=2)
+
+
+   .. py:attribute:: pred_quality
+      :type:  float
+
+
+   .. py:attribute:: fraction_uncovered
+      :type:  float
+
+
+   .. py:attribute:: induction_times
+      :type:  deeprules._induction.RuleInductionTimes
+
+
+.. py:class:: GreedyRuleInducer(params: deeprules.classification.mixed._params.AlgorithmParams)
+
+   Trains a classification ruleset based on given data using greedy search
+
+
+   .. py:attribute:: params
+      :type:  deeprules.classification.mixed._params.AlgorithmParams
+
+
+   .. py:attribute:: prediction_quality_metric
+      :type:  Callable[[numpy.ndarray, numpy.ndarray], float]
+
+
+   .. py:attribute:: logger
+      :type:  logging.Logger
+
+
+   .. py:attribute:: result
+      :type:  deeprules.classification.mixed._helpers.RuleSetGrowingResult
+      :value: None
+
+
+
+   .. py:attribute:: history
+      :type:  list[_HistoryEntry]
+      :value: []
+
+
+
+   .. py:attribute:: induction_times
+      :type:  deeprules._induction.RuleInductionTimes
+
+
+   .. py:method:: induce_ruleset(X: pandas.DataFrame, y: pandas.Series) -> decision_rules.classification.ClassificationRuleSet
+
+      Induces a classification ruleset based on given data
+
+      Args:
+          X (pd.DataFrame): data
+          y (pd.Series): labels
+
+      Returns:
+          ClassificationRuleSet: ruleset
+
+
+
+   .. py:method:: select_best_rule(results: deeprules.classification.mixed._helpers.RuleSetGrowingResults, class_value: str, last_pred_quality: float) -> deeprules.classification.mixed._helpers.RuleSetGrowingResult
+
+
+   .. py:method:: save_history_entry(grower: Optional[deeprules.classification.mixed._helpers.RuleSetGrower])
+
+
+   .. py:method:: _setup_induction_times(total_training_time: datetime.timedelta)
+
+

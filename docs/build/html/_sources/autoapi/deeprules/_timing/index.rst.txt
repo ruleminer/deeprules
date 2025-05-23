@@ -1,0 +1,73 @@
+deeprules._timing
+=================
+
+.. py:module:: deeprules._timing
+
+
+Classes
+-------
+
+.. autoapisummary::
+
+   deeprules._timing.PerformanceTimer
+
+
+Module Contents
+---------------
+
+.. py:class:: PerformanceTimer
+
+   Context manager class for measuring the CPU execution time of a code block.
+   Class is using time.perf_counter() function to measure time under the hood.
+
+   Example:
+   >>> with PerformanceTimer() as timer:
+   ...     time.sleep(0.5)
+   >>> print(timer)
+
+
+   .. py:attribute:: start_time
+      :type:  float
+      :value: None
+
+
+
+   .. py:attribute:: end_time
+      :type:  float
+      :value: None
+
+
+
+   .. py:attribute:: _time
+      :type:  float
+      :value: None
+
+
+
+   .. py:method:: __enter__()
+
+
+   .. py:method:: __exit__(*args, **kwargs)
+
+
+   .. py:method:: __str__() -> str
+
+
+   .. py:property:: time
+      :type: float
+
+
+      Returns:
+          float: time in seconds
+
+
+
+   .. py:property:: timedelta
+      :type: datetime.timedelta
+
+
+      Returns:
+          timedelta:  datetime timedelta object
+
+
+

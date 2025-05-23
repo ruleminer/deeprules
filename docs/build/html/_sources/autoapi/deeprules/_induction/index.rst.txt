@@ -1,0 +1,90 @@
+deeprules._induction
+====================
+
+.. py:module:: deeprules._induction
+
+
+Classes
+-------
+
+.. autoapisummary::
+
+   deeprules._induction.RuleInductionTimes
+   deeprules._induction.RuleInducersMixin
+
+
+Module Contents
+---------------
+
+.. py:class:: RuleInductionTimes
+
+   .. py:attribute:: growing_time
+      :type:  datetime.timedelta
+
+
+   .. py:attribute:: pruning_time
+      :type:  datetime.timedelta
+
+
+   .. py:attribute:: total_training_time
+      :type:  datetime.timedelta
+
+
+   .. py:method:: __add__(other: RuleInductionTimes) -> RuleInductionTimes
+
+
+   .. py:method:: __radd__(other: RuleInductionTimes) -> RuleInductionTimes
+
+
+   .. py:method:: __repr__() -> str
+
+
+.. py:class:: RuleInducersMixin
+
+   Bases: :py:obj:`abc.ABC`
+
+
+   Helper class that provides a standard way to create an ABC using
+   inheritance.
+
+
+   .. py:attribute:: params
+      :type:  dict[str, Any]
+      :value: None
+
+
+
+   .. py:attribute:: induction_times
+      :type:  RuleInductionTimes
+
+
+   .. py:attribute:: condition_generator
+      :type:  deeprules.conditions_induction.ConditionsGenerator
+      :value: None
+
+
+
+   .. py:method:: induce_ruleset(X: pandas.DataFrame, y: pandas.Series) -> decision_rules.core.ruleset.AbstractRuleSet
+      :abstractmethod:
+
+
+
+   .. py:method:: _grow(*args, **kwargs) -> Any
+      :abstractmethod:
+
+
+
+   .. py:method:: _prune(*args, **kwargs) -> Any
+      :abstractmethod:
+
+
+
+   .. py:method:: _setup_timers()
+
+
+   .. py:method:: _setup_timer_for_method(method_name: str, save_to: str)
+
+
+   .. py:method:: _setup_condition_generator(X: pandas.DataFrame, y: pandas.Series)
+
+

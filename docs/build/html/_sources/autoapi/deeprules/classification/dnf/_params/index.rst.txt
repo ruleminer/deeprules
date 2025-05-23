@@ -1,0 +1,37 @@
+deeprules.classification.dnf._params
+====================================
+
+.. py:module:: deeprules.classification.dnf._params
+
+
+Classes
+-------
+
+.. autoapisummary::
+
+   deeprules.classification.dnf._params.AlgorithmParams
+
+
+Module Contents
+---------------
+
+.. py:class:: AlgorithmParams
+
+   Bases: :py:obj:`deeprules._params.BaseAlgorithmParams`
+
+
+   dict() -> new empty dictionary
+   dict(mapping) -> new dictionary initialized from a mapping object's
+       (key, value) pairs
+   dict(iterable) -> new dictionary initialized as if via:
+       d = {}
+       for k, v in iterable:
+           d[k] = v
+   dict(**kwargs) -> new dictionary initialized with the name=value pairs
+       in the keyword argument list.  For example:  dict(one=1, two=2)
+
+
+   .. py:attribute:: max_disjunction_length
+      :type:  int
+
+

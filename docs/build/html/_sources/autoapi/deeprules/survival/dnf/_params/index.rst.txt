@@ -1,0 +1,67 @@
+deeprules.survival.dnf._params
+==============================
+
+.. py:module:: deeprules.survival.dnf._params
+
+
+Classes
+-------
+
+.. autoapisummary::
+
+   deeprules.survival.dnf._params.AlgorithmParams
+
+
+Module Contents
+---------------
+
+.. py:class:: AlgorithmParams
+
+   Bases: :py:obj:`TypedDict`
+
+
+   dict() -> new empty dictionary
+   dict(mapping) -> new dictionary initialized from a mapping object's
+       (key, value) pairs
+   dict(iterable) -> new dictionary initialized as if via:
+       d = {}
+       for k, v in iterable:
+           d[k] = v
+   dict(**kwargs) -> new dictionary initialized with the name=value pairs
+       in the keyword argument list.  For example:  dict(one=1, two=2)
+
+
+   .. py:attribute:: min_cov
+      :type:  int
+
+
+   .. py:attribute:: max_uncovered_fraction
+      :type:  float
+
+
+   .. py:attribute:: max_disjunction_length
+      :type:  int
+
+
+   .. py:attribute:: max_layers_count
+      :type:  int
+
+
+   .. py:attribute:: enable_pruning
+      :type:  bool
+
+
+   .. py:attribute:: survival_time_attr
+      :type:  str
+      :value: 'survival_time'
+
+
+
+   .. py:attribute:: enable_attributes_conditions
+      :type:  bool
+
+
+   .. py:attribute:: enable_negations
+      :type:  bool
+
+

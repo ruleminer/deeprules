@@ -1,0 +1,57 @@
+deeprules.conditions_induction.attributes_relations
+===================================================
+
+.. py:module:: deeprules.conditions_induction.attributes_relations
+
+
+Classes
+-------
+
+.. autoapisummary::
+
+   deeprules.conditions_induction.attributes_relations.AttributesRelationsConditionsGenerator
+
+
+Module Contents
+---------------
+
+.. py:class:: AttributesRelationsConditionsGenerator(X: numpy.ndarray, y: numpy.ndarray, nominal_attributes_without_empty_values: dict[int, numpy.ndarray], nominal_attributes_indices: list[int], numerical_attributes_indices: list[int], enable_negations: bool = False, max_length_of_conditions: int = 3, attributes_conditions_forbidden_columns: Optional[list[int]] = None)
+
+   Bases: :py:obj:`deeprules.conditions_induction._base.AbstractConditionsGenerator`
+
+
+   Helper class that provides a standard way to create an ABC using
+   inheritance.
+
+
+   .. py:attribute:: attributes_conditions_forbidden_columns
+      :type:  list[int]
+
+
+   .. py:attribute:: enable_negations
+      :type:  bool
+      :value: False
+
+
+
+   .. py:attribute:: max_length_of_conditions
+      :type:  int
+      :value: 3
+
+
+
+   .. py:attribute:: possible_conditions
+      :type:  list[decision_rules.core.condition.AbstractCondition]
+      :value: []
+
+
+
+   .. py:method:: generate(examples_covered_by_rule: numpy.ndarray, y: numpy.ndarray, mid_points: dict[int, numpy.ndarray]) -> list[decision_rules.core.condition.AbstractCondition]
+
+
+   .. py:method:: _generate_for_numerical_attributes() -> list[decision_rules.core.condition.AbstractCondition]
+
+
+   .. py:method:: _generate_for_nominal_attributes() -> list[decision_rules.core.condition.AbstractCondition]
+
+

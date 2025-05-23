@@ -1,0 +1,66 @@
+deeprules.survival.cnf
+======================
+
+.. py:module:: deeprules.survival.cnf
+
+.. autoapi-nested-parse::
+
+   Contains classes for induction CNF (and or or's) survival rules.
+
+
+
+Submodules
+----------
+
+.. toctree::
+   :maxdepth: 1
+
+   /autoapi/deeprules/survival/cnf/_induction/index
+   /autoapi/deeprules/survival/cnf/_model/index
+   /autoapi/deeprules/survival/cnf/_params/index
+
+
+Classes
+-------
+
+.. autoapisummary::
+
+   deeprules.survival.cnf.SurvivalCNF
+
+
+Package Contents
+----------------
+
+.. py:class:: SurvivalCNF(min_cov: int = DEFAULT_PARAMS_VALUES['min_cov'], max_uncovered_fraction: float = DEFAULT_PARAMS_VALUES['max_uncovered_fraction'], max_layers_count: int = DEFAULT_PARAMS_VALUES['max_layers_count'], max_conjunction_length: int = 3, survival_time_attr: str = 'survival_time', enable_pruning: bool = DEFAULT_PARAMS_VALUES['enable_pruning'], enable_attributes_conditions: bool = DEFAULT_PARAMS_VALUES['enable_attributes_conditions'], enable_negations: bool = DEFAULT_PARAMS_VALUES['enable_negations'])
+
+   Bases: :py:obj:`deeprules._model.BaseModel`
+
+
+   Survival rules based on  Rules algorithm. It produces CNF rules in the following
+   form:
+       IF (a1 AND a2 ... AND aN) OR (b1 AND b2 ... AND bN) THEN label = ...
+
+   Where maximum number of literals in each disjunction could be controlled
+   by :code:`max_conjunction_length` parameter. Maximum number of conjunctions
+   in a rule could be controlled by :code:`max_layers_count` parameter.
+
+
+   .. py:attribute:: _Inducer
+
+
+   .. py:attribute:: _problem_type
+
+
+   .. py:method:: fit(X: pandas.DataFrame, y: pandas.Series) -> decision_rules.survival.SurvivalRuleSet
+
+      Trains a ruleset on given data.
+
+      Args:
+          X (pd.DataFrame): dataset
+          y (pd.Series): label column
+
+      Returns:
+          AbstractRuleSet: trained ruleset instance from `decision_rules <https://github.com/ruleminer/decision-rules>`_ package.
+
+
+

@@ -1,0 +1,56 @@
+deeprules.cache
+===============
+
+.. py:module:: deeprules.cache
+
+.. autoapi-nested-parse::
+
+   Contains code for caching conditions coverage. It is done to improve performance by
+   avoiding recalculating each time a conditions is added or removed from a rule.
+
+
+
+Classes
+-------
+
+.. autoapisummary::
+
+   deeprules.cache.ConditionsCoverageCache
+
+
+Module Contents
+---------------
+
+.. py:class:: ConditionsCoverageCache
+
+   Cache for storing conditions coverages to avoid recalculating them
+
+
+   .. py:attribute:: cache
+      :type:  dict[str, numpy.ndarray]
+
+
+   .. py:attribute:: hits_count
+      :type:  int
+      :value: 0
+
+
+
+   .. py:attribute:: misses_count
+      :type:  int
+      :value: 0
+
+
+
+   .. py:method:: get(condition: decision_rules.conditions.AbstractCondition) -> Optional[numpy.ndarray]
+
+
+   .. py:method:: get_or_calculate(condition: decision_rules.conditions.AbstractCondition, X: numpy.ndarray, save_to_cache: bool = True) -> numpy.ndarray
+
+
+   .. py:method:: set(condition: decision_rules.conditions.AbstractCondition, value: numpy.ndarray)
+
+
+   .. py:method:: update(cache: ConditionsCoverageCache)
+
+

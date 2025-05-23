@@ -1,0 +1,46 @@
+deeprules.conditions_induction.plain
+====================================
+
+.. py:module:: deeprules.conditions_induction.plain
+
+
+Classes
+-------
+
+.. autoapisummary::
+
+   deeprules.conditions_induction.plain.PlainConditionsInducer
+
+
+Module Contents
+---------------
+
+.. py:class:: PlainConditionsInducer(X: numpy.ndarray, y: numpy.ndarray, nominal_attributes_without_empty_values: dict[int, numpy.ndarray], nominal_attributes_indices: list[int], numerical_attributes_indices: list[int], enable_negations: bool, enable_intervals: bool)
+
+   Bases: :py:obj:`deeprules.conditions_induction._base.AbstractConditionsGenerator`
+
+
+   Helper class that provides a standard way to create an ABC using
+   inheritance.
+
+
+   .. py:attribute:: enable_negations
+      :type:  bool
+
+
+   .. py:attribute:: enable_intervals
+      :type:  bool
+
+
+   .. py:method:: generate(examples_covered_by_rule: numpy.ndarray, y: numpy.ndarray, mid_points: dict[int, numpy.ndarray]) -> list[decision_rules.core.condition.AbstractCondition]
+
+
+   .. py:method:: _generate_nominal_conditions() -> list[decision_rules.core.condition.AbstractCondition]
+
+
+   .. py:method:: _generate_numerical_conditions(mid_points: dict[int, numpy.ndarray]) -> list[decision_rules.core.condition.AbstractCondition]
+
+
+   .. py:method:: _generate_interval_conditions(mid_points: dict[int, numpy.ndarray]) -> list[decision_rules.core.condition.AbstractCondition]
+
+

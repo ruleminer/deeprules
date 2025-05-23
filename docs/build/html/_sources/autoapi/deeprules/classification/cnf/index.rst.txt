@@ -1,0 +1,66 @@
+deeprules.classification.cnf
+============================
+
+.. py:module:: deeprules.classification.cnf
+
+.. autoapi-nested-parse::
+
+   Contains classes for induction CNF (and or or's) classification rules.
+
+
+
+Submodules
+----------
+
+.. toctree::
+   :maxdepth: 1
+
+   /autoapi/deeprules/classification/cnf/_induction/index
+   /autoapi/deeprules/classification/cnf/_model/index
+   /autoapi/deeprules/classification/cnf/_params/index
+
+
+Classes
+-------
+
+.. autoapisummary::
+
+   deeprules.classification.cnf.ClassifierCNF
+
+
+Package Contents
+----------------
+
+.. py:class:: ClassifierCNF(min_cov: int = DEFAULT_PARAMS_VALUES['min_cov'], max_uncovered_fraction: float = DEFAULT_PARAMS_VALUES['max_uncovered_fraction'], max_layers_count: int = DEFAULT_PARAMS_VALUES['max_layers_count'], max_conjunction_length: int = 3, quality_measure: deeprules._params.QualityMeasure = DEFAULT_PARAMS_VALUES['quality_measure'], pruning_measure: deeprules._params.QualityMeasure = DEFAULT_PARAMS_VALUES['pruning_measure'], voting_measure: deeprules._params.QualityMeasure = DEFAULT_PARAMS_VALUES['voting_measure'], select_best_candidate_measure: deeprules._params.QualityMeasure = DEFAULT_PARAMS_VALUES['select_best_candidate_measure'], enable_pruning: bool = DEFAULT_PARAMS_VALUES['enable_pruning'], enable_attributes_conditions: bool = DEFAULT_PARAMS_VALUES['enable_attributes_conditions'], enable_negations: bool = DEFAULT_PARAMS_VALUES['enable_negations'])
+
+   Bases: :py:obj:`deeprules._model.BaseModel`
+
+
+   Classifier based on  Rules algorithm. It produces CNF rules in the following
+   form:
+       IF (a1 AND a2 ... AND aN) OR (b1 AND b2 ... AND bN) THEN label = ...
+
+   Where maximum number of literals in each conjunction could be controlled
+   by :code:`max_conjunction_length` parameter. Maximum number of conjunctions
+   in a rule could be controlled by :code:`max_layers_count` parameter.
+
+
+   .. py:attribute:: _Inducer
+
+
+   .. py:attribute:: _problem_type
+
+
+   .. py:method:: fit(X: pandas.DataFrame, y: pandas.Series) -> decision_rules.classification.ClassificationRuleSet
+
+      Trains a ruleset on given data.
+
+      Args:
+          X (pd.DataFrame): dataset
+          y (pd.Series): label column
+
+      Returns:
+          AbstractRuleSet: trained ruleset instance from `decision_rules <https://github.com/ruleminer/decision-rules>`_ package.
+
+
+

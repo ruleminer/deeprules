@@ -1,0 +1,6 @@
+deeprules.regression.mixed._params
+==================================
+
+.. py:module:: deeprules.regression.mixed._params
+
+

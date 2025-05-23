@@ -1,0 +1,50 @@
+deeprules.regression.mixed._model
+=================================
+
+.. py:module:: deeprules.regression.mixed._model
+
+
+Classes
+-------
+
+.. autoapisummary::
+
+   deeprules.regression.mixed._model.Regressor
+
+
+Module Contents
+---------------
+
+.. py:class:: Regressor(min_cov: int = DEFAULT_PARAMS_VALUES['min_cov'], max_uncovered_fraction: float = DEFAULT_PARAMS_VALUES['max_uncovered_fraction'], max_layers_count: int = DEFAULT_PARAMS_VALUES['max_layers_count'], max_component_length: int = 3, dnf_quality_measure: deeprules._params.QualityMeasure = measures.correlation, dnf_pruning_measure: deeprules._params.QualityMeasure = DEFAULT_PARAMS_VALUES['pruning_measure'], dnf_select_best_candidate_measure: deeprules._params.QualityMeasure = measures.c2, cnf_quality_measure: deeprules._params.QualityMeasure = measures.c2, cnf_pruning_measure: deeprules._params.QualityMeasure = DEFAULT_PARAMS_VALUES['pruning_measure'], cnf_select_best_candidate_measure: deeprules._params.QualityMeasure = measures.correlation, voting_measure: deeprules._params.QualityMeasure = DEFAULT_PARAMS_VALUES['voting_measure'], enable_pruning: bool = DEFAULT_PARAMS_VALUES['enable_pruning'], enable_attributes_conditions: bool = DEFAULT_PARAMS_VALUES['enable_attributes_conditions'], enable_negations: bool = DEFAULT_PARAMS_VALUES['enable_negations'], enable_discrete_set_conditions: bool = DEFAULT_PARAMS_VALUES['enable_discrete_set_conditions'])
+
+   Bases: :py:obj:`deeprules._model.BaseModel`
+
+
+   Regressor based on deeprules algorithm.
+
+
+   .. py:attribute:: _Inducer
+
+
+   .. py:attribute:: _problem_type
+
+
+   .. py:attribute:: training_history
+      :type:  pandas.DataFrame
+      :value: None
+
+
+
+   .. py:method:: fit(X: pandas.DataFrame, y: pandas.Series) -> decision_rules.regression.RegressionRuleSet
+
+      Trains a ruleset on given data.
+
+      Args:
+          X (pd.DataFrame): dataset
+          y (pd.Series): label column
+
+      Returns:
+          AbstractRuleSet: trained ruleset instance from `decision_rules <https://github.com/ruleminer/decision-rules>`_ package.
+
+
+

@@ -1,0 +1,36 @@
+deeprules.quality
+=================
+
+.. py:module:: deeprules.quality
+
+.. autoapi-nested-parse::
+
+   Contains utility functions for assessing rules quality.
+
+   Those a mostly some hacky ways of squeezing a bit better performance out of
+   `decision-rules <https://github.com/ruleminer/decision-rules>`_ functions and methods.
+
+
+
+Functions
+---------
+
+.. autoapisummary::
+
+   deeprules.quality._calculate_covered_mask
+   deeprules.quality._update_conclusion_for_regression_rule
+   deeprules.quality.calculate_covering_info
+   deeprules.quality.is_condition_better_than_current_best
+
+
+Module Contents
+---------------
+
+.. py:function:: _calculate_covered_mask(condition: decision_rules.conditions.CompoundCondition, X: numpy.ndarray, cache: deeprules.cache.ConditionsCoverageCache)
+
+.. py:function:: _update_conclusion_for_regression_rule(rule: decision_rules.regression.RegressionRule, y: numpy.ndarray, covered_mask: numpy.ndarray)
+
+.. py:function:: calculate_covering_info(rule: decision_rules.core.rule.AbstractRule, X: numpy.ndarray, y: numpy.ndarray, measure: callable, cache: deeprules.cache.ConditionsCoverageCache) -> tuple[set[int], decision_rules.core.coverage.Coverage, float]
+
+.. py:function:: is_condition_better_than_current_best(new_c: tuple[decision_rules.conditions.AbstractCondition, set[int], float], current_c_best: tuple[decision_rules.conditions.AbstractCondition, set[int], float]) -> bool
+

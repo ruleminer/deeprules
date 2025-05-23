@@ -1,0 +1,114 @@
+deeprules.survival._kaplan_meier
+================================
+
+.. py:module:: deeprules.survival._kaplan_meier
+
+
+Classes
+-------
+
+.. autoapisummary::
+
+   deeprules.survival._kaplan_meier._PrecalculatedEntry
+   deeprules.survival._kaplan_meier._LogRankResult
+   deeprules.survival._kaplan_meier.PrecalculatedKaplanMeierEstimator
+
+
+Module Contents
+---------------
+
+.. py:class:: _PrecalculatedEntry
+
+   Bases: :py:obj:`tuple`
+
+
+   .. py:attribute:: time_index
+
+
+   .. py:attribute:: is_exact_match
+
+
+.. py:class:: _LogRankResult
+
+   Bases: :py:obj:`TypedDict`
+
+
+   dict() -> new empty dictionary
+   dict(mapping) -> new dictionary initialized from a mapping object's
+       (key, value) pairs
+   dict(iterable) -> new dictionary initialized as if via:
+       d = {}
+       for k, v in iterable:
+           d[k] = v
+   dict(**kwargs) -> new dictionary initialized with the name=value pairs
+       in the keyword argument list.  For example:  dict(one=1, two=2)
+
+
+   .. py:attribute:: p_value
+      :type:  float
+
+
+   .. py:attribute:: stats
+      :type:  float
+
+
+.. py:class:: PrecalculatedKaplanMeierEstimator(surv_info=None)
+
+   Bases: :py:obj:`decision_rules.survival.kaplan_meier.KaplanMeierEstimator`
+
+
+   Kaplan-Meier estimator which precalculated function value for given times.
+   It is still fitted only on the times passed to the fit method but allows to pass
+   additional array of times to precalculate. This eliminates the usage of
+   bisection algorithm when comparing two estimators which greatly improves "log_rank"
+   calculation times.
+
+
+   .. py:attribute:: _precalculated_entries
+      :type:  dict[float, _PrecalculatedEntry]
+
+
+   .. py:method:: fit(survival_time: numpy.ndarray, survival_status: numpy.ndarray, times_to_precalculate: numpy.ndarray = None, skip_sorting: bool = False) -> decision_rules.survival.kaplan_meier.KaplanMeierEstimator
+
+      Fit Kaplan Meier estimator on given data
+
+      Args:
+          survival_time (np.ndarray): survival time data
+          survival_status (np.ndarray): survival status data
+          skip_sorting (bool, optional): Flag allowing to optionally skip sorting based
+              on survival time. It could be used to speed up the computation if the provided
+              data is already sorted ascending by survival time. Defaults to False (this method
+              will sort the data under the hood).
+
+      Returns:
+          KaplanMeierEstimator: fitted estimator
+
+
+
+   .. py:method:: _precalculates_times(unique_times: numpy.ndarray, times_to_precalculate: numpy.ndarray)
+
+      Precalculates times indices for both times we are fitting on, and given times
+      to precalculate. This "precalculation" calculates index at which given time
+      would be inserted to preserve original ascending order. This method also check
+      if given time was or wasn't present in the `unique_times` array.
+
+      Args:
+          unique_times (np.ndarray): All unique times model is fitted on.
+          times_to_precalculate (np.ndarray): Times for which indices should be
+              precalculated.
+
+
+
+   .. py:method:: _get_precalculated_entry(time: float) -> _PrecalculatedEntry
+
+
+   .. py:method:: compare_estimators(kme1: PrecalculatedKaplanMeierEstimator, kme2: PrecalculatedKaplanMeierEstimator) -> _LogRankResult
+      :staticmethod:
+
+
+
+   .. py:method:: log_rank(survival_time: numpy.ndarray, survival_status: numpy.ndarray, covered_examples: numpy.ndarray, uncovered_examples: numpy.ndarray, skip_sorting: bool = False) -> float
+      :staticmethod:
+
+
+

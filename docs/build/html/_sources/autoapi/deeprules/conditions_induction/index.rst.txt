@@ -1,0 +1,92 @@
+deeprules.conditions_induction
+==============================
+
+.. py:module:: deeprules.conditions_induction
+
+.. autoapi-nested-parse::
+
+   Contains classes for generation various types of conditions. Those conditions are
+   later being assessed during rule induction.
+
+
+
+Submodules
+----------
+
+.. toctree::
+   :maxdepth: 1
+
+   /autoapi/deeprules/conditions_induction/_base/index
+   /autoapi/deeprules/conditions_induction/attributes_relations/index
+   /autoapi/deeprules/conditions_induction/generator/index
+   /autoapi/deeprules/conditions_induction/plain/index
+   /autoapi/deeprules/conditions_induction/weights/index
+
+
+Classes
+-------
+
+.. autoapisummary::
+
+   deeprules.conditions_induction.ConditionsGenerator
+
+
+Package Contents
+----------------
+
+.. py:class:: ConditionsGenerator(X: numpy.ndarray, y: numpy.ndarray, numerical_attributes_indices: list[int], nominal_attributes_indices: list[int], cuts_only_between_classes: bool = True, enable_attributes_conditions: bool = False, attributes_conditions_forbidden_columns: Optional[list[int]] = None, forbidden_columns: Optional[list[int]] = None, enable_negations: bool = False, enable_intervals: bool = False, return_negated: bool = False)
+
+   .. py:attribute:: return_negated
+      :type:  bool
+      :value: False
+
+
+
+   .. py:attribute:: X
+      :type:  numpy.ndarray
+
+
+   .. py:attribute:: y
+      :type:  numpy.ndarray
+
+
+   .. py:attribute:: cuts_only_between_classes
+      :type:  bool
+      :value: True
+
+
+
+   .. py:attribute:: enable_attributes_conditions
+      :type:  bool
+      :value: False
+
+
+
+   .. py:attribute:: numerical_attributes_indexes
+      :type:  list[int]
+
+
+   .. py:attribute:: nominal_attributes_indices
+      :type:  list[int]
+
+
+   .. py:attribute:: attributes_conditions_forbidden_columns
+      :type:  list[str]
+      :value: None
+
+
+
+   .. py:attribute:: nominal_attributes_without_empty_values
+      :type:  dict[int, numpy.ndarray]
+
+
+   .. py:attribute:: generators
+      :type:  list[deeprules.conditions_induction._base.AbstractConditionsGenerator]
+
+
+   .. py:method:: _generate_mid_points(examples_covered_by_rule: numpy.ndarray, y: numpy.ndarray) -> dict[int, numpy.ndarray]
+
+
+   .. py:method:: generate_conditions(examples_covered_by_rule: numpy.ndarray, y: numpy.ndarray) -> list[decision_rules.core.condition.AbstractCondition]
+
+
