@@ -1,5 +1,6 @@
 import math
-from typing import Callable, TypedDict
+from typing import Callable
+from typing import TypedDict
 
 import pandas as pd
 from decision_rules import measures
@@ -34,6 +35,7 @@ DEFAULT_PARAMS_VALUES: BaseAlgorithmParams = BaseAlgorithmParams(
     enable_pruning=True,
     enable_attributes_conditions=True,
     enable_negations=True,
+    enable_discrete_set_conditions=True,
 )
 
 
@@ -46,5 +48,6 @@ def adjust_params_on_dataset(
         return params.copy()
     new_params: BaseAlgorithmParams = params.copy()
     minority_class_size: int = y.value_counts().min()
-    new_params["min_cov"] = math.ceil(min(minority_class_size, params["min_cov"]))
+    new_params["min_cov"] = math.ceil(
+        min(minority_class_size, params["min_cov"]))
     return new_params

@@ -24,6 +24,9 @@ class Survival(BaseModel):
             "enable_attributes_conditions"
         ],
         enable_negations: bool = DEFAULT_PARAMS_VALUES["enable_negations"],
+        enable_discrete_set_conditions: bool = DEFAULT_PARAMS_VALUES[
+            "enable_discrete_set_conditions"
+        ],
         survival_time_attr: str = "survival_time",
     ):
         """
@@ -48,6 +51,10 @@ class Survival(BaseModel):
                 DEFAULT_PARAMS_VALUES[ "enable_attributes_conditions" ].
             enable_negations (bool, optional): Enables negated conditions in rules.
                 Defaults to DEFAULT_PARAMS_VALUES["enable_negations"].
+            enable_discrete_set_conditions (bool, optional): Enables discrete set
+                conditions. Such conditions take the following form "x in {1,2,3}". They
+                are generated only for nominal attributes. Defaults to
+                DEFAULT_PARAMS_VALUES["enable_discrete_set_conditions"].
             survival_time_attr (str, optional): Survival time attribute name. Defaults
                 to "survival_time"
         """

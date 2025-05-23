@@ -59,7 +59,9 @@ class BaseModel(BaseEstimator):
         )  # pylint: disable=not-callable
         ruleset: AbstractRuleSet = self._inducer.induce_ruleset(X, y)
         ruleset.decision_attribute = y.name
-        self.ruleset = simplify_ruleset(ruleset)
+        self.ruleset = simplify_ruleset(
+            ruleset, self._params["enable_discrete_set_conditions"]
+        )
         self.induction_times = self._inducer.induction_times
 
         return self.ruleset

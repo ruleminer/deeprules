@@ -33,6 +33,9 @@ class Regressor(BaseModel):
             "enable_attributes_conditions"
         ],
         enable_negations: bool = DEFAULT_PARAMS_VALUES["enable_negations"],
+        enable_discrete_set_conditions: bool = DEFAULT_PARAMS_VALUES[
+            "enable_discrete_set_conditions"
+        ],
     ):
         """
         Args:
@@ -73,6 +76,10 @@ class Regressor(BaseModel):
                 DEFAULT_PARAMS_VALUES[ "enable_attributes_conditions" ].
             enable_negations (bool, optional): Enables negated conditions in rules.
                 Defaults to DEFAULT_PARAMS_VALUES["enable_negations"].
+            enable_discrete_set_conditions (bool, optional): Enables discrete set
+                conditions. Such conditions take the following form "x in {1,2,3}". They
+                are generated only for nominal attributes. Defaults to
+                DEFAULT_PARAMS_VALUES["enable_discrete_set_conditions"].
         """
         # pylint: disable=unused-argument
         params: dict = locals()
@@ -83,6 +90,6 @@ class Regressor(BaseModel):
 
     def fit(self, X: pd.DataFrame, y: pd.Series) -> RegressionRuleSet:
         super().fit(X, y)
-        inducer:  GreedyRuleInducer = self._inducer
+        inducer: GreedyRuleInducer = self._inducer
         self.training_history = pd.DataFrame(inducer.history)
         return self.ruleset

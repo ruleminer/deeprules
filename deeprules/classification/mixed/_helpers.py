@@ -13,6 +13,8 @@ from decision_rules.classification import ClassificationRule
 from decision_rules.classification import ClassificationRuleSet
 from decision_rules.conditions import CompoundCondition
 from decision_rules.conditions import LogicOperators
+from joblib import delayed
+from joblib import Parallel
 
 from deeprules.cache import ConditionsCoverageCache
 from deeprules.classification.cnf._induction import RuleInducer as CNFInducer
@@ -150,9 +152,11 @@ class RuleSetGrower:
             }
         )
         self.cnf_inducer._setup_condition_generator(
-            self.initial_ctx.X, self.initial_ctx.y)
+            self.initial_ctx.X, self.initial_ctx.y
+        )
         self.dnf_inducer._setup_condition_generator(
-            self.initial_ctx.X, self.initial_ctx.y)
+            self.initial_ctx.X, self.initial_ctx.y
+        )
 
         # share the cache between inducers to save memory and reduce training times
         self.dnf_inducer.cache = self.initial_ctx.cache
@@ -284,26 +288,42 @@ class RuleSetGrower:
                 value=class_value, column_name=y.name),
             column_names=list(X.columns),
         )
-        cnf_rule, cnf_carry_on = (
-            self.cnf_inducer._grow(  # pylint: disable=protected-access
-                cnf_rule,
+
+        def induce_rule(inducer, rule, X, X_np, y_np, uncovered, class_size):
+            return inducer._grow(  # pylint: disable=protected-access
+                rule,
                 X,
                 X_np,
                 y_np,
-                self.cnf_ctx.class_uncovered[class_value],
+                uncovered,
                 class_size,
             )
+
+        results_list = Parallel(n_jobs=2, prefer="processes")(
+            delayed(induce_rule)(**params)
+            for params in [
+                {
+                    "inducer": self.dnf_inducer,
+                    "rule": dnf_rule,
+                    "X": X,
+                    "X_np": X_np,
+                    "y_np": y_np,
+                    "uncovered": self.dnf_ctx.class_uncovered[class_value],
+                    "class_size": class_size,
+                },
+                {
+                    "inducer": self.cnf_inducer,
+                    "rule": cnf_rule,
+                    "X": X,
+                    "X_np": X_np,
+                    "y_np": y_np,
+                    "uncovered": self.cnf_ctx.class_uncovered[class_value],
+                    "class_size": class_size,
+                },
+            ]
         )
-        dnf_rule, dnf_carry_on = (
-            self.dnf_inducer._grow(  # pylint: disable=protected-access
-                dnf_rule,
-                X,
-                X_np,
-                y_np,
-                self.dnf_ctx.class_uncovered[class_value],
-                class_size,
-            )
-        )
+        ((dnf_rule, dnf_carry_on), (cnf_rule, cnf_carry_on)) = results_list
+
         if not cnf_carry_on:
             self.logger.info(
                 "No more CNF rules can be induced for class %s", class_value

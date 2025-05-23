@@ -30,7 +30,7 @@
   },
   "rules": [
     {
-      "uuid": "a8e29cc5-c094-4fb6-b4a3-a98e16f4f7df",
+      "uuid": "789a921d-786c-4756-b5fb-17eefd2efcc5",
       "string": "IF (sex < fbs OR age >= 76.50 OR oldpeak >= 4.10) AND thalach >= 116.50 AND trestbps >= 112.00 THEN class = {301.30} [281.65, 320.95]",
       "premise": {
         "type": "compound",
@@ -132,8 +132,8 @@
       "voting_weight": 0.4520930232558139
     },
     {
-      "uuid": "68f8256c-7238-443f-b78c-760f98f07391",
-      "string": "IF (trestbps >= 151.00 OR sex < fbs) AND (thal = {7} OR sex = num) AND age >= 47.50 AND (age <= 61.00 OR cp >= 2.50) AND (oldpeak >= 0.10 OR thalach >= 171.00 OR cp <= 1.00) AND thalach >= 107.50 THEN class = {283.62} [268.59, 298.64]",
+      "uuid": "4eb7ecad-903d-4708-a70b-dc5f10e3e9b9",
+      "string": "IF (trestbps >= 151.00 OR sex < fbs) AND (sex = num OR thal = {7}) AND age >= 47.50 AND (age <= 61.00 OR cp >= 2.50) AND (oldpeak >= 0.10 OR thalach >= 171.00 OR cp <= 1.00) AND thalach >= 107.50 THEN class = {283.62} [268.59, 298.64]",
       "premise": {
         "type": "compound",
         "attributes": [
@@ -193,14 +193,6 @@
             "operator": "ALTERNATIVE",
             "subconditions": [
               {
-                "type": "elementary_nominal",
-                "attributes": [
-                  11
-                ],
-                "negated": false,
-                "value": "7"
-              },
-              {
                 "type": "attributes",
                 "attributes": [
                   1,
@@ -208,6 +200,14 @@
                 ],
                 "negated": false,
                 "operator": "="
+              },
+              {
+                "type": "elementary_nominal",
+                "attributes": [
+                  11
+                ],
+                "negated": false,
+                "value": "7"
               }
             ]
           },
@@ -332,8 +332,8 @@
       "voting_weight": 0.6372781065088756
     },
     {
-      "uuid": "d3764314-56ac-41ec-ad90-98975bdef528",
-      "string": "IF (trestbps >= 151.00 OR thalach <= 104.00 OR sex < fbs) AND age >= 47.50 AND (thal = {7} OR fbs > num OR restecg = num) AND cp > ca AND thalach <= 186.50 AND (exang < slope OR age <= 54.00) THEN class = {279.43} [260.85, 298.01]",
+      "uuid": "96c99154-cbe7-4582-ad2c-ce23597c4dd7",
+      "string": "IF (trestbps >= 151.00 OR thalach <= 104.00 OR sex < fbs) AND age >= 47.50 AND (fbs > num OR restecg = num OR thal = {7}) AND cp > ca AND thalach <= 186.50 AND (exang < slope OR age <= 54.00) THEN class = {279.43} [260.85, 298.01]",
       "premise": {
         "type": "compound",
         "attributes": [
@@ -411,22 +411,14 @@
           {
             "type": "compound",
             "attributes": [
-              4,
               5,
               11,
+              4,
               12
             ],
             "negated": false,
             "operator": "ALTERNATIVE",
             "subconditions": [
-              {
-                "type": "elementary_nominal",
-                "attributes": [
-                  11
-                ],
-                "negated": false,
-                "value": "7"
-              },
               {
                 "type": "attributes",
                 "attributes": [
@@ -444,6 +436,14 @@
                 ],
                 "negated": false,
                 "operator": "="
+              },
+              {
+                "type": "elementary_nominal",
+                "attributes": [
+                  11
+                ],
+                "negated": false,
+                "value": "7"
               }
             ]
           },
@@ -520,7 +520,7 @@
       "voting_weight": 0.5775355596784169
     },
     {
-      "uuid": "637ae640-ffec-4af9-aaf0-b6322384ff5b",
+      "uuid": "8416d1b4-17a3-4a46-8ba5-b561de0b3db7",
       "string": "IF age <= 37.50 OR (cp < ca AND thal = {3}) OR (cp = oldpeak AND sex >= 0.50) OR (fbs > restecg AND slope = num) THEN class = {209.25} [181.82, 236.68]",
       "premise": {
         "type": "compound",
@@ -663,7 +663,7 @@
       "voting_weight": 0.41535910192626607
     },
     {
-      "uuid": "de85c32e-02ed-425b-a9cc-52ef95a9c843",
+      "uuid": "30b499d7-3944-4a3b-9e7d-062b1df6489c",
       "string": "IF (thalach <= 111.00 AND trestbps <= 130.00 AND sex >= 0.50) OR cp < ca OR (cp = fbs AND thal = {3}) OR (trestbps >= 149.00 AND sex > fbs AND thalach <= 135.50) OR (cp = restecg AND slope >= 1.50 AND sex >= 0.50) OR (sex < fbs AND ca >= 0.50) OR (trestbps >= 149.00 AND sex > oldpeak AND thalach <= 151.00) OR (trestbps >= 162.00 AND sex = num) OR (trestbps >= 175.00 AND thal = {7}) THEN class = {270.31} [242.85, 297.78]",
       "premise": {
         "type": "compound",
@@ -1013,8 +1013,8 @@
       "voting_weight": 0.4937625754527163
     },
     {
-      "uuid": "3862283a-29fa-49e0-88fc-ab722693cef4",
-      "string": "IF (trestbps >= 151.00 OR thalach <= 104.00 OR sex < fbs) AND age >= 47.50 AND thalach >= 79.50 AND (thal != {6} OR thalach <= 122.50) AND (oldpeak <= 3.15 OR thal = {7}) AND (cp >= 1.50 OR trestbps >= 172.00) THEN class = {275.00} [244.75, 305.25]",
+      "uuid": "bc115405-2a30-4b9f-8239-e5718554a263",
+      "string": "IF (trestbps >= 151.00 OR thalach <= 104.00 OR sex < fbs) AND age >= 47.50 AND thalach >= 79.50 AND (thalach <= 122.50 OR thal != {6}) AND (oldpeak <= 3.15 OR thal = {7}) AND (cp >= 1.50 OR trestbps >= 172.00) THEN class = {275.00} [244.75, 305.25]",
       "premise": {
         "type": "compound",
         "attributes": [
@@ -1106,14 +1106,6 @@
             "operator": "ALTERNATIVE",
             "subconditions": [
               {
-                "type": "elementary_nominal",
-                "attributes": [
-                  11
-                ],
-                "negated": true,
-                "value": "6"
-              },
-              {
                 "type": "elementary_numerical",
                 "attributes": [
                   6
@@ -1123,6 +1115,14 @@
                 "right": 122.5,
                 "left_closed": false,
                 "right_closed": true
+              },
+              {
+                "type": "elementary_nominal",
+                "attributes": [
+                  11
+                ],
+                "negated": true,
+                "value": "6"
               }
             ]
           },
@@ -1210,7 +1210,7 @@
       "voting_weight": 0.4618145725978599
     },
     {
-      "uuid": "8d5b61e6-90c6-4b8f-ae66-ff16e7fc4a1b",
+      "uuid": "3834fd6b-4a25-4a9b-972e-997c988b2fa0",
       "string": "IF (restecg = ca OR cp <= 3.00) AND restecg >= 1.00 AND thal = {7} THEN class = {258.87} [213.65, 304.08]",
       "premise": {
         "type": "compound",
@@ -1295,7 +1295,7 @@
       "voting_weight": 0.32871507214277684
     },
     {
-      "uuid": "d419faa5-0b9e-487e-ac4a-52bd29e0e505",
+      "uuid": "c0ca2aca-1584-48d7-9d3d-80841c4bbdc0",
       "string": "IF (trestbps >= 149.00 AND fbs = exang AND thalach <= 172.00) OR trestbps >= 190.00 OR cp < num OR cp < ca OR (num >= 3.50 AND exang >= 0.50) OR (exang > oldpeak AND oldpeak >= 0.10 AND age <= 58.00) OR (age >= 69.00 AND cp <= 2.00) OR cp = fbs OR age >= 72.50 THEN class = {264.93} [224.64, 305.21]",
       "premise": {
         "type": "compound",
@@ -1536,7 +1536,7 @@
       "voting_weight": 0.44151246983105386
     },
     {
-      "uuid": "460d57cb-1f61-4c41-bcab-d9916562c4ea",
+      "uuid": "0d55f560-88ec-4d81-a67d-0f37db77fc52",
       "string": "IF (trestbps <= 108.00 AND thalach <= 154.00 AND age >= 42.50) OR cp < ca OR cp = exang OR trestbps <= 100.00 OR (trestbps <= 108.00 AND sex = restecg) OR thal = {?} THEN class = {223.42} [193.30, 253.54]",
       "premise": {
         "type": "compound",
@@ -1689,7 +1689,7 @@
       "voting_weight": 0.48222730739893205
     },
     {
-      "uuid": "66fd5893-a67b-4676-9b1a-25432dfa9551",
+      "uuid": "156cf959-deb6-41a0-aad3-47c55cbf0162",
       "string": "IF (age >= 41.50 OR exang > oldpeak) AND age <= 75.00 AND (restecg = ca OR cp <= 3.00) AND restecg >= 1.00 AND thal != {?} AND thalach <= 186.00 THEN class = {251.74} [210.38, 293.10]",
       "premise": {
         "type": "compound",
@@ -1832,7 +1832,7 @@
       "voting_weight": 0.2800014103038724
     },
     {
-      "uuid": "b6a8fdb5-56cf-4d38-94b3-d517162382d8",
+      "uuid": "04091db2-60ce-41a1-9c03-0dae71f14842",
       "string": "IF (age >= 41.50 OR exang > oldpeak) AND (oldpeak <= 2.95 OR restecg = ca OR cp <= 3.00) AND restecg >= 1.00 AND thal = {7} THEN class = {257.75} [215.11, 300.39]",
       "premise": {
         "type": "compound",
@@ -1964,7 +1964,7 @@
       "voting_weight": 0.3187904094827587
     },
     {
-      "uuid": "9a819f45-e6cf-418e-91c4-28b2333e5108",
+      "uuid": "865d197f-e928-4be0-8b26-89a2bc6d0c99",
       "string": "IF (age >= 41.50 OR exang > oldpeak) AND age <= 75.00 AND (oldpeak <= 2.95 OR restecg = ca) AND restecg >= 1.00 AND (age >= 40.00 OR thal = {7}) AND thalach <= 186.00 THEN class = {254.27} [215.39, 293.14]",
       "premise": {
         "type": "compound",
@@ -2128,7 +2128,7 @@
       "voting_weight": 0.27336816109422485
     },
     {
-      "uuid": "0a69b612-57cb-4455-beb0-ab9fd528ae4f",
+      "uuid": "b3ada701-eb08-45ff-ad18-552a893fb321",
       "string": "IF (age >= 41.50 OR restecg > num) AND age <= 75.00 AND (oldpeak <= 2.95 OR restecg = ca OR cp <= 3.00) AND (age <= 70.00 OR restecg >= 1.00) AND thal != {?} AND (age >= 40.00 OR thal = {7}) AND thalach <= 186.00 THEN class = {249.04} [204.86, 293.22]",
       "premise": {
         "type": "compound",
@@ -2335,7 +2335,7 @@
       "voting_weight": 0.1911486345632688
     },
     {
-      "uuid": "2b6adf2b-e9ed-4568-b5e5-113ba17720e3",
+      "uuid": "e41d0d00-aff8-4781-987c-0fee4a574d23",
       "string": "IF (age >= 41.50 OR exang > oldpeak) AND (oldpeak <= 3.20 OR restecg = ca OR exang = ca) AND thal != {?} AND (age <= 70.00 OR trestbps <= 120.00) AND (age >= 41.50 OR thal = {3}) AND (age >= 43.50 OR thalach >= 162.50 OR trestbps <= 103.50) AND (age >= 41.50 OR sex <= 0.00) THEN class = {249.04} [205.00, 293.09]",
       "premise": {
         "type": "compound",
@@ -2597,7 +2597,7 @@
       "voting_weight": 0.20598811757348354
     },
     {
-      "uuid": "92e82bab-5679-4659-9a7b-85022f57bc06",
+      "uuid": "fc8e64d9-c0f5-461f-a924-cca0cb1ff000",
       "string": "IF (sex >= 0.50 OR trestbps <= 124.00 OR thalach <= 115.00) AND (oldpeak <= 2.95 OR thalach >= 144.50 OR thalach <= 111.00) AND (age <= 70.00 OR cp <= 3.00) AND (trestbps <= 160.00 OR age >= 64.50 OR num <= 0.00) AND (ca <= 2.00 OR age >= 52.50) AND (cp > fbs OR age >= 52.50) AND (ca <= 2.00 OR thal = {7}) AND age = <36.00, 72.50> AND (cp > fbs OR thal = {6}) AND thalach <= 186.00 THEN class = {239.48} [197.76, 281.20]",
       "premise": {
         "type": "compound",
@@ -2950,7 +2950,7 @@
       "voting_weight": 0.3102251753414544
     },
     {
-      "uuid": "ad7054f3-4c36-4863-b34b-c54d9ccf8f77",
+      "uuid": "2c8f97dc-cfb3-44c0-8172-fc1f595a56ce",
       "string": "IF (restecg = exang AND age <= 63.00 AND thalach <= 179.00) OR (fbs > restecg AND age <= 52.00) OR (sex > num AND thalach <= 178.00 AND cp <= 3.00) OR thal = {?} OR cp < ca OR (trestbps <= 112.00 AND num <= 1.00 AND fbs <= 0.00) OR (fbs > restecg AND age >= 60.50) OR (trestbps <= 110.00 AND sex = ca) OR (sex > num AND trestbps >= 142.00) OR (age <= 36.00 AND thal = {3}) OR (thalach >= 183.00 AND thal = {3}) THEN class = {231.24} [191.93, 270.54]",
       "premise": {
         "type": "compound",

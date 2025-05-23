@@ -23,6 +23,7 @@ class AlgorithmParams(TypedDict):
 
     enable_attributes_conditions: bool
     enable_negations: bool
+    enable_discrete_set_conditions: bool
 
 
 def to_cnf_params(params: AlgorithmParams) -> CNFParams:

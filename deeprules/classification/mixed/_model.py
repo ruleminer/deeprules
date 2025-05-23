@@ -33,6 +33,9 @@ class Classifier(BaseModel):
             "enable_attributes_conditions"
         ],
         enable_negations: bool = DEFAULT_PARAMS_VALUES["enable_negations"],
+        enable_discrete_set_conditions: bool = DEFAULT_PARAMS_VALUES[
+            "enable_discrete_set_conditions"
+        ]
     ):
         """
         Args:
@@ -73,6 +76,10 @@ class Classifier(BaseModel):
                 DEFAULT_PARAMS_VALUES[ "enable_attributes_conditions" ].
             enable_negations (bool, optional): Enables negated conditions in rules.
                 Defaults to DEFAULT_PARAMS_VALUES["enable_negations"].
+            enable_discrete_set_conditions (bool, optional): Enables discrete set
+                conditions. Such conditions take the following form "x in {1,2,3}". They
+                are generated only for nominal attributes. Defaults to
+                DEFAULT_PARAMS_VALUES["enable_discrete_set_conditions"].
         """
         # pylint: disable=unused-argument
         params: dict = locals()

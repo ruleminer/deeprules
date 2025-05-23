@@ -11,6 +11,8 @@ class AlgorithmParams(TypedDict):
     enable_pruning: bool
     enable_attributes_conditions: bool
     enable_negations: bool
+    enable_discrete_set_conditions: bool
+
     survival_time_attr: str = "survival_time"
 
 

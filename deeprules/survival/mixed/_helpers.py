@@ -1,15 +1,22 @@
 from __future__ import annotations
 
 from dataclasses import dataclass
-from logging import Logger, getLogger
-from typing import Callable, Optional
+from logging import getLogger
+from logging import Logger
+from typing import Callable
+from typing import Optional
 
 import numpy as np
 import pandas as pd
-from decision_rules.conditions import CompoundCondition, LogicOperators
+from decision_rules.conditions import CompoundCondition
+from decision_rules.conditions import LogicOperators
 from decision_rules.core.coverage import Coverage
-from decision_rules.survival import (KaplanMeierEstimator, SurvivalConclusion,
-                                     SurvivalRule, SurvivalRuleSet)
+from decision_rules.survival import KaplanMeierEstimator
+from decision_rules.survival import SurvivalConclusion
+from decision_rules.survival import SurvivalRule
+from decision_rules.survival import SurvivalRuleSet
+from joblib import delayed
+from joblib import Parallel
 
 from deeprules.cache import ConditionsCoverageCache
 from deeprules.quality import _calculate_covered_mask
@@ -18,8 +25,9 @@ from deeprules.survival.cnf._induction import RuleInducer as CNFInducer
 from deeprules.survival.cnf._params import AlgorithmParams as CNFParams
 from deeprules.survival.dnf._induction import RuleInducer as DNFInducer
 from deeprules.survival.dnf._params import AlgorithmParams as DNFParams
-from deeprules.survival.mixed._params import (AlgorithmParams, to_cnf_params,
-                                              to_dnf_params)
+from deeprules.survival.mixed._params import AlgorithmParams
+from deeprules.survival.mixed._params import to_cnf_params
+from deeprules.survival.mixed._params import to_dnf_params
 
 
 @dataclass
@@ -108,7 +116,8 @@ def _calculate_rules_coverages(
     cache: ConditionsCoverageCache,
 ):
     for rule in ruleset.rules:
-        covered_mask: np.ndarray = _calculate_covered_mask(rule.premise, X_train, cache)
+        covered_mask: np.ndarray = _calculate_covered_mask(
+            rule.premise, X_train, cache)
         uncovered_mask: np.ndarray = np.logical_not(covered_mask)
         covered_examples_indexes = np.where(covered_mask)[0]
         uncovered_examples_indexes = np.where(uncovered_mask)[0]
@@ -142,7 +151,8 @@ def _update_ruleset(
 ):
 
     if len(ruleset.rules) == 0:
-        raise ValueError('"update" cannot be called on empty ruleset with no rules.')
+        raise ValueError(
+            '"update" cannot be called on empty ruleset with no rules.')
 
     if ruleset.column_names is None:
         ruleset.column_names = X_train.columns.tolist()
@@ -169,7 +179,7 @@ def _update_ruleset(
     ruleset.calculate_rules_weights(PrecalculatedKaplanMeierEstimator.log_rank)
 
 
-class  RuleSetGrower:
+class RuleSetGrower:
 
     def __init__(self, original_result: RuleSetGrowingResult):
         self.ruleset: SurvivalRuleSet = original_result.ruleset
@@ -225,8 +235,10 @@ class  RuleSetGrower:
         carry_on = not self.dnf_ctx.finished["dnf"] or not self.cnf_ctx.finished["cnf"]
         # Now select the best rule and add it to the ruleset
         if carry_on:
-            dnf_result: RuleSetGrowingResult = self.prepare_result(rules_choices.dnf)
-            cnf_result: RuleSetGrowingResult = self.prepare_result(rules_choices.cnf)
+            dnf_result: RuleSetGrowingResult = self.prepare_result(
+                rules_choices.dnf)
+            cnf_result: RuleSetGrowingResult = self.prepare_result(
+                rules_choices.cnf)
             return RuleSetGrowingResults(
                 dnf=dnf_result, cnf=cnf_result, carry_on=carry_on
             )
@@ -264,7 +276,8 @@ class  RuleSetGrower:
         rule: SurvivalRule = choice.rule
         ruleset: SurvivalRuleSet = self.clone_ruleset(self.ruleset)
         ruleset.rules.append(choice.rule)
-        _update_ruleset(ruleset, self.initial_ctx.X, self.initial_ctx.y, self.cache)
+        _update_ruleset(ruleset, self.initial_ctx.X,
+                        self.initial_ctx.y, self.cache)
         result = RuleSetGrowingResult(
             type=choice.type,
             rule=rule,
@@ -316,16 +329,35 @@ class  RuleSetGrower:
             survival_time_attr=self.params["survival_time_attr"],
         )
         cnf_rule.conclusion.estimator = KaplanMeierEstimator()
-        cnf_rule, cnf_carry_on = (
-            self.cnf_inducer._grow(  # pylint: disable=protected-access
-                cnf_rule, X, X_np, y_np, self.cnf_ctx.uncovered
+
+        def induce_rule(inducer, rule, X, X_np, y_np, uncovered):
+            return inducer._grow(  # pylint: disable=protected-access
+                rule, X, X_np, y_np, uncovered
             )
+
+        results_list = Parallel(n_jobs=2, prefer="processes")(
+            delayed(induce_rule)(**params)
+            for params in [
+                {
+                    "inducer": self.dnf_inducer,
+                    "rule": dnf_rule,
+                    "X": X,
+                    "X_np": X_np,
+                    "y_np": y_np,
+                    "uncovered": self.cnf_ctx.uncovered,
+                },
+                {
+                    "inducer": self.cnf_inducer,
+                    "rule": cnf_rule,
+                    "X": X,
+                    "X_np": X_np,
+                    "y_np": y_np,
+                    "uncovered": self.dnf_ctx.uncovered,
+                },
+            ]
         )
-        dnf_rule, dnf_carry_on = (
-            self.dnf_inducer._grow(  # pylint: disable=protected-access
-                dnf_rule, X, X_np, y_np, self.dnf_ctx.uncovered
-            )
-        )
+        ((dnf_rule, dnf_carry_on), (cnf_rule, cnf_carry_on)) = results_list
+
         if not cnf_carry_on:
             self.logger.info("No more CNF rules can be induced")
             cnf_rule = None

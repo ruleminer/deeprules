@@ -3,7 +3,6 @@ import pandas as pd
 import pytest
 import utils
 from decision_rules import conditions
-from decision_rules import measures
 from decision_rules.serialization import JSONSerializer
 from decision_rules.serialization import SerializationModes
 from decision_rules.survival import SurvivalRuleSet
