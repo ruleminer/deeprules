@@ -1,0 +1,1366 @@
+{
+  "meta": {
+    "attributes": [
+      "age",
+      "sex",
+      "cp",
+      "trestbps",
+      "fbs",
+      "restecg",
+      "thalach",
+      "exang",
+      "oldpeak",
+      "slope",
+      "ca",
+      "thal",
+      "num"
+    ],
+    "decision_attribute": "class",
+    "y_train_median": 245.0,
+    "default_conclusion": {
+      "low": 245.0,
+      "value": 245.0,
+      "high": 245.0,
+      "fixed": false,
+      "train_covered_y_mean": null,
+      "train_covered_y_std": null,
+      "train_covered_y_min": null,
+      "train_covered_y_max": null
+    }
+  },
+  "rules": [
+    {
+      "uuid": "58471206-a4ca-4863-b98b-a9bf0405064a",
+      "string": "IF sex < fbs OR age >= 76.50 THEN class = {299.00} [277.01, 320.99]",
+      "premise": {
+        "type": "compound",
+        "attributes": [
+          0,
+          1,
+          4
+        ],
+        "negated": false,
+        "operator": "ALTERNATIVE",
+        "subconditions": [
+          {
+            "type": "attributes",
+            "attributes": [
+              1,
+              4
+            ],
+            "negated": false,
+            "operator": "<"
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              0
+            ],
+            "negated": false,
+            "left": 76.5,
+            "right": null,
+            "left_closed": true,
+            "right_closed": false
+          }
+        ]
+      },
+      "conclusion": {
+        "low": 277.011366572704,
+        "value": 299.0,
+        "high": 320.988633427296,
+        "fixed": false,
+        "train_covered_y_mean": 299.0,
+        "train_covered_y_std": 21.988633427296023,
+        "train_covered_y_min": 265.0,
+        "train_covered_y_max": 341.0
+      },
+      "coverage": {
+        "p": 6,
+        "n": 2,
+        "P": 41,
+        "N": 171
+      },
+      "voting_weight": 0.39552132363428893
+    },
+    {
+      "uuid": "14fa5326-4e96-4fd0-a3f7-c897c63bc8e4",
+      "string": "IF (trestbps >= 151.00 OR thalach <= 104.00 OR sex < fbs) AND (sex = num OR thal = {7}) AND age >= 47.50 AND thalach <= 152.00 THEN class = {277.86} [262.39, 293.32]",
+      "premise": {
+        "type": "compound",
+        "attributes": [
+          0,
+          1,
+          3,
+          4,
+          6,
+          11,
+          12
+        ],
+        "negated": false,
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "compound",
+            "attributes": [
+              1,
+              3,
+              4,
+              6
+            ],
+            "negated": false,
+            "operator": "ALTERNATIVE",
+            "subconditions": [
+              {
+                "type": "elementary_numerical",
+                "attributes": [
+                  3
+                ],
+                "negated": false,
+                "left": 151.0,
+                "right": null,
+                "left_closed": true,
+                "right_closed": false
+              },
+              {
+                "type": "elementary_numerical",
+                "attributes": [
+                  6
+                ],
+                "negated": false,
+                "left": null,
+                "right": 104.0,
+                "left_closed": false,
+                "right_closed": true
+              },
+              {
+                "type": "attributes",
+                "attributes": [
+                  1,
+                  4
+                ],
+                "negated": false,
+                "operator": "<"
+              }
+            ]
+          },
+          {
+            "type": "compound",
+            "attributes": [
+              1,
+              11,
+              12
+            ],
+            "negated": false,
+            "operator": "ALTERNATIVE",
+            "subconditions": [
+              {
+                "type": "attributes",
+                "attributes": [
+                  1,
+                  12
+                ],
+                "negated": false,
+                "operator": "="
+              },
+              {
+                "type": "elementary_nominal",
+                "attributes": [
+                  11
+                ],
+                "negated": false,
+                "value": "7"
+              }
+            ]
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              0
+            ],
+            "negated": false,
+            "left": 47.5,
+            "right": null,
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              6
+            ],
+            "negated": false,
+            "left": null,
+            "right": 152.0,
+            "left_closed": false,
+            "right_closed": true
+          }
+        ]
+      },
+      "conclusion": {
+        "low": 262.39355824749896,
+        "value": 277.85714285714283,
+        "high": 293.3207274667867,
+        "fixed": false,
+        "train_covered_y_mean": 277.85714285714283,
+        "train_covered_y_std": 15.463584609643878,
+        "train_covered_y_min": 263.0,
+        "train_covered_y_max": 326.0
+      },
+      "coverage": {
+        "p": 13,
+        "n": 1,
+        "P": 39,
+        "N": 173
+      },
+      "voting_weight": 0.6083126892375448
+    },
+    {
+      "uuid": "b0e673ba-3105-4e64-b828-c6fd997e3204",
+      "string": "IF (trestbps >= 151.00 OR thalach <= 104.00 OR sex < fbs) AND (thalach >= 157.00 OR sex = num OR thal = {7}) AND age >= 47.50 AND (sex < slope OR trestbps >= 154.50) AND thalach >= 98.00 THEN class = {284.14} [263.13, 305.14]",
+      "premise": {
+        "type": "compound",
+        "attributes": [
+          0,
+          1,
+          3,
+          4,
+          6,
+          9,
+          11,
+          12
+        ],
+        "negated": false,
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "compound",
+            "attributes": [
+              1,
+              3,
+              4,
+              6
+            ],
+            "negated": false,
+            "operator": "ALTERNATIVE",
+            "subconditions": [
+              {
+                "type": "elementary_numerical",
+                "attributes": [
+                  3
+                ],
+                "negated": false,
+                "left": 151.0,
+                "right": null,
+                "left_closed": true,
+                "right_closed": false
+              },
+              {
+                "type": "elementary_numerical",
+                "attributes": [
+                  6
+                ],
+                "negated": false,
+                "left": null,
+                "right": 104.0,
+                "left_closed": false,
+                "right_closed": true
+              },
+              {
+                "type": "attributes",
+                "attributes": [
+                  1,
+                  4
+                ],
+                "negated": false,
+                "operator": "<"
+              }
+            ]
+          },
+          {
+            "type": "compound",
+            "attributes": [
+              1,
+              11,
+              12,
+              6
+            ],
+            "negated": false,
+            "operator": "ALTERNATIVE",
+            "subconditions": [
+              {
+                "type": "elementary_numerical",
+                "attributes": [
+                  6
+                ],
+                "negated": false,
+                "left": 157.0,
+                "right": null,
+                "left_closed": true,
+                "right_closed": false
+              },
+              {
+                "type": "attributes",
+                "attributes": [
+                  1,
+                  12
+                ],
+                "negated": false,
+                "operator": "="
+              },
+              {
+                "type": "elementary_nominal",
+                "attributes": [
+                  11
+                ],
+                "negated": false,
+                "value": "7"
+              }
+            ]
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              0
+            ],
+            "negated": false,
+            "left": 47.5,
+            "right": null,
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "type": "compound",
+            "attributes": [
+              1,
+              3,
+              9
+            ],
+            "negated": false,
+            "operator": "ALTERNATIVE",
+            "subconditions": [
+              {
+                "type": "attributes",
+                "attributes": [
+                  1,
+                  9
+                ],
+                "negated": false,
+                "operator": "<"
+              },
+              {
+                "type": "elementary_numerical",
+                "attributes": [
+                  3
+                ],
+                "negated": false,
+                "left": 154.5,
+                "right": null,
+                "left_closed": true,
+                "right_closed": false
+              }
+            ]
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              6
+            ],
+            "negated": false,
+            "left": 98.0,
+            "right": null,
+            "left_closed": true,
+            "right_closed": false
+          }
+        ]
+      },
+      "conclusion": {
+        "low": 263.13355980937297,
+        "value": 284.1363636363636,
+        "high": 305.1391674633543,
+        "fixed": false,
+        "train_covered_y_mean": 284.1363636363636,
+        "train_covered_y_std": 21.002803826990657,
+        "train_covered_y_min": 227.0,
+        "train_covered_y_max": 326.0
+      },
+      "coverage": {
+        "p": 19,
+        "n": 3,
+        "P": 50,
+        "N": 162
+      },
+      "voting_weight": 0.5668686868686869
+    },
+    {
+      "uuid": "3a66dadd-de7c-448e-8c21-2c34e23ec343",
+      "string": "IF age <= 38.50 THEN class = {208.50} [173.12, 243.88]",
+      "premise": {
+        "type": "compound",
+        "attributes": [
+          0
+        ],
+        "negated": false,
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              0
+            ],
+            "negated": false,
+            "left": null,
+            "right": 38.5,
+            "left_closed": false,
+            "right_closed": true
+          }
+        ]
+      },
+      "conclusion": {
+        "low": 173.12227631215745,
+        "value": 208.5,
+        "high": 243.87772368784255,
+        "fixed": false,
+        "train_covered_y_mean": 208.5,
+        "train_covered_y_std": 35.37772368784255,
+        "train_covered_y_min": 175.0,
+        "train_covered_y_max": 282.0
+      },
+      "coverage": {
+        "p": 5,
+        "n": 1,
+        "P": 95,
+        "N": 117
+      },
+      "voting_weight": 0.3673714200029989
+    },
+    {
+      "uuid": "bcf27176-c0c4-4dce-a80e-90572019a9fa",
+      "string": "IF thalach <= 111.00 THEN class = {251.13} [214.60, 287.67]",
+      "premise": {
+        "type": "compound",
+        "attributes": [
+          6
+        ],
+        "negated": false,
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              6
+            ],
+            "negated": false,
+            "left": null,
+            "right": 111.0,
+            "left_closed": false,
+            "right_closed": true
+          }
+        ]
+      },
+      "conclusion": {
+        "low": 214.5986618249945,
+        "value": 251.13333333333333,
+        "high": 287.66800484167214,
+        "fixed": false,
+        "train_covered_y_mean": 251.13333333333333,
+        "train_covered_y_std": 36.53467150833882,
+        "train_covered_y_min": 176.0,
+        "train_covered_y_max": 322.0
+      },
+      "coverage": {
+        "p": 12,
+        "n": 3,
+        "P": 108,
+        "N": 104
+      },
+      "voting_weight": 0.329059829059829
+    },
+    {
+      "uuid": "2d0e20fb-fa5f-4ca1-8496-9d2bb7958c12",
+      "string": "IF (trestbps >= 149.00 AND sex > fbs) OR trestbps >= 185.00 THEN class = {258.70} [225.21, 292.19]",
+      "premise": {
+        "type": "compound",
+        "attributes": [
+          1,
+          3,
+          4
+        ],
+        "negated": false,
+        "operator": "ALTERNATIVE",
+        "subconditions": [
+          {
+            "type": "compound",
+            "attributes": [
+              1,
+              3,
+              4
+            ],
+            "negated": false,
+            "operator": "CONJUNCTION",
+            "subconditions": [
+              {
+                "type": "elementary_numerical",
+                "attributes": [
+                  3
+                ],
+                "negated": false,
+                "left": 149.0,
+                "right": null,
+                "left_closed": true,
+                "right_closed": false
+              },
+              {
+                "type": "attributes",
+                "attributes": [
+                  1,
+                  4
+                ],
+                "negated": false,
+                "operator": ">"
+              }
+            ]
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              3
+            ],
+            "negated": false,
+            "left": 185.0,
+            "right": null,
+            "left_closed": true,
+            "right_closed": false
+          }
+        ]
+      },
+      "conclusion": {
+        "low": 225.20806067125991,
+        "value": 258.7,
+        "high": 292.1919393287401,
+        "fixed": false,
+        "train_covered_y_mean": 258.7,
+        "train_covered_y_std": 33.49193932874008,
+        "train_covered_y_min": 168.0,
+        "train_covered_y_max": 326.0
+      },
+      "coverage": {
+        "p": 18,
+        "n": 2,
+        "P": 98,
+        "N": 114
+      },
+      "voting_weight": 0.4817758682420337
+    },
+    {
+      "uuid": "25202af3-5d08-4625-adee-e4771a1e7fd5",
+      "string": "IF exang > oldpeak AND age <= 75.00 THEN class = {261.78} [224.62, 298.94]",
+      "premise": {
+        "type": "compound",
+        "attributes": [
+          8,
+          0,
+          7
+        ],
+        "negated": false,
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "attributes",
+            "attributes": [
+              7,
+              8
+            ],
+            "negated": false,
+            "operator": ">"
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              0
+            ],
+            "negated": false,
+            "left": null,
+            "right": 75.0,
+            "left_closed": false,
+            "right_closed": true
+          }
+        ]
+      },
+      "conclusion": {
+        "low": 224.62377626004803,
+        "value": 261.7826086956522,
+        "high": 298.94144113125634,
+        "fixed": false,
+        "train_covered_y_mean": 261.7826086956522,
+        "train_covered_y_std": 37.15883243560417,
+        "train_covered_y_min": 197.0,
+        "train_covered_y_max": 354.0
+      },
+      "coverage": {
+        "p": 16,
+        "n": 7,
+        "P": 102,
+        "N": 110
+      },
+      "voting_weight": 0.23914593505386342
+    },
+    {
+      "uuid": "39f76d53-a28a-4d37-b89f-4588b9fe854c",
+      "string": "IF (trestbps >= 149.00 AND exang < slope AND thalach <= 172.00) OR thalach <= 89.00 THEN class = {265.81} [224.35, 307.27]",
+      "premise": {
+        "type": "compound",
+        "attributes": [
+          3,
+          6,
+          7,
+          9
+        ],
+        "negated": false,
+        "operator": "ALTERNATIVE",
+        "subconditions": [
+          {
+            "type": "compound",
+            "attributes": [
+              9,
+              3,
+              6,
+              7
+            ],
+            "negated": false,
+            "operator": "CONJUNCTION",
+            "subconditions": [
+              {
+                "type": "elementary_numerical",
+                "attributes": [
+                  3
+                ],
+                "negated": false,
+                "left": 149.0,
+                "right": null,
+                "left_closed": true,
+                "right_closed": false
+              },
+              {
+                "type": "attributes",
+                "attributes": [
+                  7,
+                  9
+                ],
+                "negated": false,
+                "operator": "<"
+              },
+              {
+                "type": "elementary_numerical",
+                "attributes": [
+                  6
+                ],
+                "negated": false,
+                "left": null,
+                "right": 172.0,
+                "left_closed": false,
+                "right_closed": true
+              }
+            ]
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              6
+            ],
+            "negated": false,
+            "left": null,
+            "right": 89.0,
+            "left_closed": false,
+            "right_closed": true
+          }
+        ]
+      },
+      "conclusion": {
+        "low": 224.35059165330182,
+        "value": 265.8125,
+        "high": 307.2744083466982,
+        "fixed": false,
+        "train_covered_y_mean": 265.8125,
+        "train_covered_y_std": 41.46190834669818,
+        "train_covered_y_min": 176.0,
+        "train_covered_y_max": 407.0
+      },
+      "coverage": {
+        "p": 27,
+        "n": 5,
+        "P": 115,
+        "N": 97
+      },
+      "voting_weight": 0.4065553563424473
+    },
+    {
+      "uuid": "2cd97a0b-0ad2-4cfd-bb43-75c8a36047bf",
+      "string": "IF trestbps <= 108.00 AND thalach <= 154.00 THEN class = {244.44} [221.27, 267.62]",
+      "premise": {
+        "type": "compound",
+        "attributes": [
+          3,
+          6
+        ],
+        "negated": false,
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              3
+            ],
+            "negated": false,
+            "left": null,
+            "right": 108.0,
+            "left_closed": false,
+            "right_closed": true
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              6
+            ],
+            "negated": false,
+            "left": null,
+            "right": 154.0,
+            "left_closed": false,
+            "right_closed": true
+          }
+        ]
+      },
+      "conclusion": {
+        "low": 221.27304871076217,
+        "value": 244.44444444444446,
+        "high": 267.61584017812675,
+        "fixed": false,
+        "train_covered_y_mean": 244.44444444444446,
+        "train_covered_y_std": 23.171395733682292,
+        "train_covered_y_min": 222.0,
+        "train_covered_y_max": 299.0
+      },
+      "coverage": {
+        "p": 8,
+        "n": 1,
+        "P": 76,
+        "N": 136
+      },
+      "voting_weight": 0.4569143446852425
+    },
+    {
+      "uuid": "772784f9-4157-42cf-b237-c31f4ff37c57",
+      "string": "IF trestbps <= 108.00 AND num <= 2.00 THEN class = {232.07} [194.83, 269.32]",
+      "premise": {
+        "type": "compound",
+        "attributes": [
+          3,
+          12
+        ],
+        "negated": false,
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              3
+            ],
+            "negated": false,
+            "left": null,
+            "right": 108.0,
+            "left_closed": false,
+            "right_closed": true
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              12
+            ],
+            "negated": false,
+            "left": null,
+            "right": 2.0,
+            "left_closed": false,
+            "right_closed": true
+          }
+        ]
+      },
+      "conclusion": {
+        "low": 194.82617137439115,
+        "value": 232.07142857142858,
+        "high": 269.316685768466,
+        "fixed": false,
+        "train_covered_y_mean": 232.07142857142858,
+        "train_covered_y_std": 37.24525719703744,
+        "train_covered_y_min": 141.0,
+        "train_covered_y_max": 309.0
+      },
+      "coverage": {
+        "p": 12,
+        "n": 2,
+        "P": 123,
+        "N": 89
+      },
+      "voting_weight": 0.3620365657910191
+    },
+    {
+      "uuid": "1e3494c2-2fb1-4faf-9daa-879f6db5e87d",
+      "string": "IF thalach >= 183.00 OR cp < ca THEN class = {232.27} [203.44, 261.10]",
+      "premise": {
+        "type": "compound",
+        "attributes": [
+          2,
+          10,
+          6
+        ],
+        "negated": false,
+        "operator": "ALTERNATIVE",
+        "subconditions": [
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              6
+            ],
+            "negated": false,
+            "left": 183.0,
+            "right": null,
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "type": "attributes",
+            "attributes": [
+              2,
+              10
+            ],
+            "negated": false,
+            "operator": "<"
+          }
+        ]
+      },
+      "conclusion": {
+        "low": 203.4437932304058,
+        "value": 232.27272727272728,
+        "high": 261.1016613150488,
+        "fixed": false,
+        "train_covered_y_mean": 232.27272727272728,
+        "train_covered_y_std": 28.82893404232149,
+        "train_covered_y_min": 186.0,
+        "train_covered_y_max": 283.0
+      },
+      "coverage": {
+        "p": 9,
+        "n": 2,
+        "P": 94,
+        "N": 118
+      },
+      "voting_weight": 0.3689063370815986
+    },
+    {
+      "uuid": "0932b727-921b-41ab-8263-6d63da5a988d",
+      "string": "IF oldpeak = slope AND sex > exang THEN class = {231.17} [205.92, 256.41]",
+      "premise": {
+        "type": "compound",
+        "attributes": [
+          8,
+          9,
+          1,
+          7
+        ],
+        "negated": false,
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "attributes",
+            "attributes": [
+              8,
+              9
+            ],
+            "negated": false,
+            "operator": "="
+          },
+          {
+            "type": "attributes",
+            "attributes": [
+              1,
+              7
+            ],
+            "negated": false,
+            "operator": ">"
+          }
+        ]
+      },
+      "conclusion": {
+        "low": 205.91845440872203,
+        "value": 231.16666666666666,
+        "high": 256.4148789246113,
+        "fixed": false,
+        "train_covered_y_mean": 231.16666666666666,
+        "train_covered_y_std": 25.248212257944644,
+        "train_covered_y_min": 212.0,
+        "train_covered_y_max": 277.0
+      },
+      "coverage": {
+        "p": 5,
+        "n": 1,
+        "P": 82,
+        "N": 130
+      },
+      "voting_weight": 0.38630393996247653
+    },
+    {
+      "uuid": "d604d50b-cbe6-4ade-9cce-9ad3e8628e5e",
+      "string": "IF (age >= 41.50 OR exang > oldpeak) AND age <= 75.00 AND (oldpeak <= 2.95 OR restecg = ca OR cp <= 1.00) THEN class = {249.11} [204.80, 293.41]",
+      "premise": {
+        "type": "compound",
+        "attributes": [
+          0,
+          2,
+          5,
+          7,
+          8,
+          10
+        ],
+        "negated": false,
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "compound",
+            "attributes": [
+              0,
+              8,
+              7
+            ],
+            "negated": false,
+            "operator": "ALTERNATIVE",
+            "subconditions": [
+              {
+                "type": "elementary_numerical",
+                "attributes": [
+                  0
+                ],
+                "negated": false,
+                "left": 41.5,
+                "right": null,
+                "left_closed": true,
+                "right_closed": false
+              },
+              {
+                "type": "attributes",
+                "attributes": [
+                  7,
+                  8
+                ],
+                "negated": false,
+                "operator": ">"
+              }
+            ]
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              0
+            ],
+            "negated": false,
+            "left": null,
+            "right": 75.0,
+            "left_closed": false,
+            "right_closed": true
+          },
+          {
+            "type": "compound",
+            "attributes": [
+              8,
+              10,
+              2,
+              5
+            ],
+            "negated": false,
+            "operator": "ALTERNATIVE",
+            "subconditions": [
+              {
+                "type": "elementary_numerical",
+                "attributes": [
+                  8
+                ],
+                "negated": false,
+                "left": null,
+                "right": 2.95,
+                "left_closed": false,
+                "right_closed": true
+              },
+              {
+                "type": "attributes",
+                "attributes": [
+                  5,
+                  10
+                ],
+                "negated": false,
+                "operator": "="
+              },
+              {
+                "type": "elementary_numerical",
+                "attributes": [
+                  2
+                ],
+                "negated": false,
+                "left": null,
+                "right": 1.0,
+                "left_closed": false,
+                "right_closed": true
+              }
+            ]
+          }
+        ]
+      },
+      "conclusion": {
+        "low": 204.8030731505636,
+        "value": 249.1086956521739,
+        "high": 293.4143181537842,
+        "fixed": false,
+        "train_covered_y_mean": 249.1086956521739,
+        "train_covered_y_std": 44.30562250161032,
+        "train_covered_y_min": 131.0,
+        "train_covered_y_max": 409.0
+      },
+      "coverage": {
+        "p": 126,
+        "n": 58,
+        "P": 130,
+        "N": 82
+      },
+      "voting_weight": 0.18220083204176513
+    },
+    {
+      "uuid": "9ab425d7-05df-42e8-a7b2-78e9353ebaf8",
+      "string": "IF (restecg > num AND trestbps >= 101.00 AND age >= 32.00) OR (oldpeak = slope AND trestbps >= 119.00) OR (thalach <= 100.00 AND age <= 64.00) THEN class = {247.54} [210.88, 284.19]",
+      "premise": {
+        "type": "compound",
+        "attributes": [
+          0,
+          3,
+          5,
+          6,
+          8,
+          9,
+          12
+        ],
+        "negated": false,
+        "operator": "ALTERNATIVE",
+        "subconditions": [
+          {
+            "type": "compound",
+            "attributes": [
+              0,
+              3,
+              12,
+              5
+            ],
+            "negated": false,
+            "operator": "CONJUNCTION",
+            "subconditions": [
+              {
+                "type": "attributes",
+                "attributes": [
+                  5,
+                  12
+                ],
+                "negated": false,
+                "operator": ">"
+              },
+              {
+                "type": "elementary_numerical",
+                "attributes": [
+                  3
+                ],
+                "negated": false,
+                "left": 101.0,
+                "right": null,
+                "left_closed": true,
+                "right_closed": false
+              },
+              {
+                "type": "elementary_numerical",
+                "attributes": [
+                  0
+                ],
+                "negated": false,
+                "left": 32.0,
+                "right": null,
+                "left_closed": true,
+                "right_closed": false
+              }
+            ]
+          },
+          {
+            "type": "compound",
+            "attributes": [
+              8,
+              9,
+              3
+            ],
+            "negated": false,
+            "operator": "CONJUNCTION",
+            "subconditions": [
+              {
+                "type": "attributes",
+                "attributes": [
+                  8,
+                  9
+                ],
+                "negated": false,
+                "operator": "="
+              },
+              {
+                "type": "elementary_numerical",
+                "attributes": [
+                  3
+                ],
+                "negated": false,
+                "left": 119.0,
+                "right": null,
+                "left_closed": true,
+                "right_closed": false
+              }
+            ]
+          },
+          {
+            "type": "compound",
+            "attributes": [
+              0,
+              6
+            ],
+            "negated": false,
+            "operator": "CONJUNCTION",
+            "subconditions": [
+              {
+                "type": "elementary_numerical",
+                "attributes": [
+                  6
+                ],
+                "negated": false,
+                "left": null,
+                "right": 100.0,
+                "left_closed": false,
+                "right_closed": true
+              },
+              {
+                "type": "elementary_numerical",
+                "attributes": [
+                  0
+                ],
+                "negated": false,
+                "left": null,
+                "right": 64.0,
+                "left_closed": false,
+                "right_closed": true
+              }
+            ]
+          }
+        ]
+      },
+      "conclusion": {
+        "low": 210.88023958642202,
+        "value": 247.53658536585365,
+        "high": 284.1929311452853,
+        "fixed": false,
+        "train_covered_y_mean": 247.53658536585365,
+        "train_covered_y_std": 36.65634577943163,
+        "train_covered_y_min": 172.0,
+        "train_covered_y_max": 322.0
+      },
+      "coverage": {
+        "p": 58,
+        "n": 24,
+        "P": 116,
+        "N": 96
+      },
+      "voting_weight": 0.2652439024390243
+    },
+    {
+      "uuid": "e3d28e8e-414c-4448-aa8c-82a8fb5b4f1d",
+      "string": "IF (restecg = oldpeak AND age <= 42.00) OR thal = {?} OR trestbps <= 99.50 THEN class = {208.12} [174.83, 241.40]",
+      "premise": {
+        "type": "compound",
+        "attributes": [
+          0,
+          3,
+          5,
+          8,
+          11
+        ],
+        "negated": false,
+        "operator": "ALTERNATIVE",
+        "subconditions": [
+          {
+            "type": "compound",
+            "attributes": [
+              8,
+              0,
+              5
+            ],
+            "negated": false,
+            "operator": "CONJUNCTION",
+            "subconditions": [
+              {
+                "type": "attributes",
+                "attributes": [
+                  5,
+                  8
+                ],
+                "negated": false,
+                "operator": "="
+              },
+              {
+                "type": "elementary_numerical",
+                "attributes": [
+                  0
+                ],
+                "negated": false,
+                "left": null,
+                "right": 42.0,
+                "left_closed": false,
+                "right_closed": true
+              }
+            ]
+          },
+          {
+            "type": "elementary_nominal",
+            "attributes": [
+              11
+            ],
+            "negated": false,
+            "value": "?"
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              3
+            ],
+            "negated": false,
+            "left": null,
+            "right": 99.5,
+            "left_closed": false,
+            "right_closed": true
+          }
+        ]
+      },
+      "conclusion": {
+        "low": 174.8312210090124,
+        "value": 208.11764705882354,
+        "high": 241.40407310863466,
+        "fixed": false,
+        "train_covered_y_mean": 208.11764705882354,
+        "train_covered_y_std": 33.28642604981112,
+        "train_covered_y_min": 157.0,
+        "train_covered_y_max": 306.0
+      },
+      "coverage": {
+        "p": 13,
+        "n": 4,
+        "P": 92,
+        "N": 120
+      },
+      "voting_weight": 0.33343989769820975
+    },
+    {
+      "uuid": "9dd8e121-64fc-4b8b-a3ed-816ad70f45c0",
+      "string": "IF (ca >= 0.50 AND slope >= 1.50 AND oldpeak >= 2.85) OR trestbps >= 180.00 OR sex < fbs THEN class = {296.10} [254.41, 337.79]",
+      "premise": {
+        "type": "compound",
+        "attributes": [
+          1,
+          3,
+          4,
+          8,
+          9,
+          10
+        ],
+        "negated": false,
+        "operator": "ALTERNATIVE",
+        "subconditions": [
+          {
+            "type": "compound",
+            "attributes": [
+              8,
+              9,
+              10
+            ],
+            "negated": false,
+            "operator": "CONJUNCTION",
+            "subconditions": [
+              {
+                "type": "elementary_numerical",
+                "attributes": [
+                  10
+                ],
+                "negated": false,
+                "left": 0.5,
+                "right": null,
+                "left_closed": true,
+                "right_closed": false
+              },
+              {
+                "type": "elementary_numerical",
+                "attributes": [
+                  9
+                ],
+                "negated": false,
+                "left": 1.5,
+                "right": null,
+                "left_closed": true,
+                "right_closed": false
+              },
+              {
+                "type": "elementary_numerical",
+                "attributes": [
+                  8
+                ],
+                "negated": false,
+                "left": 2.8499999999999996,
+                "right": null,
+                "left_closed": true,
+                "right_closed": false
+              }
+            ]
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              3
+            ],
+            "negated": false,
+            "left": 180.0,
+            "right": null,
+            "left_closed": true,
+            "right_closed": false
+          },
+          {
+            "type": "attributes",
+            "attributes": [
+              1,
+              4
+            ],
+            "negated": false,
+            "operator": "<"
+          }
+        ]
+      },
+      "conclusion": {
+        "low": 254.40839413023303,
+        "value": 296.1,
+        "high": 337.791605869767,
+        "fixed": false,
+        "train_covered_y_mean": 296.1,
+        "train_covered_y_std": 41.691605869766974,
+        "train_covered_y_min": 193.0,
+        "train_covered_y_max": 407.0
+      },
+      "coverage": {
+        "p": 17,
+        "n": 3,
+        "P": 85,
+        "N": 127
+      },
+      "voting_weight": 0.449763779527559
+    }
+  ]
+}

@@ -1,3 +1,7 @@
+import json
+import os
+import pathlib
+
 import numpy as np
 import pandas as pd
 import pytest
@@ -8,6 +12,8 @@ from decision_rules.serialization import SerializationModes
 from decision_rules.survival import SurvivalRuleSet
 
 from deeprules.survival.mixed import Survival
+
+dir_path = pathlib.Path(os.path.dirname(os.path.realpath(__file__)))
 
 
 @pytest.fixture
@@ -26,6 +32,14 @@ def test_survival(
         X_test, y_test, ruleset.predict(X_test))
     assert len(ruleset.rules) < 5
     assert ibs < 0.1768
+    ruleset_path: str = dir_path / "json" / "surv_ruleset.json"
+    with open(ruleset_path, "r", encoding="utf-8") as f:
+        expected_ruleset: SurvivalRuleSet = JSONSerializer.deserialize(
+            json.load(f), target_class=SurvivalRuleSet
+        )
+    assert ruleset == expected_ruleset
+    # with open(ruleset_path, 'w+', encoding='utf-8') as f:
+    #     json.dump(JSONSerializer.serialize(ruleset, mode='full'), f, indent=2)
 
 
 def test_serialization(
@@ -70,13 +84,15 @@ def test_serialization(
     )
     assert ruleset == full_deserialized_ruleset
 
-    assert all([
-        (
-            np.array_equal(a['times'], b['times']) and
-            np.array_equal(a['median_survival_time'],
-                           b['median_survival_time'])
-        ) for a, b in zip(
-            ruleset.predict(
-                X_train), full_deserialized_ruleset.predict(X_train)
-        )
-    ])
+    assert all(
+        [
+            (
+                np.array_equal(a["times"], b["times"])
+                and np.array_equal(a["median_survival_time"], b["median_survival_time"])
+            )
+            for a, b in zip(
+                ruleset.predict(
+                    X_train), full_deserialized_ruleset.predict(X_train)
+            )
+        ]
+    )

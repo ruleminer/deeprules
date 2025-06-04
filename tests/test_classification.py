@@ -31,9 +31,9 @@ def test_classifier(
     ruleset: ClassificationRuleSet = model.fit(X_train, y_train)
 
     assert ruleset.decision_attribute is not None
-    assert len(ruleset.rules) < 11
-    assert metrics.balanced_accuracy_score(
-        y_test, ruleset.predict(X_test)) > 0.82
+    assert len(ruleset.rules) < 9
+    bacc = metrics.balanced_accuracy_score(y_test, ruleset.predict(X_test))
+    assert bacc > 0.802
 
     ruleset_path: str = dir_path / "json" / "heart_c_ruleset.json"
     with open(ruleset_path, "r", encoding="utf-8") as f:

@@ -87,10 +87,9 @@ class RuleInducer(RuleInducersMixin):
         uncovered: set[int],
     ) -> tuple[RegressionRule, bool]:
         all_intermediate_rules: list[tuple[RegressionRule, float]] = []
-        rules_pn_sum: set[int] = set()
         while True:
             disjunction, intermediate_rules = self._grow_disjunction(
-                rule, X_df, X, y, uncovered, rules_pn_sum
+                rule, X_df, X, y, uncovered
             )
             all_intermediate_rules += intermediate_rules
             if (
@@ -125,7 +124,6 @@ class RuleInducer(RuleInducersMixin):
         X: np.ndarray,
         y: np.ndarray,
         uncovered: set[int],
-        rules_pn_sum: set[int],
     ) -> tuple[CompoundCondition, list[tuple[RegressionRule, float]]]:
         disjunction: CompoundCondition = CompoundCondition(
             subconditions=[], logic_operator=LogicOperators.ALTERNATIVE
@@ -138,7 +136,7 @@ class RuleInducer(RuleInducersMixin):
 
         while True:
             c_best, q_best, cov_best = self._find_best_candidate_for_disjunction(
-                rule, cov_best, disjunction, X_df, X, y, uncovered, rules_pn_sum
+                rule, cov_best, disjunction, X_df, X, y, uncovered
             )
             if c_best is None:
                 break
@@ -173,12 +171,10 @@ class RuleInducer(RuleInducersMixin):
         X: np.ndarray,
         y: np.ndarray,
         uncovered: set[int],
-        rules_pn_sum: set[int],
     ) -> tuple[AbstractCondition, float]:
         q_best: float = float("-inf")
         c_best: Optional[AbstractCondition] = None
         cov_best: Optional[Coverage] = Coverage(p=0, n=0, P=0, N=0)
-        pn_sum_best: Optional[int] = None
         cov_before: Coverage = rule.calculate_coverage(X, y)
         covered_mask: np.ndarray = rule.premise.covered_mask(X)
         covered_best: set[int] = set(np.where(covered_mask == 1)[0])
@@ -212,8 +208,6 @@ class RuleInducer(RuleInducersMixin):
             covered, cov, q = calculate_covering_info(
                 rc, X, y, self.params["quality_measure"], self.cache
             )
-            if len(covered) in rules_pn_sum:
-                continue
             if is_condition_better_than_current_best(
                 (c, covered, q), (c_best, covered_best, q_best)
             ):
@@ -223,12 +217,9 @@ class RuleInducer(RuleInducersMixin):
                     c_best = c
                     cov_best = cov
                     covered_best = covered
-                    pn_sum_best = len(covered)
 
         if cov_before.p + cov_before.n == cov_best.p + cov_best.n:
             return None, np.nan, np.nan
-        if pn_sum_best is not None:
-            rules_pn_sum.add(pn_sum_best)
         return c_best, q_best, cov_best
 
     def _check_candidate(

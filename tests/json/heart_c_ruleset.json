@@ -26,106 +26,51 @@
   },
   "rules": [
     {
-      "uuid": "4d9f1e6a-1513-429e-a7a9-9c2dfef0895a",
-      "string": "IF (cp != {asympt} OR oldpeak <= 0.50) AND chol <= 327.50 AND (fbs = {t} OR sex = {female}) AND (age >= 36.50 OR sex = {female}) AND thalach >= 104.00 THEN class = <50",
+      "uuid": "9a7d54d4-2f3d-4e4e-a8c8-1c62d8ffccc9",
+      "string": "IF cp != {asympt} AND sex = {female} AND (thalach >= 109.50 OR fbs = {t}) THEN class = <50",
       "premise": {
         "type": "compound",
         "attributes": [
-          0,
           1,
           2,
-          4,
           5,
-          7,
-          9
+          7
         ],
         "negated": false,
         "operator": "CONJUNCTION",
         "subconditions": [
           {
-            "type": "compound",
+            "type": "elementary_nominal",
             "attributes": [
-              9,
               2
             ],
-            "negated": false,
-            "operator": "ALTERNATIVE",
-            "subconditions": [
-              {
-                "type": "elementary_nominal",
-                "attributes": [
-                  2
-                ],
-                "negated": true,
-                "value": "asympt"
-              },
-              {
-                "type": "elementary_numerical",
-                "attributes": [
-                  9
-                ],
-                "negated": false,
-                "left": null,
-                "right": 0.5,
-                "left_closed": false,
-                "right_closed": true
-              }
-            ]
+            "negated": true,
+            "value": "asympt"
           },
           {
-            "type": "elementary_numerical",
+            "type": "elementary_nominal",
             "attributes": [
-              4
-            ],
-            "negated": false,
-            "left": null,
-            "right": 327.5,
-            "left_closed": false,
-            "right_closed": true
-          },
-          {
-            "type": "compound",
-            "attributes": [
-              1,
-              5
-            ],
-            "negated": false,
-            "operator": "ALTERNATIVE",
-            "subconditions": [
-              {
-                "type": "elementary_nominal",
-                "attributes": [
-                  5
-                ],
-                "negated": false,
-                "value": "t"
-              },
-              {
-                "type": "elementary_nominal",
-                "attributes": [
-                  1
-                ],
-                "negated": false,
-                "value": "female"
-              }
-            ]
-          },
-          {
-            "type": "compound",
-            "attributes": [
-              0,
               1
             ],
             "negated": false,
+            "value": "female"
+          },
+          {
+            "type": "compound",
+            "attributes": [
+              5,
+              7
+            ],
+            "negated": false,
             "operator": "ALTERNATIVE",
             "subconditions": [
               {
                 "type": "elementary_numerical",
                 "attributes": [
-                  0
+                  7
                 ],
                 "negated": false,
-                "left": 36.5,
+                "left": 109.5,
                 "right": null,
                 "left_closed": true,
                 "right_closed": false
@@ -133,23 +78,12 @@
               {
                 "type": "elementary_nominal",
                 "attributes": [
-                  1
+                  5
                 ],
                 "negated": false,
-                "value": "female"
+                "value": "t"
               }
             ]
-          },
-          {
-            "type": "elementary_numerical",
-            "attributes": [
-              7
-            ],
-            "negated": false,
-            "left": 104.0,
-            "right": null,
-            "left_closed": true,
-            "right_closed": false
           }
         ]
       },
@@ -157,16 +91,16 @@
         "value": "<50"
       },
       "coverage": {
-        "p": 54,
-        "n": 6,
+        "p": 36,
+        "n": 2,
         "P": 115,
         "N": 97
       },
-      "voting_weight": 0.5741909457642314
+      "voting_weight": 0.5810021467833636
     },
     {
-      "uuid": "3cf47894-401d-4f29-a448-397f4df846f8",
-      "string": "IF (cp = {asympt} OR oldpeak >= 2.50) AND (oldpeak >= 0.55 OR ca >= 0.50 OR age <= 40.50) AND (trestbps >= 110.00 OR exang = {yes} OR sex = {male}) AND (thalach <= 170.50 OR trestbps <= 139.00) AND (cp = {asympt} OR exang = {yes}) AND (trestbps >= 109.00 OR fbs = {f}) AND (thalach <= 158.50 OR ca >= 2.00 OR thal = {reversable_defect}) AND (chol <= 373.50 OR thal = {reversable_defect}) AND (age <= 70.50 OR sex = {male}) THEN class = >50_1",
+      "uuid": "8dd95b9a-157d-427c-856d-ed08b644ff8f",
+      "string": "IF (oldpeak >= 2.50 OR thalach <= 111.00 OR cp = {asympt}) AND (oldpeak >= 0.55 OR ca >= 0.50 OR age <= 40.50) AND (trestbps >= 110.00 OR exang = {yes}) AND (thalach <= 170.50 OR thal = {reversable_defect}) AND (age <= 70.50 OR sex = {male}) AND (cp != {typ_angina} OR restecg = {normal}) THEN class = >50_1",
       "premise": {
         "type": "compound",
         "attributes": [
@@ -174,8 +108,7 @@
           1,
           2,
           3,
-          4,
-          5,
+          6,
           7,
           8,
           9,
@@ -189,19 +122,12 @@
             "type": "compound",
             "attributes": [
               9,
-              2
+              2,
+              7
             ],
             "negated": false,
             "operator": "ALTERNATIVE",
             "subconditions": [
-              {
-                "type": "elementary_nominal",
-                "attributes": [
-                  2
-                ],
-                "negated": false,
-                "value": "asympt"
-              },
               {
                 "type": "elementary_numerical",
                 "attributes": [
@@ -212,6 +138,25 @@
                 "right": null,
                 "left_closed": true,
                 "right_closed": false
+              },
+              {
+                "type": "elementary_numerical",
+                "attributes": [
+                  7
+                ],
+                "negated": false,
+                "left": null,
+                "right": 111.0,
+                "left_closed": false,
+                "right_closed": true
+              },
+              {
+                "type": "elementary_nominal",
+                "attributes": [
+                  2
+                ],
+                "negated": false,
+                "value": "asympt"
               }
             ]
           },
@@ -264,7 +209,6 @@
             "type": "compound",
             "attributes": [
               8,
-              1,
               3
             ],
             "negated": false,
@@ -288,111 +232,12 @@
                 ],
                 "negated": false,
                 "value": "yes"
-              },
-              {
-                "type": "elementary_nominal",
-                "attributes": [
-                  1
-                ],
-                "negated": false,
-                "value": "male"
               }
             ]
           },
           {
             "type": "compound",
             "attributes": [
-              3,
-              7
-            ],
-            "negated": false,
-            "operator": "ALTERNATIVE",
-            "subconditions": [
-              {
-                "type": "elementary_numerical",
-                "attributes": [
-                  7
-                ],
-                "negated": false,
-                "left": null,
-                "right": 170.5,
-                "left_closed": false,
-                "right_closed": true
-              },
-              {
-                "type": "elementary_numerical",
-                "attributes": [
-                  3
-                ],
-                "negated": false,
-                "left": null,
-                "right": 139.0,
-                "left_closed": false,
-                "right_closed": true
-              }
-            ]
-          },
-          {
-            "type": "compound",
-            "attributes": [
-              8,
-              2
-            ],
-            "negated": false,
-            "operator": "ALTERNATIVE",
-            "subconditions": [
-              {
-                "type": "elementary_nominal",
-                "attributes": [
-                  2
-                ],
-                "negated": false,
-                "value": "asympt"
-              },
-              {
-                "type": "elementary_nominal",
-                "attributes": [
-                  8
-                ],
-                "negated": false,
-                "value": "yes"
-              }
-            ]
-          },
-          {
-            "type": "compound",
-            "attributes": [
-              3,
-              5
-            ],
-            "negated": false,
-            "operator": "ALTERNATIVE",
-            "subconditions": [
-              {
-                "type": "elementary_numerical",
-                "attributes": [
-                  3
-                ],
-                "negated": false,
-                "left": 109.0,
-                "right": null,
-                "left_closed": true,
-                "right_closed": false
-              },
-              {
-                "type": "elementary_nominal",
-                "attributes": [
-                  5
-                ],
-                "negated": false,
-                "value": "f"
-              }
-            ]
-          },
-          {
-            "type": "compound",
-            "attributes": [
-              11,
               12,
               7
             ],
@@ -406,48 +251,7 @@
                 ],
                 "negated": false,
                 "left": null,
-                "right": 158.5,
-                "left_closed": false,
-                "right_closed": true
-              },
-              {
-                "type": "elementary_numerical",
-                "attributes": [
-                  11
-                ],
-                "negated": false,
-                "left": 2.0,
-                "right": null,
-                "left_closed": true,
-                "right_closed": false
-              },
-              {
-                "type": "elementary_nominal",
-                "attributes": [
-                  12
-                ],
-                "negated": false,
-                "value": "reversable_defect"
-              }
-            ]
-          },
-          {
-            "type": "compound",
-            "attributes": [
-              4,
-              12
-            ],
-            "negated": false,
-            "operator": "ALTERNATIVE",
-            "subconditions": [
-              {
-                "type": "elementary_numerical",
-                "attributes": [
-                  4
-                ],
-                "negated": false,
-                "left": null,
-                "right": 373.5,
+                "right": 170.5,
                 "left_closed": false,
                 "right_closed": true
               },
@@ -490,6 +294,33 @@
                 "value": "male"
               }
             ]
+          },
+          {
+            "type": "compound",
+            "attributes": [
+              2,
+              6
+            ],
+            "negated": false,
+            "operator": "ALTERNATIVE",
+            "subconditions": [
+              {
+                "type": "elementary_nominal",
+                "attributes": [
+                  2
+                ],
+                "negated": true,
+                "value": "typ_angina"
+              },
+              {
+                "type": "elementary_nominal",
+                "attributes": [
+                  6
+                ],
+                "negated": false,
+                "value": "normal"
+              }
+            ]
           }
         ]
       },
@@ -497,23 +328,20 @@
         "value": ">50_1"
       },
       "coverage": {
-        "p": 74,
-        "n": 3,
+        "p": 77,
+        "n": 6,
         "P": 97,
         "N": 115
       },
-      "voting_weight": 0.8181346667675669
+      "voting_weight": 0.7773822317508491
     },
     {
-      "uuid": "894005a5-b5bd-4bbd-9e07-893ddb8726a5",
-      "string": "IF cp != {asympt} AND (oldpeak <= 2.65 OR slope = {down}) AND chol <= 327.50 AND (thalach >= 109.50 OR fbs = {t}) AND (age >= 36.50 OR sex = {female}) THEN class = <50",
+      "uuid": "6bbfa140-53a2-4893-a857-8ce9db2e8eb5",
+      "string": "IF cp != {asympt} AND (oldpeak <= 2.65 OR slope = {down}) AND (thalach >= 109.50 OR fbs = {t}) THEN class = <50",
       "premise": {
         "type": "compound",
         "attributes": [
-          0,
-          1,
           2,
-          4,
           5,
           7,
           9,
@@ -561,13 +389,179 @@
             ]
           },
           {
+            "type": "compound",
+            "attributes": [
+              5,
+              7
+            ],
+            "negated": false,
+            "operator": "ALTERNATIVE",
+            "subconditions": [
+              {
+                "type": "elementary_numerical",
+                "attributes": [
+                  7
+                ],
+                "negated": false,
+                "left": 109.5,
+                "right": null,
+                "left_closed": true,
+                "right_closed": false
+              },
+              {
+                "type": "elementary_nominal",
+                "attributes": [
+                  5
+                ],
+                "negated": false,
+                "value": "t"
+              }
+            ]
+          }
+        ]
+      },
+      "conclusion": {
+        "value": "<50"
+      },
+      "coverage": {
+        "p": 84,
+        "n": 15,
+        "P": 115,
+        "N": 97
+      },
+      "voting_weight": 0.5787036659739484
+    },
+    {
+      "uuid": "89e304bb-d115-44ec-9225-b952bdaa769c",
+      "string": "IF (thal = {reversable_defect} AND thalach <= 150.00 AND oldpeak >= 0.15) OR (ca >= 3.00 AND fbs = {f}) THEN class = >50_1",
+      "premise": {
+        "type": "compound",
+        "attributes": [
+          5,
+          7,
+          9,
+          11,
+          12
+        ],
+        "negated": false,
+        "operator": "ALTERNATIVE",
+        "subconditions": [
+          {
+            "type": "compound",
+            "attributes": [
+              9,
+              12,
+              7
+            ],
+            "negated": false,
+            "operator": "CONJUNCTION",
+            "subconditions": [
+              {
+                "type": "elementary_nominal",
+                "attributes": [
+                  12
+                ],
+                "negated": false,
+                "value": "reversable_defect"
+              },
+              {
+                "type": "elementary_numerical",
+                "attributes": [
+                  7
+                ],
+                "negated": false,
+                "left": null,
+                "right": 150.0,
+                "left_closed": false,
+                "right_closed": true
+              },
+              {
+                "type": "elementary_numerical",
+                "attributes": [
+                  9
+                ],
+                "negated": false,
+                "left": 0.15000000000000002,
+                "right": null,
+                "left_closed": true,
+                "right_closed": false
+              }
+            ]
+          },
+          {
+            "type": "compound",
+            "attributes": [
+              11,
+              5
+            ],
+            "negated": false,
+            "operator": "CONJUNCTION",
+            "subconditions": [
+              {
+                "type": "elementary_numerical",
+                "attributes": [
+                  11
+                ],
+                "negated": false,
+                "left": 3.0,
+                "right": null,
+                "left_closed": true,
+                "right_closed": false
+              },
+              {
+                "type": "elementary_nominal",
+                "attributes": [
+                  5
+                ],
+                "negated": false,
+                "value": "f"
+              }
+            ]
+          }
+        ]
+      },
+      "conclusion": {
+        "value": ">50_1"
+      },
+      "coverage": {
+        "p": 52,
+        "n": 4,
+        "P": 97,
+        "N": 115
+      },
+      "voting_weight": 0.6669078568226932
+    },
+    {
+      "uuid": "d8272ff7-a749-479f-a6d7-8236b86bc187",
+      "string": "IF thal = {normal} AND oldpeak <= 2.65 AND (thalach >= 109.50 OR fbs = {t}) AND age <= 76.50 THEN class = <50",
+      "premise": {
+        "type": "compound",
+        "attributes": [
+          0,
+          5,
+          7,
+          9,
+          12
+        ],
+        "negated": false,
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "elementary_nominal",
+            "attributes": [
+              12
+            ],
+            "negated": false,
+            "value": "normal"
+          },
+          {
             "type": "elementary_numerical",
             "attributes": [
-              4
+              9
             ],
             "negated": false,
             "left": null,
-            "right": 327.5,
+            "right": 2.65,
             "left_closed": false,
             "right_closed": true
           },
@@ -602,34 +596,15 @@
             ]
           },
           {
-            "type": "compound",
+            "type": "elementary_numerical",
             "attributes": [
-              0,
-              1
+              0
             ],
             "negated": false,
-            "operator": "ALTERNATIVE",
-            "subconditions": [
-              {
-                "type": "elementary_numerical",
-                "attributes": [
-                  0
-                ],
-                "negated": false,
-                "left": 36.5,
-                "right": null,
-                "left_closed": true,
-                "right_closed": false
-              },
-              {
-                "type": "elementary_nominal",
-                "attributes": [
-                  1
-                ],
-                "negated": false,
-                "value": "female"
-              }
-            ]
+            "left": null,
+            "right": 76.5,
+            "left_closed": false,
+            "right_closed": true
           }
         ]
       },
@@ -637,258 +612,16 @@
         "value": "<50"
       },
       "coverage": {
-        "p": 82,
-        "n": 14,
+        "p": 87,
+        "n": 15,
         "P": 115,
         "N": 97
       },
-      "voting_weight": 0.5835238308680712
+      "voting_weight": 0.5959817544229704
     },
     {
-      "uuid": "75918d71-3c59-4f50-91dd-06e77ef9e774",
-      "string": "IF (thal = {reversable_defect} AND thalach <= 143.00 AND oldpeak >= 0.05) OR (restecg = {st_t_wave_abnormality} AND cp = {asympt}) OR (slope = {down} AND cp = {asympt}) THEN class = >50_1",
-      "premise": {
-        "type": "compound",
-        "attributes": [
-          2,
-          6,
-          7,
-          9,
-          10,
-          12
-        ],
-        "negated": false,
-        "operator": "ALTERNATIVE",
-        "subconditions": [
-          {
-            "type": "compound",
-            "attributes": [
-              9,
-              12,
-              7
-            ],
-            "negated": false,
-            "operator": "CONJUNCTION",
-            "subconditions": [
-              {
-                "type": "elementary_nominal",
-                "attributes": [
-                  12
-                ],
-                "negated": false,
-                "value": "reversable_defect"
-              },
-              {
-                "type": "elementary_numerical",
-                "attributes": [
-                  7
-                ],
-                "negated": false,
-                "left": null,
-                "right": 143.0,
-                "left_closed": false,
-                "right_closed": true
-              },
-              {
-                "type": "elementary_numerical",
-                "attributes": [
-                  9
-                ],
-                "negated": false,
-                "left": 0.05,
-                "right": null,
-                "left_closed": true,
-                "right_closed": false
-              }
-            ]
-          },
-          {
-            "type": "compound",
-            "attributes": [
-              2,
-              6
-            ],
-            "negated": false,
-            "operator": "CONJUNCTION",
-            "subconditions": [
-              {
-                "type": "elementary_nominal",
-                "attributes": [
-                  6
-                ],
-                "negated": false,
-                "value": "st_t_wave_abnormality"
-              },
-              {
-                "type": "elementary_nominal",
-                "attributes": [
-                  2
-                ],
-                "negated": false,
-                "value": "asympt"
-              }
-            ]
-          },
-          {
-            "type": "compound",
-            "attributes": [
-              10,
-              2
-            ],
-            "negated": false,
-            "operator": "CONJUNCTION",
-            "subconditions": [
-              {
-                "type": "elementary_nominal",
-                "attributes": [
-                  10
-                ],
-                "negated": false,
-                "value": "down"
-              },
-              {
-                "type": "elementary_nominal",
-                "attributes": [
-                  2
-                ],
-                "negated": false,
-                "value": "asympt"
-              }
-            ]
-          }
-        ]
-      },
-      "conclusion": {
-        "value": ">50_1"
-      },
-      "coverage": {
-        "p": 47,
-        "n": 1,
-        "P": 97,
-        "N": 115
-      },
-      "voting_weight": 0.7137606454504707
-    },
-    {
-      "uuid": "f4e3e7c6-f8ee-4985-804b-9a7afcf12bc3",
-      "string": "IF thal = {normal} AND oldpeak <= 2.65 AND (sex = {female} OR restecg = {normal}) AND chol <= 327.50 AND (thalach >= 104.00 OR fbs = {t}) THEN class = <50",
-      "premise": {
-        "type": "compound",
-        "attributes": [
-          1,
-          4,
-          5,
-          6,
-          7,
-          9,
-          12
-        ],
-        "negated": false,
-        "operator": "CONJUNCTION",
-        "subconditions": [
-          {
-            "type": "elementary_nominal",
-            "attributes": [
-              12
-            ],
-            "negated": false,
-            "value": "normal"
-          },
-          {
-            "type": "elementary_numerical",
-            "attributes": [
-              9
-            ],
-            "negated": false,
-            "left": null,
-            "right": 2.65,
-            "left_closed": false,
-            "right_closed": true
-          },
-          {
-            "type": "compound",
-            "attributes": [
-              1,
-              6
-            ],
-            "negated": false,
-            "operator": "ALTERNATIVE",
-            "subconditions": [
-              {
-                "type": "elementary_nominal",
-                "attributes": [
-                  1
-                ],
-                "negated": false,
-                "value": "female"
-              },
-              {
-                "type": "elementary_nominal",
-                "attributes": [
-                  6
-                ],
-                "negated": false,
-                "value": "normal"
-              }
-            ]
-          },
-          {
-            "type": "elementary_numerical",
-            "attributes": [
-              4
-            ],
-            "negated": false,
-            "left": null,
-            "right": 327.5,
-            "left_closed": false,
-            "right_closed": true
-          },
-          {
-            "type": "compound",
-            "attributes": [
-              5,
-              7
-            ],
-            "negated": false,
-            "operator": "ALTERNATIVE",
-            "subconditions": [
-              {
-                "type": "elementary_numerical",
-                "attributes": [
-                  7
-                ],
-                "negated": false,
-                "left": 104.0,
-                "right": null,
-                "left_closed": true,
-                "right_closed": false
-              },
-              {
-                "type": "elementary_nominal",
-                "attributes": [
-                  5
-                ],
-                "negated": false,
-                "value": "t"
-              }
-            ]
-          }
-        ]
-      },
-      "conclusion": {
-        "value": "<50"
-      },
-      "coverage": {
-        "p": 71,
-        "n": 6,
-        "P": 115,
-        "N": 97
-      },
-      "voting_weight": 0.6709716101916909
-    },
-    {
-      "uuid": "df0966a5-a3ee-48c9-9b15-b6d1fc900dd0",
-      "string": "IF (thal != {normal} OR oldpeak >= 2.50 OR thalach <= 111.00) AND (oldpeak >= 0.55 OR restecg = {left_vent_hyper} OR trestbps <= 104.00) AND (cp != {typ_angina} OR age <= 39.50 OR trestbps <= 110.00) AND (oldpeak >= 0.05 OR thal = {normal} OR chol >= 228.50) AND (age <= 65.50 OR thalach <= 126.00) THEN class = >50_1",
+      "uuid": "de9dac78-624d-4bbb-b2b7-e3b905e33df1",
+      "string": "IF (oldpeak >= 2.50 OR thalach <= 111.00 OR thal != {normal}) AND (oldpeak >= 0.05 OR ca >= 1.00 OR age <= 39.50) AND (trestbps <= 124.50 OR oldpeak <= 0.20 OR cp != {typ_angina}) AND (trestbps >= 109.00 OR age >= 54.00) AND ca <= 3.00 AND chol = <128.50, 486.50> THEN class = >50_1",
       "premise": {
         "type": "compound",
         "attributes": [
@@ -896,9 +629,9 @@
           2,
           3,
           4,
-          6,
           7,
           9,
+          11,
           12
         ],
         "negated": false,
@@ -914,14 +647,6 @@
             "negated": false,
             "operator": "ALTERNATIVE",
             "subconditions": [
-              {
-                "type": "elementary_nominal",
-                "attributes": [
-                  12
-                ],
-                "negated": true,
-                "value": "normal"
-              },
               {
                 "type": "elementary_numerical",
                 "attributes": [
@@ -943,48 +668,14 @@
                 "right": 111.0,
                 "left_closed": false,
                 "right_closed": true
-              }
-            ]
-          },
-          {
-            "type": "compound",
-            "attributes": [
-              9,
-              3,
-              6
-            ],
-            "negated": false,
-            "operator": "ALTERNATIVE",
-            "subconditions": [
-              {
-                "type": "elementary_numerical",
-                "attributes": [
-                  9
-                ],
-                "negated": false,
-                "left": 0.55,
-                "right": null,
-                "left_closed": true,
-                "right_closed": false
               },
               {
                 "type": "elementary_nominal",
                 "attributes": [
-                  6
+                  12
                 ],
-                "negated": false,
-                "value": "left_vent_hyper"
-              },
-              {
-                "type": "elementary_numerical",
-                "attributes": [
-                  3
-                ],
-                "negated": false,
-                "left": null,
-                "right": 104.0,
-                "left_closed": false,
-                "right_closed": true
+                "negated": true,
+                "value": "normal"
               }
             ]
           },
@@ -992,50 +683,8 @@
             "type": "compound",
             "attributes": [
               0,
-              2,
-              3
-            ],
-            "negated": false,
-            "operator": "ALTERNATIVE",
-            "subconditions": [
-              {
-                "type": "elementary_nominal",
-                "attributes": [
-                  2
-                ],
-                "negated": true,
-                "value": "typ_angina"
-              },
-              {
-                "type": "elementary_numerical",
-                "attributes": [
-                  0
-                ],
-                "negated": false,
-                "left": null,
-                "right": 39.5,
-                "left_closed": false,
-                "right_closed": true
-              },
-              {
-                "type": "elementary_numerical",
-                "attributes": [
-                  3
-                ],
-                "negated": false,
-                "left": null,
-                "right": 110.0,
-                "left_closed": false,
-                "right_closed": true
-              }
-            ]
-          },
-          {
-            "type": "compound",
-            "attributes": [
               9,
-              12,
-              4
+              11
             ],
             "negated": false,
             "operator": "ALTERNATIVE",
@@ -1052,35 +701,16 @@
                 "right_closed": false
               },
               {
-                "type": "elementary_nominal",
-                "attributes": [
-                  12
-                ],
-                "negated": false,
-                "value": "normal"
-              },
-              {
                 "type": "elementary_numerical",
                 "attributes": [
-                  4
+                  11
                 ],
                 "negated": false,
-                "left": 228.5,
+                "left": 1.0,
                 "right": null,
                 "left_closed": true,
                 "right_closed": false
-              }
-            ]
-          },
-          {
-            "type": "compound",
-            "attributes": [
-              0,
-              7
-            ],
-            "negated": false,
-            "operator": "ALTERNATIVE",
-            "subconditions": [
+              },
               {
                 "type": "elementary_numerical",
                 "attributes": [
@@ -1088,87 +718,32 @@
                 ],
                 "negated": false,
                 "left": null,
-                "right": 65.5,
-                "left_closed": false,
-                "right_closed": true
-              },
-              {
-                "type": "elementary_numerical",
-                "attributes": [
-                  7
-                ],
-                "negated": false,
-                "left": null,
-                "right": 126.0,
+                "right": 39.5,
                 "left_closed": false,
                 "right_closed": true
               }
             ]
-          }
-        ]
-      },
-      "conclusion": {
-        "value": ">50_1"
-      },
-      "coverage": {
-        "p": 75,
-        "n": 3,
-        "P": 97,
-        "N": 115
-      },
-      "voting_weight": 0.8237354756404509
-    },
-    {
-      "uuid": "3b3c7ef9-dc25-4fd8-9805-4fbd6a746a42",
-      "string": "IF (thalach >= 169.50 AND slope = {up} AND oldpeak <= 1.50) OR (cp = {atyp_angina} AND oldpeak = ca) OR (cp = {non_anginal} AND sex = {female} AND trestbps < thalach) OR (restecg = {st_t_wave_abnormality} AND exang = {no}) OR chol < thalach OR (cp = {atyp_angina} AND fbs = {t}) OR (chol >= 346.50 AND thal = {normal}) OR (cp = {atyp_angina} AND trestbps >= 132.00) OR (cp = {typ_angina} AND fbs = {t} AND oldpeak <= 1.20) OR (cp = {non_anginal} AND age <= 54.50) THEN class = <50",
-      "premise": {
-        "type": "compound",
-        "attributes": [
-          0,
-          1,
-          2,
-          3,
-          4,
-          5,
-          6,
-          7,
-          8,
-          9,
-          10,
-          11,
-          12
-        ],
-        "negated": false,
-        "operator": "ALTERNATIVE",
-        "subconditions": [
+          },
           {
             "type": "compound",
             "attributes": [
               9,
-              10,
-              7
+              2,
+              3
             ],
             "negated": false,
-            "operator": "CONJUNCTION",
+            "operator": "ALTERNATIVE",
             "subconditions": [
               {
                 "type": "elementary_numerical",
                 "attributes": [
-                  7
+                  3
                 ],
                 "negated": false,
-                "left": 169.5,
-                "right": null,
-                "left_closed": true,
-                "right_closed": false
-              },
-              {
-                "type": "elementary_nominal",
-                "attributes": [
-                  10
-                ],
-                "negated": false,
-                "value": "up"
+                "left": null,
+                "right": 124.5,
+                "left_closed": false,
+                "right_closed": true
               },
               {
                 "type": "elementary_numerical",
@@ -1177,30 +752,114 @@
                 ],
                 "negated": false,
                 "left": null,
-                "right": 1.5,
+                "right": 0.2,
                 "left_closed": false,
                 "right_closed": true
+              },
+              {
+                "type": "elementary_nominal",
+                "attributes": [
+                  2
+                ],
+                "negated": true,
+                "value": "typ_angina"
               }
             ]
           },
           {
             "type": "compound",
             "attributes": [
+              0,
+              3
+            ],
+            "negated": false,
+            "operator": "ALTERNATIVE",
+            "subconditions": [
+              {
+                "type": "elementary_numerical",
+                "attributes": [
+                  3
+                ],
+                "negated": false,
+                "left": 109.0,
+                "right": null,
+                "left_closed": true,
+                "right_closed": false
+              },
+              {
+                "type": "elementary_numerical",
+                "attributes": [
+                  0
+                ],
+                "negated": false,
+                "left": 54.0,
+                "right": null,
+                "left_closed": true,
+                "right_closed": false
+              }
+            ]
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              11
+            ],
+            "negated": false,
+            "left": null,
+            "right": 3.0,
+            "left_closed": false,
+            "right_closed": true
+          },
+          {
+            "type": "elementary_numerical",
+            "attributes": [
+              4
+            ],
+            "negated": false,
+            "left": 128.5,
+            "right": 486.5,
+            "left_closed": true,
+            "right_closed": true
+          }
+        ]
+      },
+      "conclusion": {
+        "value": ">50_1"
+      },
+      "coverage": {
+        "p": 80,
+        "n": 9,
+        "P": 97,
+        "N": 115
+      },
+      "voting_weight": 0.7422876827542443
+    },
+    {
+      "uuid": "fbcd297b-25f1-4d75-8008-9f28c8370f8b",
+      "string": "IF (oldpeak = ca OR cp != {asympt} OR exang = {no}) AND oldpeak <= 2.50 AND slope = {up} THEN class = <50",
+      "premise": {
+        "type": "compound",
+        "attributes": [
+          2,
+          8,
+          9,
+          10,
+          11
+        ],
+        "negated": false,
+        "operator": "CONJUNCTION",
+        "subconditions": [
+          {
+            "type": "compound",
+            "attributes": [
+              8,
               9,
               2,
               11
             ],
             "negated": false,
-            "operator": "CONJUNCTION",
+            "operator": "ALTERNATIVE",
             "subconditions": [
-              {
-                "type": "elementary_nominal",
-                "attributes": [
-                  2
-                ],
-                "negated": false,
-                "value": "atyp_angina"
-              },
               {
                 "type": "attributes",
                 "attributes": [
@@ -1209,63 +868,14 @@
                 ],
                 "negated": false,
                 "operator": "="
-              }
-            ]
-          },
-          {
-            "type": "compound",
-            "attributes": [
-              1,
-              2,
-              3,
-              7
-            ],
-            "negated": false,
-            "operator": "CONJUNCTION",
-            "subconditions": [
+              },
               {
                 "type": "elementary_nominal",
                 "attributes": [
                   2
                 ],
-                "negated": false,
-                "value": "non_anginal"
-              },
-              {
-                "type": "elementary_nominal",
-                "attributes": [
-                  1
-                ],
-                "negated": false,
-                "value": "female"
-              },
-              {
-                "type": "attributes",
-                "attributes": [
-                  3,
-                  7
-                ],
-                "negated": false,
-                "operator": "<"
-              }
-            ]
-          },
-          {
-            "type": "compound",
-            "attributes": [
-              8,
-              6
-            ],
-            "negated": false,
-            "operator": "CONJUNCTION",
-            "subconditions": [
-              {
-                "type": "elementary_nominal",
-                "attributes": [
-                  6
-                ],
-                "negated": false,
-                "value": "st_t_wave_abnormality"
+                "negated": true,
+                "value": "asympt"
               },
               {
                 "type": "elementary_nominal",
@@ -1278,169 +888,23 @@
             ]
           },
           {
-            "type": "attributes",
+            "type": "elementary_numerical",
             "attributes": [
-              4,
-              7
+              9
             ],
             "negated": false,
-            "operator": "<"
+            "left": null,
+            "right": 2.5,
+            "left_closed": false,
+            "right_closed": true
           },
           {
-            "type": "compound",
+            "type": "elementary_nominal",
             "attributes": [
-              2,
-              5
+              10
             ],
             "negated": false,
-            "operator": "CONJUNCTION",
-            "subconditions": [
-              {
-                "type": "elementary_nominal",
-                "attributes": [
-                  2
-                ],
-                "negated": false,
-                "value": "atyp_angina"
-              },
-              {
-                "type": "elementary_nominal",
-                "attributes": [
-                  5
-                ],
-                "negated": false,
-                "value": "t"
-              }
-            ]
-          },
-          {
-            "type": "compound",
-            "attributes": [
-              4,
-              12
-            ],
-            "negated": false,
-            "operator": "CONJUNCTION",
-            "subconditions": [
-              {
-                "type": "elementary_numerical",
-                "attributes": [
-                  4
-                ],
-                "negated": false,
-                "left": 346.5,
-                "right": null,
-                "left_closed": true,
-                "right_closed": false
-              },
-              {
-                "type": "elementary_nominal",
-                "attributes": [
-                  12
-                ],
-                "negated": false,
-                "value": "normal"
-              }
-            ]
-          },
-          {
-            "type": "compound",
-            "attributes": [
-              2,
-              3
-            ],
-            "negated": false,
-            "operator": "CONJUNCTION",
-            "subconditions": [
-              {
-                "type": "elementary_nominal",
-                "attributes": [
-                  2
-                ],
-                "negated": false,
-                "value": "atyp_angina"
-              },
-              {
-                "type": "elementary_numerical",
-                "attributes": [
-                  3
-                ],
-                "negated": false,
-                "left": 132.0,
-                "right": null,
-                "left_closed": true,
-                "right_closed": false
-              }
-            ]
-          },
-          {
-            "type": "compound",
-            "attributes": [
-              9,
-              2,
-              5
-            ],
-            "negated": false,
-            "operator": "CONJUNCTION",
-            "subconditions": [
-              {
-                "type": "elementary_nominal",
-                "attributes": [
-                  2
-                ],
-                "negated": false,
-                "value": "typ_angina"
-              },
-              {
-                "type": "elementary_nominal",
-                "attributes": [
-                  5
-                ],
-                "negated": false,
-                "value": "t"
-              },
-              {
-                "type": "elementary_numerical",
-                "attributes": [
-                  9
-                ],
-                "negated": false,
-                "left": null,
-                "right": 1.2,
-                "left_closed": false,
-                "right_closed": true
-              }
-            ]
-          },
-          {
-            "type": "compound",
-            "attributes": [
-              0,
-              2
-            ],
-            "negated": false,
-            "operator": "CONJUNCTION",
-            "subconditions": [
-              {
-                "type": "elementary_nominal",
-                "attributes": [
-                  2
-                ],
-                "negated": false,
-                "value": "non_anginal"
-              },
-              {
-                "type": "elementary_numerical",
-                "attributes": [
-                  0
-                ],
-                "negated": false,
-                "left": null,
-                "right": 54.5,
-                "left_closed": false,
-                "right_closed": true
-              }
-            ]
+            "value": "up"
           }
         ]
       },
@@ -1448,201 +912,24 @@
         "value": "<50"
       },
       "coverage": {
-        "p": 75,
-        "n": 4,
+        "p": 77,
+        "n": 14,
         "P": 115,
         "N": 97
       },
-      "voting_weight": 0.73467083501183
+      "voting_weight": 0.5540944040271696
     },
     {
-      "uuid": "7e4afda1-f8d3-4392-a36a-1787f8a60563",
-      "string": "IF slope != {up} AND thalach <= 176.00 AND trestbps >= 108.00 AND age <= 70.50 AND (cp != {atyp_angina} OR thalach >= 153.50) AND (cp != {typ_angina} OR chol >= 271.50) AND (thal != {normal} OR age >= 55.00) AND chol <= 486.50 THEN class = >50_1",
+      "uuid": "6888b65b-7863-458b-8aff-979a940e1f96",
+      "string": "IF (thalach <= 158.00 AND age <= 67.00 AND trestbps >= 108.00) OR (oldpeak >= 2.00 AND fbs = {f}) OR ca >= 3.00 THEN class = >50_1",
       "premise": {
         "type": "compound",
         "attributes": [
           0,
-          2,
           3,
-          4,
-          7,
-          10,
-          12
-        ],
-        "negated": false,
-        "operator": "CONJUNCTION",
-        "subconditions": [
-          {
-            "type": "elementary_nominal",
-            "attributes": [
-              10
-            ],
-            "negated": true,
-            "value": "up"
-          },
-          {
-            "type": "elementary_numerical",
-            "attributes": [
-              7
-            ],
-            "negated": false,
-            "left": null,
-            "right": 176.0,
-            "left_closed": false,
-            "right_closed": true
-          },
-          {
-            "type": "elementary_numerical",
-            "attributes": [
-              3
-            ],
-            "negated": false,
-            "left": 108.0,
-            "right": null,
-            "left_closed": true,
-            "right_closed": false
-          },
-          {
-            "type": "elementary_numerical",
-            "attributes": [
-              0
-            ],
-            "negated": false,
-            "left": null,
-            "right": 70.5,
-            "left_closed": false,
-            "right_closed": true
-          },
-          {
-            "type": "compound",
-            "attributes": [
-              2,
-              7
-            ],
-            "negated": false,
-            "operator": "ALTERNATIVE",
-            "subconditions": [
-              {
-                "type": "elementary_nominal",
-                "attributes": [
-                  2
-                ],
-                "negated": true,
-                "value": "atyp_angina"
-              },
-              {
-                "type": "elementary_numerical",
-                "attributes": [
-                  7
-                ],
-                "negated": false,
-                "left": 153.5,
-                "right": null,
-                "left_closed": true,
-                "right_closed": false
-              }
-            ]
-          },
-          {
-            "type": "compound",
-            "attributes": [
-              2,
-              4
-            ],
-            "negated": false,
-            "operator": "ALTERNATIVE",
-            "subconditions": [
-              {
-                "type": "elementary_nominal",
-                "attributes": [
-                  2
-                ],
-                "negated": true,
-                "value": "typ_angina"
-              },
-              {
-                "type": "elementary_numerical",
-                "attributes": [
-                  4
-                ],
-                "negated": false,
-                "left": 271.5,
-                "right": null,
-                "left_closed": true,
-                "right_closed": false
-              }
-            ]
-          },
-          {
-            "type": "compound",
-            "attributes": [
-              0,
-              12
-            ],
-            "negated": false,
-            "operator": "ALTERNATIVE",
-            "subconditions": [
-              {
-                "type": "elementary_nominal",
-                "attributes": [
-                  12
-                ],
-                "negated": true,
-                "value": "normal"
-              },
-              {
-                "type": "elementary_numerical",
-                "attributes": [
-                  0
-                ],
-                "negated": false,
-                "left": 55.0,
-                "right": null,
-                "left_closed": true,
-                "right_closed": false
-              }
-            ]
-          },
-          {
-            "type": "elementary_numerical",
-            "attributes": [
-              4
-            ],
-            "negated": false,
-            "left": null,
-            "right": 486.5,
-            "left_closed": false,
-            "right_closed": true
-          }
-        ]
-      },
-      "conclusion": {
-        "value": ">50_1"
-      },
-      "coverage": {
-        "p": 69,
-        "n": 9,
-        "P": 97,
-        "N": 115
-      },
-      "voting_weight": 0.6736613453780644
-    },
-    {
-      "uuid": "9c9477a5-318d-4aaa-b0fe-b6b272853e86",
-      "string": "IF (oldpeak <= 0.50 AND chol <= 269.00 AND ca <= 0.00) OR (cp != {asympt} AND slope = {up} AND age <= 57.00) OR (trestbps <= 108.00 AND thalach <= 152.00) OR (chol >= 339.00 AND cp = {non_anginal}) OR (trestbps <= 108.00 AND sex = {male}) OR (cp = {typ_angina} AND sex = {female}) OR (cp = {atyp_angina} AND trestbps >= 132.00 AND fbs = {f}) OR (cp = {typ_angina} AND chol <= 242.00 AND exang = {no}) THEN class = <50",
-      "premise": {
-        "type": "compound",
-        "attributes": [
-          0,
-          1,
-          2,
-          3,
-          4,
           5,
           7,
-          8,
           9,
-          10,
           11
         ],
         "negated": false,
@@ -1651,9 +938,53 @@
           {
             "type": "compound",
             "attributes": [
+              0,
+              3,
+              7
+            ],
+            "negated": false,
+            "operator": "CONJUNCTION",
+            "subconditions": [
+              {
+                "type": "elementary_numerical",
+                "attributes": [
+                  7
+                ],
+                "negated": false,
+                "left": null,
+                "right": 158.0,
+                "left_closed": false,
+                "right_closed": true
+              },
+              {
+                "type": "elementary_numerical",
+                "attributes": [
+                  0
+                ],
+                "negated": false,
+                "left": null,
+                "right": 67.0,
+                "left_closed": false,
+                "right_closed": true
+              },
+              {
+                "type": "elementary_numerical",
+                "attributes": [
+                  3
+                ],
+                "negated": false,
+                "left": 108.0,
+                "right": null,
+                "left_closed": true,
+                "right_closed": false
+              }
+            ]
+          },
+          {
+            "type": "compound",
+            "attributes": [
               9,
-              11,
-              4
+              5
             ],
             "negated": false,
             "operator": "CONJUNCTION",
@@ -1664,219 +995,7 @@
                   9
                 ],
                 "negated": false,
-                "left": null,
-                "right": 0.5,
-                "left_closed": false,
-                "right_closed": true
-              },
-              {
-                "type": "elementary_numerical",
-                "attributes": [
-                  4
-                ],
-                "negated": false,
-                "left": null,
-                "right": 269.0,
-                "left_closed": false,
-                "right_closed": true
-              },
-              {
-                "type": "elementary_numerical",
-                "attributes": [
-                  11
-                ],
-                "negated": false,
-                "left": null,
-                "right": 0.0,
-                "left_closed": false,
-                "right_closed": true
-              }
-            ]
-          },
-          {
-            "type": "compound",
-            "attributes": [
-              0,
-              2,
-              10
-            ],
-            "negated": false,
-            "operator": "CONJUNCTION",
-            "subconditions": [
-              {
-                "type": "elementary_nominal",
-                "attributes": [
-                  2
-                ],
-                "negated": true,
-                "value": "asympt"
-              },
-              {
-                "type": "elementary_nominal",
-                "attributes": [
-                  10
-                ],
-                "negated": false,
-                "value": "up"
-              },
-              {
-                "type": "elementary_numerical",
-                "attributes": [
-                  0
-                ],
-                "negated": false,
-                "left": null,
-                "right": 57.0,
-                "left_closed": false,
-                "right_closed": true
-              }
-            ]
-          },
-          {
-            "type": "compound",
-            "attributes": [
-              3,
-              7
-            ],
-            "negated": false,
-            "operator": "CONJUNCTION",
-            "subconditions": [
-              {
-                "type": "elementary_numerical",
-                "attributes": [
-                  3
-                ],
-                "negated": false,
-                "left": null,
-                "right": 108.0,
-                "left_closed": false,
-                "right_closed": true
-              },
-              {
-                "type": "elementary_numerical",
-                "attributes": [
-                  7
-                ],
-                "negated": false,
-                "left": null,
-                "right": 152.0,
-                "left_closed": false,
-                "right_closed": true
-              }
-            ]
-          },
-          {
-            "type": "compound",
-            "attributes": [
-              2,
-              4
-            ],
-            "negated": false,
-            "operator": "CONJUNCTION",
-            "subconditions": [
-              {
-                "type": "elementary_numerical",
-                "attributes": [
-                  4
-                ],
-                "negated": false,
-                "left": 339.0,
-                "right": null,
-                "left_closed": true,
-                "right_closed": false
-              },
-              {
-                "type": "elementary_nominal",
-                "attributes": [
-                  2
-                ],
-                "negated": false,
-                "value": "non_anginal"
-              }
-            ]
-          },
-          {
-            "type": "compound",
-            "attributes": [
-              1,
-              3
-            ],
-            "negated": false,
-            "operator": "CONJUNCTION",
-            "subconditions": [
-              {
-                "type": "elementary_numerical",
-                "attributes": [
-                  3
-                ],
-                "negated": false,
-                "left": null,
-                "right": 108.0,
-                "left_closed": false,
-                "right_closed": true
-              },
-              {
-                "type": "elementary_nominal",
-                "attributes": [
-                  1
-                ],
-                "negated": false,
-                "value": "male"
-              }
-            ]
-          },
-          {
-            "type": "compound",
-            "attributes": [
-              1,
-              2
-            ],
-            "negated": false,
-            "operator": "CONJUNCTION",
-            "subconditions": [
-              {
-                "type": "elementary_nominal",
-                "attributes": [
-                  2
-                ],
-                "negated": false,
-                "value": "typ_angina"
-              },
-              {
-                "type": "elementary_nominal",
-                "attributes": [
-                  1
-                ],
-                "negated": false,
-                "value": "female"
-              }
-            ]
-          },
-          {
-            "type": "compound",
-            "attributes": [
-              2,
-              3,
-              5
-            ],
-            "negated": false,
-            "operator": "CONJUNCTION",
-            "subconditions": [
-              {
-                "type": "elementary_nominal",
-                "attributes": [
-                  2
-                ],
-                "negated": false,
-                "value": "atyp_angina"
-              },
-              {
-                "type": "elementary_numerical",
-                "attributes": [
-                  3
-                ],
-                "negated": false,
-                "left": 132.0,
+                "left": 2.0,
                 "right": null,
                 "left_closed": true,
                 "right_closed": false
@@ -1892,285 +1011,15 @@
             ]
           },
           {
-            "type": "compound",
+            "type": "elementary_numerical",
             "attributes": [
-              8,
-              2,
-              4
-            ],
-            "negated": false,
-            "operator": "CONJUNCTION",
-            "subconditions": [
-              {
-                "type": "elementary_nominal",
-                "attributes": [
-                  2
-                ],
-                "negated": false,
-                "value": "typ_angina"
-              },
-              {
-                "type": "elementary_numerical",
-                "attributes": [
-                  4
-                ],
-                "negated": false,
-                "left": null,
-                "right": 242.0,
-                "left_closed": false,
-                "right_closed": true
-              },
-              {
-                "type": "elementary_nominal",
-                "attributes": [
-                  8
-                ],
-                "negated": false,
-                "value": "no"
-              }
-            ]
-          }
-        ]
-      },
-      "conclusion": {
-        "value": "<50"
-      },
-      "coverage": {
-        "p": 86,
-        "n": 5,
-        "P": 115,
-        "N": 97
-      },
-      "voting_weight": 0.7689682348131475
-    },
-    {
-      "uuid": "5fa56450-63a6-4174-be9b-31777861512e",
-      "string": "IF (thalach <= 160.00 AND age <= 65.50 AND chol >= 228.50) OR (oldpeak >= 2.00 AND chol <= 234.00 AND age <= 64.00) OR (ca >= 2.00 AND cp = {asympt}) OR (slope = {down} AND sex = {male}) OR (chol >= 325.50 AND restecg = {left_vent_hyper}) OR (thalach <= 120.00 AND ca >= 0.50) THEN class = >50_1",
-      "premise": {
-        "type": "compound",
-        "attributes": [
-          0,
-          1,
-          2,
-          4,
-          6,
-          7,
-          9,
-          10,
-          11
-        ],
-        "negated": false,
-        "operator": "ALTERNATIVE",
-        "subconditions": [
-          {
-            "type": "compound",
-            "attributes": [
-              0,
-              4,
-              7
-            ],
-            "negated": false,
-            "operator": "CONJUNCTION",
-            "subconditions": [
-              {
-                "type": "elementary_numerical",
-                "attributes": [
-                  7
-                ],
-                "negated": false,
-                "left": null,
-                "right": 160.0,
-                "left_closed": false,
-                "right_closed": true
-              },
-              {
-                "type": "elementary_numerical",
-                "attributes": [
-                  0
-                ],
-                "negated": false,
-                "left": null,
-                "right": 65.5,
-                "left_closed": false,
-                "right_closed": true
-              },
-              {
-                "type": "elementary_numerical",
-                "attributes": [
-                  4
-                ],
-                "negated": false,
-                "left": 228.5,
-                "right": null,
-                "left_closed": true,
-                "right_closed": false
-              }
-            ]
-          },
-          {
-            "type": "compound",
-            "attributes": [
-              0,
-              9,
-              4
-            ],
-            "negated": false,
-            "operator": "CONJUNCTION",
-            "subconditions": [
-              {
-                "type": "elementary_numerical",
-                "attributes": [
-                  9
-                ],
-                "negated": false,
-                "left": 2.0,
-                "right": null,
-                "left_closed": true,
-                "right_closed": false
-              },
-              {
-                "type": "elementary_numerical",
-                "attributes": [
-                  4
-                ],
-                "negated": false,
-                "left": null,
-                "right": 234.0,
-                "left_closed": false,
-                "right_closed": true
-              },
-              {
-                "type": "elementary_numerical",
-                "attributes": [
-                  0
-                ],
-                "negated": false,
-                "left": null,
-                "right": 64.0,
-                "left_closed": false,
-                "right_closed": true
-              }
-            ]
-          },
-          {
-            "type": "compound",
-            "attributes": [
-              2,
               11
             ],
             "negated": false,
-            "operator": "CONJUNCTION",
-            "subconditions": [
-              {
-                "type": "elementary_numerical",
-                "attributes": [
-                  11
-                ],
-                "negated": false,
-                "left": 2.0,
-                "right": null,
-                "left_closed": true,
-                "right_closed": false
-              },
-              {
-                "type": "elementary_nominal",
-                "attributes": [
-                  2
-                ],
-                "negated": false,
-                "value": "asympt"
-              }
-            ]
-          },
-          {
-            "type": "compound",
-            "attributes": [
-              1,
-              10
-            ],
-            "negated": false,
-            "operator": "CONJUNCTION",
-            "subconditions": [
-              {
-                "type": "elementary_nominal",
-                "attributes": [
-                  10
-                ],
-                "negated": false,
-                "value": "down"
-              },
-              {
-                "type": "elementary_nominal",
-                "attributes": [
-                  1
-                ],
-                "negated": false,
-                "value": "male"
-              }
-            ]
-          },
-          {
-            "type": "compound",
-            "attributes": [
-              4,
-              6
-            ],
-            "negated": false,
-            "operator": "CONJUNCTION",
-            "subconditions": [
-              {
-                "type": "elementary_numerical",
-                "attributes": [
-                  4
-                ],
-                "negated": false,
-                "left": 325.5,
-                "right": null,
-                "left_closed": true,
-                "right_closed": false
-              },
-              {
-                "type": "elementary_nominal",
-                "attributes": [
-                  6
-                ],
-                "negated": false,
-                "value": "left_vent_hyper"
-              }
-            ]
-          },
-          {
-            "type": "compound",
-            "attributes": [
-              11,
-              7
-            ],
-            "negated": false,
-            "operator": "CONJUNCTION",
-            "subconditions": [
-              {
-                "type": "elementary_numerical",
-                "attributes": [
-                  7
-                ],
-                "negated": false,
-                "left": null,
-                "right": 120.0,
-                "left_closed": false,
-                "right_closed": true
-              },
-              {
-                "type": "elementary_numerical",
-                "attributes": [
-                  11
-                ],
-                "negated": false,
-                "left": 0.5,
-                "right": null,
-                "left_closed": true,
-                "right_closed": false
-              }
-            ]
+            "left": 3.0,
+            "right": null,
+            "left_closed": true,
+            "right_closed": false
           }
         ]
       },
@@ -2178,12 +1027,12 @@
         "value": ">50_1"
       },
       "coverage": {
-        "p": 84,
-        "n": 28,
+        "p": 82,
+        "n": 40,
         "P": 97,
         "N": 115
       },
-      "voting_weight": 0.5030031376064545
+      "voting_weight": 0.36499474616249433
     }
   ]
 }

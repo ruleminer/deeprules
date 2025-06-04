@@ -106,10 +106,9 @@ class RuleInducer(RuleInducersMixin):
         uncovered: set[int],
     ) -> tuple[SurvivalRule, bool]:
         all_intermediate_rules: list[tuple[SurvivalRule, float]] = []
-        rules_pn_sum: set[int] = set()
         while True:
             disjunction, intermediate_rules = self._grow_conjunction(
-                rule, X_df, X, y, uncovered, rules_pn_sum
+                rule, X_df, X, y, uncovered
             )
             all_intermediate_rules += intermediate_rules
             if (
@@ -146,7 +145,6 @@ class RuleInducer(RuleInducersMixin):
         X: np.ndarray,
         y: np.ndarray,
         uncovered: set[int],
-        rules_pn_sum: set[int],
     ) -> tuple[CompoundCondition, list[tuple[SurvivalRule, float]]]:
         conjunction: CompoundCondition = CompoundCondition(
             subconditions=[], logic_operator=LogicOperators.CONJUNCTION
@@ -157,7 +155,7 @@ class RuleInducer(RuleInducersMixin):
 
         while True:
             c_best, q_best, cov_best = self._find_best_candidate_for_conjunction(
-                rule, cov_best, conjunction, X_df, X, y, uncovered, rules_pn_sum
+                rule, cov_best, conjunction, X_df, X, y, uncovered
             )
             if c_best is None:
                 break
@@ -193,12 +191,10 @@ class RuleInducer(RuleInducersMixin):
         X: np.ndarray,
         y: np.ndarray,
         uncovered: set[int],
-        rules_pn_sum: set[int],
     ) -> tuple[AbstractCondition, float]:
         q_best: float = float("-inf")
         c_best: Optional[AbstractCondition] = None
         cov_best: Optional[Coverage] = Coverage(p=0, n=0, P=0, N=0)
-        pn_sum_best: Optional[int] = None
         covered_mask: np.ndarray = rule.premise.covered_mask(X)
         covered_best: set[int] = set(np.where(covered_mask == 1)[0])
         conditions: list[AbstractCondition] = ConditionsGenerator(
@@ -245,9 +241,6 @@ class RuleInducer(RuleInducersMixin):
                     c_best = c
                     cov_best = cov
                     covered_best = covered
-                    pn_sum_best = len(covered)
-        if pn_sum_best is not None:
-            rules_pn_sum.add(pn_sum_best)
         return c_best, q_best, cov_best
 
     def _check_candidate(
